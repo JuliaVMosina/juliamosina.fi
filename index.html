@@ -13,9 +13,9 @@
     gtag('js', new Date());
     gtag('config', 'G-X9YLCH2VBW');
   </script>
-  <!-- Leaflet -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <!-- D3 + topojson -->
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
@@ -666,18 +666,19 @@
     #travel-map {
       height: 200px;
       border-radius: 10px;
-      z-index: 0;
+      overflow: hidden;
+      position: relative;
     }
-    .leaflet-popup-content-wrapper {
-      border-radius: 8px !important;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important;
-      font-family: inherit !important;
-    }
-    .leaflet-popup-content {
-      font-size: 13px !important;
-      font-weight: 500 !important;
-      color: #111 !important;
-      margin: 8px 12px !important;
+    #travel-map svg { display: block; }
+    .map-tooltip {
+      position: fixed;
+      background: #111; color: #fff;
+      padding: 5px 11px; border-radius: 8px;
+      font-size: 12px; font-weight: 500;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.15s;
+      z-index: 9999;
+      white-space: nowrap;
     }
 
     @media (max-width: 768px) {
@@ -1181,47 +1182,60 @@
     showItem(current);
   }, DURATION);
 
-  // ── Travel map ──
+  // ── Travel map (D3 + topojson) ──
   let mapInitialized = false;
+
+  const visitedIds = new Set([643,156,840,352,764,276,233,246,208,578,250,56,528,380,792,344,428,440,818,51,752]);
+  const countryNames = {
+    643:'🇷🇺 Russia', 156:'🇨🇳 China', 840:'🇺🇸 USA', 352:'🇮🇸 Iceland',
+    764:'🇹🇭 Thailand', 276:'🇩🇪 Germany', 233:'🇪🇪 Estonia', 246:'🇫🇮 Finland',
+    208:'🇩🇰 Denmark', 578:'🇳🇴 Norway', 250:'🇫🇷 France', 56:'🇧🇪 Belgium',
+    528:'🇳🇱 Netherlands', 380:'🇮🇹 Italy', 792:'🇹🇷 Turkey', 344:'🇭🇰 Hong Kong',
+    428:'🇱🇻 Latvia', 440:'🇱🇹 Lithuania', 818:'🇪🇬 Egypt', 51:'🇦🇲 Armenia', 752:'🇸🇪 Sweden'
+  };
+
   function initMap() {
     if (mapInitialized) return;
     mapInitialized = true;
-    const map = L.map('travel-map', { zoomControl: true, scrollWheelZoom: false })
-      .setView([30, 20], 1.5);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap &copy; CARTO',
-      maxZoom: 19
-    }).addTo(map);
 
-    const countries = [
-      { name: '🇷🇺 Russia',      lat: 61.52,  lng: 105.32 },
-      { name: '🇨🇳 China',       lat: 35.86,  lng: 104.20 },
-      { name: '🇺🇸 USA',         lat: 37.09,  lng: -95.71 },
-      { name: '🇮🇸 Iceland',     lat: 64.96,  lng: -19.02 },
-      { name: '🇹🇭 Thailand',    lat: 15.87,  lng: 100.99 },
-      { name: '🇩🇪 Germany',     lat: 51.17,  lng: 10.45  },
-      { name: '🇪🇪 Estonia',     lat: 58.60,  lng: 25.01  },
-      { name: '🇫🇮 Finland',     lat: 61.92,  lng: 25.75  },
-      { name: '🇩🇰 Denmark',     lat: 56.26,  lng: 9.50   },
-      { name: '🇳🇴 Norway',      lat: 60.47,  lng: 8.47   },
-      { name: '🇫🇷 France',      lat: 46.23,  lng: 2.21   },
-      { name: '🇧🇪 Belgium',     lat: 50.50,  lng: 4.47   },
-      { name: '🇳🇱 Netherlands', lat: 52.13,  lng: 5.29   },
-      { name: '🇮🇹 Italy',       lat: 41.87,  lng: 12.57  },
-      { name: '🇹🇷 Turkey',      lat: 38.96,  lng: 35.24  },
-      { name: '🇭🇰 Hong Kong',   lat: 22.32,  lng: 114.17 },
-      { name: '🇱🇻 Latvia',      lat: 56.88,  lng: 24.60  },
-      { name: '🇱🇹 Lithuania',   lat: 55.17,  lng: 23.88  },
-      { name: '🇪🇬 Egypt',       lat: 26.82,  lng: 30.80  },
-      { name: '🇦🇲 Armenia',     lat: 40.07,  lng: 45.04  },
-      { name: '🇸🇪 Sweden',      lat: 60.13,  lng: 18.64  },
-    ];
+    const container = document.getElementById('travel-map');
+    const W = container.offsetWidth || 600;
+    const H = 200;
 
-    const markerStyle = { radius: 6, fillColor: '#111', color: '#fff', weight: 2, opacity: 1, fillOpacity: 0.85 };
-    countries.forEach(c => {
-      L.circleMarker([c.lat, c.lng], markerStyle)
-        .addTo(map)
-        .bindPopup(c.name);
+    const tooltip = document.createElement('div');
+    tooltip.className = 'map-tooltip';
+    document.body.appendChild(tooltip);
+
+    const svg = d3.select('#travel-map').append('svg')
+      .attr('width', '100%').attr('height', H);
+
+    const projection = d3.geoNaturalEarth1()
+      .scale(W / 6.5).translate([W / 2, H / 2]);
+    const path = d3.geoPath().projection(projection);
+
+    d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
+      const features = topojson.feature(world, world.objects.countries).features;
+
+      svg.selectAll('path')
+        .data(features)
+        .join('path')
+        .attr('d', path)
+        .attr('fill', d => visitedIds.has(+d.id) ? '#111' : '#EAEAE6')
+        .attr('stroke', '#fff')
+        .attr('stroke-width', 0.4)
+        .style('cursor', d => visitedIds.has(+d.id) ? 'pointer' : 'default')
+        .on('mousemove', function(event, d) {
+          if (!visitedIds.has(+d.id)) return;
+          d3.select(this).attr('fill', '#444');
+          tooltip.style.opacity = '1';
+          tooltip.style.left = (event.clientX + 12) + 'px';
+          tooltip.style.top  = (event.clientY - 28) + 'px';
+          tooltip.textContent = countryNames[+d.id] || '';
+        })
+        .on('mouseleave', function(event, d) {
+          d3.select(this).attr('fill', visitedIds.has(+d.id) ? '#111' : '#EAEAE6');
+          tooltip.style.opacity = '0';
+        });
     });
   }
 
