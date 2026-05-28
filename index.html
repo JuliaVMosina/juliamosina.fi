@@ -1270,12 +1270,6 @@
     });
   }
 
-  // Init map when About tab opens
-  document.querySelectorAll('.nav-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      if (tab.dataset.tab === 'about') setTimeout(initMap, 50);
-    });
-  });
 
   // ── About: random dashboard count easter egg ──
   const dc = document.getElementById('dashCount');
@@ -1299,6 +1293,17 @@
 
       Object.values(tabPanels).forEach(p => { if(p) p.classList.remove('active'); });
       if (tabPanels[name]) tabPanels[name].classList.add('active');
+
+      // Update URL hash cleanly
+      history.replaceState(null, '', name === 'projects' ? location.pathname : '#' + name);
+
+      // On mobile — scroll to content
+      if (window.innerWidth <= 768) {
+        const panel = tabPanels[name];
+        if (panel) setTimeout(() => panel.scrollIntoView({ behavior: 'smooth', block: 'start' }), 50);
+      }
+
+      if (name === 'about') setTimeout(initMap, 50);
     });
   });
 
