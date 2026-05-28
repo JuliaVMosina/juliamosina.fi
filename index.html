@@ -1167,35 +1167,10 @@
     <div class="contact-panel" id="tab-contact">
       <div class="contact-card">
         <h2>Let's work together!</h2>
-        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzdworzp" method="POST">
-          <div class="form-row">
-            <div class="form-group">
-              <label>Name</label>
-              <input type="text" name="name" placeholder="Anna Korhonen" required>
-            </div>
-            <div class="form-group">
-              <label>Company</label>
-              <input type="text" name="company" placeholder="Acme Oy">
-            </div>
-          </div>
-          <div class="form-group">
-            <label>Email</label>
-            <input type="email" name="email" placeholder="anna@company.fi" required>
-          </div>
-          <div class="form-group">
-            <label>Message</label>
-            <textarea name="message" placeholder="Tell me about your project..." required></textarea>
-          </div>
-          <button type="submit" class="form-submit">Send message</button>
-          <div class="form-success" id="formSuccess">✓ Message sent! I'll get back to you soon.</div>
-        </form>
-        <div class="contact-footer">
-          <a href="mailto:julia.v.mosina@gmail.com" class="contact-email">julia.v.mosina@gmail.com</a>
-        </div>
 
-        <!-- Links block -->
-        <div class="contact-links-block">
-          <div class="contact-links-label">Links</div>
+        <!-- Links first -->
+        <div class="contact-links-block" style="margin-top:0; padding-top:0; border-top:none; margin-bottom:24px;">
+          <div class="contact-links-label">Find me here</div>
           <div class="contact-links-list">
 
             <a href="https://www.linkedin.com/in/julia-mosina/" target="_blank" class="contact-link-row">
@@ -1239,6 +1214,35 @@
 
           </div>
         </div>
+
+        <!-- Form below -->
+        <div class="contact-links-label" style="margin-bottom:12px;">Or send a message</div>
+        <form class="contact-form" id="contactForm" action="https://formspree.io/f/xzdworzp" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Anna Korhonen" required>
+            </div>
+            <div class="form-group">
+              <label>Company</label>
+              <input type="text" name="company" placeholder="Acme Oy">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="anna@company.fi" required>
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send message</button>
+          <div class="form-success" id="formSuccess">✓ Message sent! I'll get back to you soon.</div>
+        </form>
+        <div class="contact-footer">
+          <a href="mailto:julia.v.mosina@gmail.com" class="contact-email">julia.v.mosina@gmail.com</a>
+        </div>
+
       </div>
     </div>
 
