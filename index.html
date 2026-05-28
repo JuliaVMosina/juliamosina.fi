@@ -527,6 +527,98 @@
       font-weight: 500;
     }
 
+    /* ══════════════ ABOUT PANEL ══════════════ */
+    .about-panel {
+      display: none;
+      padding: 18px;
+      overflow-y: auto;
+    }
+    .about-panel.active { display: block; }
+
+    .about-bento {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 12px;
+    }
+
+    .bento-card {
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,0.07);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    /* Bio — spans 2 cols */
+    .bento-bio {
+      grid-column: span 2;
+    }
+
+    .bento-bio .bio-label {
+      font-size: 11px; font-weight: 500;
+      color: #AEAEAD; text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    .bento-bio p {
+      font-size: 14px; line-height: 1.65;
+      color: #444; font-weight: 300;
+    }
+
+    .bento-bio p strong {
+      color: #111; font-weight: 500;
+    }
+
+    /* Stat card */
+    .bento-stat {
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: #111;
+      color: #fff;
+    }
+
+    .stat-number {
+      font-size: 44px; font-weight: 700;
+      line-height: 1; letter-spacing: -2px;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 12px; font-weight: 300;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.4;
+    }
+
+    /* Fun fact cards */
+    .bento-fact .fact-icon {
+      font-size: 28px; line-height: 1;
+    }
+
+    .bento-fact .fact-title {
+      font-size: 13px; font-weight: 600;
+      color: #111; letter-spacing: -0.2px;
+    }
+
+    .bento-fact .fact-text {
+      font-size: 12.5px; font-weight: 300;
+      color: #777; line-height: 1.5;
+    }
+
+    /* Accent backgrounds for facts */
+    .bento-fact.accent-green { background: #EDFBF0; border-color: #C8EFD4; }
+    .bento-fact.accent-blue  { background: #EEF4FF; border-color: #C8D8F8; }
+    .bento-fact.accent-peach { background: #FFF5F0; border-color: #F8D8C8; }
+
+    @media (max-width: 768px) {
+      .about-bento { grid-template-columns: 1fr 1fr; }
+      .bento-bio { grid-column: span 2; }
+    }
+
     /* ══════════════ MOBILE ══════════════ */
     @media (max-width: 768px) {
       body {
@@ -828,6 +920,45 @@
 
     </div>
 
+    <!-- ABOUT TAB -->
+    <div class="about-panel" id="tab-about">
+      <div class="about-bento">
+
+        <!-- Bio -->
+        <div class="bento-card bento-bio">
+          <span class="bio-label">About me</span>
+          <p>My background combines <strong>product analytics, UX research</strong>, and close collaboration with product teams. I enjoy finding patterns in user behaviour and turning them into simple, useful insights that support decisions.</p>
+          <p>I have experience building dashboards, working with data visualisation tools, and helping teams make data-based decisions — from raw data to a clear story on a screen.</p>
+        </div>
+
+        <!-- Stat -->
+        <div class="bento-card bento-stat">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">years working<br>with data &amp; analytics</div>
+        </div>
+
+        <!-- Fun facts -->
+        <div class="bento-card bento-fact accent-green">
+          <div class="fact-icon">⌚</div>
+          <div class="fact-title">Data in everyday life</div>
+          <div class="fact-text">I track my sleep and steps daily with wearables — it's what inspired the Oura project.</div>
+        </div>
+
+        <div class="bento-card bento-fact accent-blue">
+          <div class="fact-icon">🇫🇮</div>
+          <div class="fact-title">Finnish by choice</div>
+          <div class="fact-text">Fell in love with Finland 10 years ago — now living here for 2 years and calling it home.</div>
+        </div>
+
+        <div class="bento-card bento-fact accent-peach">
+          <div class="fact-icon">🇺🇸</div>
+          <div class="fact-title">Year in the USA</div>
+          <div class="fact-text">Spent a year living in the States as an exchange student — expanded my perspective a lot.</div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- CONTACT TAB -->
     <div class="contact-panel" id="tab-contact">
       <div class="contact-card">
@@ -900,6 +1031,7 @@
   const tabs = document.querySelectorAll('.nav-tab');
   const tabPanels = {
     projects: document.getElementById('tab-projects'),
+    about:    document.getElementById('tab-about'),
     contact:  document.getElementById('tab-contact'),
   };
 
