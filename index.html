@@ -757,9 +757,15 @@
       /* Hide ring cursor on touch */
       .explore-cursor { display: none; }
 
-      .contact-panel { height: auto; padding: 14px; }
-      .contact-card { padding: 24px 20px; }
+      .contact-panel { height: auto !important; padding: 14px; }
+      .contact-panel.active { display: block; }
+      .contact-card { padding: 24px 20px; max-width: 100%; }
       .form-row { grid-template-columns: 1fr; }
+      .about-panel { padding: 14px; }
+      .about-panel.active { display: block; }
+      .kpi-row { grid-template-columns: 1fr 1fr; }
+      .mid-row { grid-template-columns: 1fr; }
+      #travel-map { height: 260px; }
     }
   </style>
 </head>
