@@ -716,9 +716,96 @@
       white-space: nowrap;
     }
 
+    /* ══════════════ TIMELINE ══════════════ */
+    .timeline-section {
+      margin-top: 10px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px;
+      padding: 20px 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .timeline-title {
+      font-size: 11px; font-weight: 600;
+      color: #888; text-transform: uppercase;
+      letter-spacing: 0.6px; margin-bottom: 20px;
+    }
+    .timeline { display: flex; flex-direction: column; gap: 0; position: relative; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 72px; top: 8px; bottom: 8px;
+      width: 1px; background: #EAEAE6;
+    }
+    .timeline-item {
+      display: flex; gap: 0;
+      cursor: pointer;
+      position: relative;
+    }
+    .timeline-date {
+      width: 72px; flex-shrink: 0;
+      font-size: 11px; color: #AEAEAD;
+      font-weight: 400; padding-top: 4px;
+      text-align: right; padding-right: 16px;
+      line-height: 1.4;
+    }
+    .timeline-dot-col {
+      width: 16px; flex-shrink: 0;
+      display: flex; flex-direction: column;
+      align-items: center; position: relative;
+    }
+    .timeline-dot {
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: #EAEAE6;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 1px #DDDDD8;
+      margin-top: 5px; flex-shrink: 0;
+      transition: background .2s, box-shadow .2s;
+      z-index: 1;
+    }
+    .timeline-item.active .timeline-dot,
+    .timeline-item:hover .timeline-dot {
+      background: #2A6878;
+      box-shadow: 0 0 0 1px #2A6878;
+    }
+    .timeline-content {
+      flex: 1; padding: 0 0 20px 14px;
+    }
+    .timeline-role {
+      font-size: 13.5px; font-weight: 600;
+      color: #111; letter-spacing: -0.2px;
+    }
+    .timeline-company {
+      font-size: 12px; color: #777;
+      font-weight: 400; margin-top: 2px;
+    }
+    .timeline-tag {
+      display: inline-block;
+      font-size: 10px; padding: 2px 8px;
+      background: #F0F0EC; border-radius: 20px;
+      color: #888; margin-top: 5px; margin-right: 4px;
+    }
+    .timeline-details {
+      display: none;
+      margin-top: 10px;
+      font-size: 12.5px; color: #666;
+      line-height: 1.6; font-weight: 300;
+      border-left: 2px solid #EAEAE6;
+      padding-left: 12px;
+    }
+    .timeline-item.active .timeline-details { display: block; }
+    .timeline-note {
+      margin-top: 6px;
+      font-size: 11.5px; color: #AEAEAD;
+      font-style: italic;
+    }
+
     @media (max-width: 768px) {
       .kpi-row { grid-template-columns: 1fr 1fr; }
       .mid-row { grid-template-columns: 1fr; }
+      .timeline::before { left: 60px; }
+      .timeline-date { width: 60px; }
     }
 
     /* ══════════════ MOBILE ══════════════ */
@@ -1161,6 +1248,72 @@
         </div>
       </div>
 
+      <!-- Work timeline -->
+      <div class="timeline-section">
+        <div class="timeline-title">Work experience</div>
+        <div class="timeline">
+
+          <!-- Item 1 -->
+          <div class="timeline-item active" data-tl="0">
+            <div class="timeline-date">2021<br>2023</div>
+            <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Senior Product Analyst</div>
+              <div class="timeline-company">Timebook Ltd · WFM SaaS · Helsinki</div>
+              <div>
+                <span class="timeline-tag">SQL</span>
+                <span class="timeline-tag">Tableau</span>
+                <span class="timeline-tag">Product analytics</span>
+                <span class="timeline-tag">A/B testing</span>
+              </div>
+              <div class="timeline-details">
+                Owned end-to-end analytics for a workforce management product used by enterprise clients. Built and maintained Tableau dashboards tracking activation, retention, and feature adoption. Designed and analysed A/B experiments on scheduling and payroll flows. Partnered closely with product and engineering teams to translate user behaviour data into roadmap decisions.
+                <div class="timeline-note">Dec 2021 – Feb 2023</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2 -->
+          <div class="timeline-item" data-tl="1">
+            <div class="timeline-date">2017<br>2021</div>
+            <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Product Analyst</div>
+              <div class="timeline-company">Satellite Company LLC · WFM SaaS</div>
+              <div>
+                <span class="timeline-tag">SQL</span>
+                <span class="timeline-tag">BI dashboards</span>
+                <span class="timeline-tag">User research</span>
+              </div>
+              <div class="timeline-details">
+                Analysed user behaviour across a workforce management platform, built reporting infrastructure from scratch, and worked with product managers to define KPIs for new features. Presented insights to stakeholders on a regular cadence.
+                <div class="timeline-note">2017 – 2021 · Concurrent part-time role: Product Manager at Sputnik Logistic</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 3 -->
+          <div class="timeline-item" data-tl="2">
+            <div class="timeline-date">2015<br>2017</div>
+            <div class="timeline-dot-col"><div class="timeline-dot"></div></div>
+            <div class="timeline-content">
+              <div class="timeline-role">Analyst</div>
+              <div class="timeline-company">Energo LLC · Electronics Retail</div>
+              <div>
+                <span class="timeline-tag">Data analysis</span>
+                <span class="timeline-tag">Reporting</span>
+                <span class="timeline-tag">Excel</span>
+              </div>
+              <div class="timeline-details">
+                Supported business reporting and analysis for an electronics retail operation. Built sales performance reports and maintained data pipelines feeding weekly management reviews.
+                <div class="timeline-note">2015 – 2017</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
     </div>
 
     <!-- CONTACT TAB -->
@@ -1387,6 +1540,15 @@
       }
 
       if (name === 'about') setTimeout(initMap, 50);
+    });
+  });
+
+  // ── Work timeline toggle ──
+  document.querySelectorAll('.timeline-item').forEach(item => {
+    item.addEventListener('click', () => {
+      const isActive = item.classList.contains('active');
+      document.querySelectorAll('.timeline-item').forEach(i => i.classList.remove('active'));
+      if (!isActive) item.classList.add('active');
     });
   });
 
