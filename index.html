@@ -510,6 +510,7 @@
     /* ══ Elegant ring cursor ══ */
     .explore-cursor {
       position: fixed;
+      top: 0; left: 0;
       pointer-events: none;
       z-index: 9999;
       width: 44px; height: 44px;
@@ -517,9 +518,8 @@
       border: 1.5px solid rgba(255,255,255,0.85);
       background: rgba(255,255,255,0.06);
       opacity: 0;
-      /* Smooth lag — ring "follows" mouse slightly behind */
-      transition: opacity 0.22s, left 0.08s ease-out, top 0.08s ease-out, width 0.2s, height 0.2s;
-      transform: translate(-50%, -50%);
+      transition: opacity 0.22s, width 0.2s, height 0.2s;
+      will-change: transform;
     }
     .explore-cursor.visible { opacity: 1; }
 
@@ -1250,7 +1250,7 @@
     <div class="projects-grid active" id="tab-projects">
 
       <!-- 1. Oura — nature photo bg + floating dashboard -->
-      <a href="#" class="project-card">
+      <a href="#" class="project-card" onclick="openProject('oura'); return false;">
         <div class="project-bg" style="
           background:
             radial-gradient(ellipse at 20% 20%, rgba(230,215,175,0.8) 0%, transparent 50%),
@@ -1306,7 +1306,7 @@
       </a>
 
       <!-- 3. KONE — песочный/хаки -->
-      <a href="#" class="project-card">
+      <a href="#" class="project-card" onclick="openProject('kone'); return false;">
         <div class="project-bg" style="
           background:
             radial-gradient(ellipse at 20% 20%, rgba(60,130,140,0.6) 0%, transparent 50%),
@@ -1333,7 +1333,7 @@
       </a>
 
       <!-- 4. Thesis — тёплый коричневый -->
-      <a href="#" class="project-card">
+      <a href="#" class="project-card" onclick="openProject('thesis'); return false;">
         <div class="project-bg" style="
           background:
             radial-gradient(ellipse at 20% 20%, rgba(220,175,175,0.7) 0%, transparent 50%),
@@ -2268,6 +2268,59 @@
 
   // ── Project Detail ──
   const projectData = {
+    oura: {
+      title: 'Health Intelligence Dashboard',
+      company: 'Metropolia UAS — Bachelor\'s Thesis',
+      period: '2024–2026',
+      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      overview: `
+        <div class="pd-section-label">Overview</div>
+        <div class="pd-body">
+          <p>My final thesis project at Metropolia UAS. I collected and analysed six months of personal Oura Ring data — sleep scores, HRV, resting heart rate, activity levels, and recovery — to uncover patterns invisible to the naked eye.</p>
+          <p>The project combined a Python-based data pipeline with a Power BI dashboard built for non-technical users: a wellness app product manager or a sports coach who wants actionable insight without a data background.</p>
+          <p>The core finding: activity and HRV signals reliably precede subjective fatigue by 48–72 hours. This points to real predictive potential for consumer wellness applications.</p>
+        </div>`,
+      dashboard: `
+        <div class="pd-image"><img src="img/oura-dashboard.png" alt="Health Intelligence Dashboard"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Sleep, HRV & recovery analytics · Power BI</p>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">−18%</div>
+            <div class="pd-kpi-label">Sleep quality during high-stress periods — detected automatically from HRV trends</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">72h</div>
+            <div class="pd-kpi-label">Activity patterns precede subjective fatigue — predictive signal for wellness apps</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">6 mo</div>
+            <div class="pd-kpi-label">Of daily wearable data analysed across sleep, HRV, activity and recovery</div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <p>The dashboard translates raw wearable telemetry into a narrative a product manager can act on — weekly trends, anomaly highlights, and a readiness score model built on logistic regression.</p>
+        </div>`,
+      stack: `
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">BI & Visualisation</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Power Query</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Data Pipeline</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Python</span><span class="pd-chip">pandas</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Git</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Methods</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Time-series analysis</span><span class="pd-chip">Anomaly detection</span><span class="pd-chip">Correlation analysis</span><span class="pd-chip">Logistic regression</span>
+          </div>
+        </div>`
+    },
     timebook: {
       title: 'Team Performance & Workload Dashboard',
       company: 'Timebook Ltd',
@@ -2327,6 +2380,112 @@
             <span class="pd-chip">Funnel analysis</span>
             <span class="pd-chip">Cohort analysis</span>
             <span class="pd-chip">Retention modelling</span>
+          </div>
+        </div>`
+    },
+    kone: {
+      title: 'Corporate BI Dashboard',
+      company: 'Inspired by KONE',
+      period: '2024',
+      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      overview: `
+        <div class="pd-section-label">Overview</div>
+        <div class="pd-body">
+          <p>A portfolio project inspired by the reporting challenges common in large industrial enterprises. The scenario: a global operations team spending three days each month manually pulling data from multiple sources into Excel before presenting to leadership.</p>
+          <p>I designed and built a self-serve Power BI solution that consolidates operational KPIs — maintenance SLAs, equipment uptime, regional performance — into a single dashboard that anyone in the organisation can use without analyst involvement.</p>
+          <p>The focus was on information architecture as much as technical execution: what does an executive actually need to see in 90 seconds, and how do you make that the default view?</p>
+        </div>`,
+      dashboard: `
+        <div class="pd-image"><img src="img/kone-dashboard.png" alt="Corporate BI Dashboard"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Corporate operations & KPI reporting · Power BI</p>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">3d→2h</div>
+            <div class="pd-kpi-label">Executive reporting time — from manual Excel process to automated self-serve</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">Self-serve</div>
+            <div class="pd-kpi-label">C-level and regional managers access live data without analyst bottleneck</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">1 source</div>
+            <div class="pd-kpi-label">Of truth for operational KPIs across regions — replacing 5+ spreadsheet reports</div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <p>The dashboard uses row-level security so regional managers only see their own data, while global leadership sees the full picture. Drill-through pages let users move from summary KPIs to root-cause detail in two clicks.</p>
+        </div>`,
+      stack: `
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">BI & Visualisation</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Power Query</span><span class="pd-chip">Row-level security</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Data Layer</div>
+          <div class="pd-stack">
+            <span class="pd-chip">SQL Server</span><span class="pd-chip">Star schema</span><span class="pd-chip">CTEs</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Features</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Drill-through</span><span class="pd-chip">Bookmarks</span><span class="pd-chip">Dynamic titles</span><span class="pd-chip">Mobile layout</span>
+          </div>
+        </div>`
+    },
+    thesis: {
+      title: 'Wearable Health Data Analysis',
+      company: 'Metropolia UAS — Research Project',
+      period: '2025–2026',
+      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      overview: `
+        <div class="pd-section-label">Overview</div>
+        <div class="pd-body">
+          <p>An extended research project exploring whether wearable sensor data can serve as an early-warning system for health and performance changes — before the person feels them subjectively.</p>
+          <p>I built a modular data pipeline in Python and dbt that ingests raw Oura Ring exports, cleans and transforms them, and produces a feature store ready for analysis. The pipeline is documented and reproducible: anyone with their own Oura data can run it.</p>
+          <p>The analytical layer covers sleep staging patterns, HRV variability windows, and activity load modelling. Findings were presented in both a technical report and a stakeholder-facing Power BI dashboard.</p>
+        </div>`,
+      dashboard: `
+        <div class="pd-image"><img src="img/thesis-project.png" alt="Wearable Health Data Analysis"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Wearable data pipeline & analysis · Python + Power BI</p>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">72h</div>
+            <div class="pd-kpi-label">Predictive window — wearable signals precede subjective fatigue by up to three days</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">Modular</div>
+            <div class="pd-kpi-label">Open pipeline — any Oura user can run the same analysis on their own data</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">dbt</div>
+            <div class="pd-kpi-label">First production use of dbt for transformation layer — documented, tested, version-controlled</div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <p>The project demonstrated that a relatively simple data engineering stack (Python + dbt + SQL) is sufficient to extract meaningful predictive signal from consumer wearables — without cloud infrastructure or ML expertise.</p>
+        </div>`,
+      stack: `
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Data Engineering</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Python</span><span class="pd-chip">pandas</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Git</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Analysis & Visualisation</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Jupyter Notebooks</span><span class="pd-chip">matplotlib</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Methods</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Time-series analysis</span><span class="pd-chip">HRV modelling</span><span class="pd-chip">Feature engineering</span><span class="pd-chip">Statistical testing</span>
           </div>
         </div>`
     }
@@ -2389,8 +2548,7 @@
   const cards  = document.querySelectorAll('.project-card');
 
   document.addEventListener('mousemove', e => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top  = e.clientY + 'px';
+    cursor.style.transform = `translate(${e.clientX - 22}px, ${e.clientY - 22}px)`;
   });
 
   cards.forEach(card => {
