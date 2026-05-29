@@ -792,16 +792,21 @@
       font-size: 15.5px; color: #444;
       line-height: 1.75; font-weight: 300; margin: 0 0 18px;
     }
-    .bio-more-btn {
-      display: inline-block;
+    .bio-tag {
+      font-size: 13px; color: #888; font-weight: 400;
+      margin: 0 0 14px; letter-spacing: 0.1px;
+    }
+    .bio-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .bio-btn {
+      display: inline-flex; align-items: center; gap: 7px;
       background: #2a2a2a; color: #fff;
       font-size: 13px; font-weight: 500;
-      padding: 10px 20px; border-radius: 8px;
-      cursor: pointer; border: none;
-      letter-spacing: 0.1px;
-      transition: background .18s;
+      padding: 10px 18px; border-radius: 8px;
+      cursor: pointer; border: none; text-decoration: none;
+      letter-spacing: 0.1px; transition: background .18s;
     }
-    .bio-more-btn:hover { background: #444; }
+    .bio-btn:hover { background: #444; }
+    .bio-btn svg { flex-shrink: 0; }
     .bio-photo {
       width: 190px; height: 270px;
       object-fit: cover; object-position: center top;
@@ -1218,8 +1223,18 @@
         <div class="bio-block">
           <div class="bio-text">
             <h2 class="bio-name">Julia Mosina</h2>
-            <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.</p>
-            <button class="bio-more-btn">Learn more about me</button>
+            <p class="bio-tag">BI &amp; Data Analyst · Open to work · Espoo, Finland</p>
+            <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Relocated to Finland in 2023, completed a BEng at Metropolia UAS in 2026. Looking for a BI or Data Analyst role in Finland or EU.</p>
+            <div class="bio-btns">
+              <a href="resume.pdf" download class="bio-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download resume
+              </a>
+              <a href="https://www.linkedin.com/in/julia-mosina/" target="_blank" class="bio-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                LinkedIn
+              </a>
+            </div>
           </div>
         </div>
 
@@ -1232,10 +1247,10 @@
           <span class="kpi-trend trend-up">↑ growing</span>
         </div>
         <div class="kpi-card">
-          <div class="kpi-label">Projects delivered</div>
-          <div class="kpi-value">∞</div>
-          <div class="kpi-unit">and counting</div>
-          <span class="kpi-trend trend-inf">📈 unbounded</span>
+          <div class="kpi-label">Companies worked with</div>
+          <div class="kpi-value">3</div>
+          <div class="kpi-unit">SaaS product teams</div>
+          <span class="kpi-trend trend-up">↑ growing</span>
         </div>
         <div class="kpi-card">
           <div class="kpi-label">Years in Finland</div>
@@ -1260,28 +1275,28 @@
           <div class="dash-card-title">Skills proficiency</div>
           <div class="skill-bars">
             <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Power BI</span><span>Expert</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-teal" style="--w:92%"></div></div>
-            </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>SQL</span><span>Expert</span></div>
+              <div class="skill-bar-meta"><span>Power BI</span><span>Advanced</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill c-teal" style="--w:88%"></div></div>
             </div>
             <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>DAX</span><span>Advanced</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-yellow" style="--w:82%"></div></div>
+              <div class="skill-bar-meta"><span>SQL</span><span>Advanced</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill c-teal" style="--w:82%"></div></div>
             </div>
             <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Python</span><span>Advanced</span></div>
+              <div class="skill-bar-meta"><span>DAX</span><span>Proficient</span></div>
               <div class="skill-bar-track"><div class="skill-bar-fill c-yellow" style="--w:75%"></div></div>
             </div>
             <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Tableau</span><span>Intermediate</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-beige" style="--w:65%"></div></div>
+              <div class="skill-bar-meta"><span>Python</span><span>Intermediate</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill c-yellow" style="--w:62%"></div></div>
             </div>
             <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>dbt</span><span>Intermediate</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-rose" style="--w:60%"></div></div>
+              <div class="skill-bar-meta"><span>Tableau</span><span>Proficient</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill c-beige" style="--w:68%"></div></div>
+            </div>
+            <div class="skill-bar-row">
+              <div class="skill-bar-meta"><span>dbt</span><span>Learning</span></div>
+              <div class="skill-bar-track"><div class="skill-bar-fill c-rose" style="--w:45%"></div></div>
             </div>
           </div>
         </div>
