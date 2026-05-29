@@ -643,7 +643,24 @@
       letter-spacing: 0.6px; margin-bottom: 14px;
     }
 
-    /* Skill bars */
+    /* Skills grid */
+    .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 20px; }
+    .skill-group {}
+    .skill-group-title {
+      font-size: 10px; font-weight: 600; color: #AEAEAD;
+      text-transform: uppercase; letter-spacing: 0.7px; margin-bottom: 8px;
+    }
+    .skill-row {
+      display: flex; align-items: baseline; flex-wrap: wrap;
+      gap: 4px 6px; padding: 4px 0;
+      border-bottom: 1px solid #f2f2f0;
+    }
+    .skill-row:last-child { border-bottom: none; }
+    .skill-name { font-size: 12.5px; font-weight: 500; color: #333; flex-shrink: 0; }
+    .skill-yrs { font-size: 10.5px; color: #8FADA5; font-weight: 500; white-space: nowrap; }
+    .skill-ctx { font-size: 10.5px; color: #bbb; font-weight: 300; }
+
+    /* Skill bars (legacy, keep for fallback) */
     .skill-bars { display: flex; flex-direction: column; gap: 9px; }
     .skill-bar-row { display: flex; flex-direction: column; gap: 3px; }
     .skill-bar-meta {
@@ -1272,32 +1289,77 @@
 
         <!-- Skills chart -->
         <div class="dash-card">
-          <div class="dash-card-title">Skills proficiency</div>
-          <div class="skill-bars">
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Power BI</span><span>Advanced</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-teal" style="--w:88%"></div></div>
+          <div class="dash-card-title">Skills &amp; tools</div>
+          <div class="skills-grid">
+
+            <div class="skill-group">
+              <div class="skill-group-title">BI &amp; Reporting</div>
+              <div class="skill-row">
+                <span class="skill-name">Power BI</span>
+                <span class="skill-yrs">8 yrs</span>
+                <span class="skill-ctx">DAX · Power Query · 20+ reports</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Tableau</span>
+                <span class="skill-yrs">6 yrs</span>
+                <span class="skill-ctx">product analytics</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Looker Studio</span>
+                <span class="skill-ctx">supporting</span>
+              </div>
             </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>SQL</span><span>Advanced</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-teal" style="--w:82%"></div></div>
+
+            <div class="skill-group">
+              <div class="skill-group-title">Data &amp; SQL</div>
+              <div class="skill-row">
+                <span class="skill-name">SQL</span>
+                <span class="skill-yrs">6 yrs</span>
+                <span class="skill-ctx">CTEs · window functions</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Data modeling</span>
+                <span class="skill-ctx">DWH design · star schema</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">SQL Server</span>
+                <span class="skill-ctx">BigQuery · Redshift</span>
+              </div>
             </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>DAX</span><span>Proficient</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-yellow" style="--w:75%"></div></div>
+
+            <div class="skill-group">
+              <div class="skill-group-title">Engineering &amp; Cloud</div>
+              <div class="skill-row">
+                <span class="skill-name">Python</span>
+                <span class="skill-yrs">2 yrs</span>
+                <span class="skill-ctx">pandas · analysis</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">dbt</span>
+                <span class="skill-ctx">data transformations</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Azure · Airflow · Git</span>
+                <span class="skill-ctx">cloud stack</span>
+              </div>
             </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Python</span><span>Intermediate</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-yellow" style="--w:62%"></div></div>
+
+            <div class="skill-group">
+              <div class="skill-group-title">Ways of working</div>
+              <div class="skill-row">
+                <span class="skill-name">Product analytics</span>
+                <span class="skill-ctx">funnels · A/B tests · retention</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Cross-functional teams</span>
+                <span class="skill-ctx">PM · eng · design</span>
+              </div>
+              <div class="skill-row">
+                <span class="skill-name">Stakeholder reporting</span>
+                <span class="skill-ctx">C-level · weekly cadence</span>
+              </div>
             </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>Tableau</span><span>Proficient</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-beige" style="--w:68%"></div></div>
-            </div>
-            <div class="skill-bar-row">
-              <div class="skill-bar-meta"><span>dbt</span><span>Learning</span></div>
-              <div class="skill-bar-track"><div class="skill-bar-fill c-rose" style="--w:45%"></div></div>
-            </div>
+
           </div>
         </div>
 
