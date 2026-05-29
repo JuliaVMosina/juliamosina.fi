@@ -1996,23 +1996,20 @@
           .attr('id','plane-route').attr('d',pathD)
           .attr('fill','none').attr('stroke','none');
 
-        // Plane shape (pointing right, auto-rotates along path)
+        // Paper airplane shape (nose pointing right, auto-rotates along path)
         const planeG = jLayer.append('g').style('pointer-events','none');
+        // Top wing surface
         planeG.append('path')
-          .attr('d','M8,0 L-3,-2.5 L-1.5,0 L-3,2.5 Z')
-          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.55)').attr('stroke-width','0.6');
+          .attr('d','M9,0 L-5,-5 L-2.5,0 Z')
+          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.5)').attr('stroke-width','0.5');
+        // Bottom wing surface (slightly darker)
         planeG.append('path')
-          .attr('d','M2,-2.5 L2,-6 L-1,-6 L-1,-2.5 Z')
-          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.4)').attr('stroke-width','0.5');
+          .attr('d','M9,0 L-5,5 L-2.5,0 Z')
+          .attr('fill','#C8AF76').attr('stroke','rgba(255,255,255,0.5)').attr('stroke-width','0.5');
+        // Fold crease — visible underside flap
         planeG.append('path')
-          .attr('d','M2,2.5 L2,6 L-1,6 L-1,2.5 Z')
-          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.4)').attr('stroke-width','0.5');
-        planeG.append('path')
-          .attr('d','M-2,-2.5 L-4,-4.5 L-3,-2.5 Z')
-          .attr('fill','#D4BC82');
-        planeG.append('path')
-          .attr('d','M-2,2.5 L-4,4.5 L-3,2.5 Z')
-          .attr('fill','#D4BC82');
+          .attr('d','M-2.5,0 L-5,5 L0.5,2 Z')
+          .attr('fill','#B89A58').attr('opacity','0.85');
 
         const ns = 'http://www.w3.org/2000/svg';
         const motion = document.createElementNS(ns, 'animateMotion');
