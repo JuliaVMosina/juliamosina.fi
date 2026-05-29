@@ -707,13 +707,22 @@
     #travel-map svg { display: block; }
     .map-tooltip {
       position: fixed;
-      background: #111; color: #fff;
-      padding: 5px 11px; border-radius: 8px;
+      background: #1a1a1a; color: #fff;
+      padding: 10px 12px; border-radius: 10px;
       font-size: 12px; font-weight: 500;
       pointer-events: none; opacity: 0;
       transition: opacity 0.15s;
       z-index: 9999;
-      white-space: nowrap;
+      min-width: 100px; max-width: 180px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    .map-tooltip img {
+      width: 156px; height: 110px;
+      object-fit: cover; border-radius: 6px;
+      display: block; margin-bottom: 7px;
+      margin-left: -12px; margin-top: -10px;
+      width: calc(100% + 24px);
+      border-radius: 8px 8px 0 0;
     }
 
     /* ══════════════ TIMELINE ══════════════ */
@@ -1494,13 +1503,21 @@
       .attr('width', '100%').attr('height', H)
       .style('cursor', 'grab');
 
+    // Arrow marker
+    svg.append('defs').append('marker')
+      .attr('id', 'journey-arrow')
+      .attr('markerWidth', 6).attr('markerHeight', 6)
+      .attr('refX', 5).attr('refY', 3)
+      .attr('orient', 'auto')
+      .append('path').attr('d', 'M0,0 L0,6 L6,3 z')
+      .attr('fill', '#2A6878').attr('opacity', 0.7);
+
     const g = svg.append('g');
 
     const projection = d3.geoNaturalEarth1()
       .fitSize([W, H], {type: 'Sphere'});
     const path = d3.geoPath().projection(projection);
 
-    // Zoom behaviour
     const zoom = d3.zoom()
       .scaleExtent([1, 8])
       .on('zoom', (event) => {
@@ -1509,35 +1526,105 @@
       });
     svg.call(zoom);
 
-    // Zoom hint
     const hint = document.createElement('div');
     hint.style.cssText = 'position:absolute;bottom:8px;right:12px;font-size:10px;color:#AEAEAD;pointer-events:none;';
     hint.textContent = 'scroll to zoom · drag to pan';
     container.appendChild(hint);
 
+    // Life journey data
+    const journeyPoints = [
+      { name: 'Russian Far East',  sub: 'Born & grew up · near Chinese border', coords: [134.0, 48.5], photo: null },
+      { name: 'Hyannis, Cape Cod', sub: 'Massachusetts, USA · 1 year',           coords: [-70.3,  41.65], photo: null },
+      { name: 'St. Petersburg',    sub: 'Russia · 8 years',                       coords: [30.32,  59.93], photo: 'img/photo-spb.jpg' },
+      { name: 'Istanbul',          sub: 'Turkey · 1 year',                        coords: [28.98,  41.01], photo: null },
+      { name: 'Espoo',             sub: 'Finland · living now 📍',                coords: [24.66,  60.17], photo: null },
+    ];
+    const altai = { name: 'Altai Mountains', sub: '⛰️ Trekking expedition', coords: [87.5, 50.0], photo: 'img/photo-altai.jpg' };
+
+    function showTooltip(event, pt) {
+      const photoHtml = pt.photo
+        ? `<img src="${pt.photo}" alt="${pt.name}">`
+        : '';
+      tooltip.innerHTML = `${photoHtml}<div style="font-weight:600;font-size:12px;line-height:1.3">${pt.name}</div><div style="font-size:11px;color:rgba(255,255,255,0.55);margin-top:3px;font-weight:300">${pt.sub}</div>`;
+      tooltip.style.opacity = '1';
+      tooltip.style.left = (event.clientX + 14) + 'px';
+      tooltip.style.top  = (event.clientY - 20) + 'px';
+    }
+    function hideTooltip() { tooltip.style.opacity = '0'; }
+
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
       const features = topojson.feature(world, world.objects.countries).features;
 
-      g.selectAll('path')
+      // Countries
+      g.selectAll('path.country')
         .data(features)
         .join('path')
+        .attr('class', 'country')
         .attr('d', path)
-        .attr('fill', d => visitedIds.has(+d.id) ? '#2A6878' : '#EAEAE6')
+        .attr('fill', d => visitedIds.has(+d.id) ? '#8FADA5' : '#EAEAE6')
         .attr('stroke', '#fff')
         .attr('stroke-width', 0.4)
         .style('cursor', d => visitedIds.has(+d.id) ? 'pointer' : 'default')
         .on('mousemove', function(event, d) {
           if (!visitedIds.has(+d.id)) return;
-          d3.select(this).attr('fill', '#164858');
+          d3.select(this).attr('fill', '#7A9991');
+          tooltip.innerHTML = countryNames[+d.id] || '';
           tooltip.style.opacity = '1';
-          tooltip.style.left = (event.clientX + 12) + 'px';
-          tooltip.style.top  = (event.clientY - 28) + 'px';
-          tooltip.textContent = countryNames[+d.id] || '';
+          tooltip.style.left = (event.clientX + 14) + 'px';
+          tooltip.style.top  = (event.clientY - 20) + 'px';
         })
         .on('mouseleave', function(event, d) {
-          d3.select(this).attr('fill', visitedIds.has(+d.id) ? '#2A6878' : '#EAEAE6');
+          d3.select(this).attr('fill', visitedIds.has(+d.id) ? '#8FADA5' : '#EAEAE6');
           tooltip.style.opacity = '0';
         });
+
+      // Journey lines
+      const jLayer = g.append('g').attr('class', 'journey-layer');
+
+      for (let i = 0; i < journeyPoints.length - 1; i++) {
+        const p1 = projection(journeyPoints[i].coords);
+        const p2 = projection(journeyPoints[i + 1].coords);
+        if (!p1 || !p2) continue;
+        // mid-point curve
+        const mx = (p1[0] + p2[0]) / 2;
+        const my = (p1[1] + p2[1]) / 2 - 28;
+        jLayer.append('path')
+          .attr('d', `M${p1[0]},${p1[1]} Q${mx},${my} ${p2[0]},${p2[1]}`)
+          .attr('fill', 'none')
+          .attr('stroke', '#2A6878')
+          .attr('stroke-width', 1.3)
+          .attr('stroke-dasharray', '5 3')
+          .attr('marker-end', 'url(#journey-arrow)')
+          .attr('opacity', 0.65);
+      }
+
+      // Journey points + Altai
+      [...journeyPoints, altai].forEach(pt => {
+        const proj = projection(pt.coords);
+        if (!proj) return;
+        const isLast = pt === journeyPoints[journeyPoints.length - 1];
+        const isAltai = pt === altai;
+
+        const pg = jLayer.append('g')
+          .attr('transform', `translate(${proj[0]},${proj[1]})`)
+          .style('cursor', 'pointer');
+
+        // Pulse ring for current location
+        if (isLast) {
+          pg.append('circle').attr('r', 11)
+            .attr('fill', '#2A6878').attr('opacity', 0.15);
+        }
+
+        pg.append('circle').attr('r', isLast ? 7 : 5.5)
+          .attr('fill', isLast ? '#2A6878' : (isAltai ? '#A07070' : '#8FADA5'))
+          .attr('stroke', '#fff').attr('stroke-width', 1.5);
+
+        pg.append('circle').attr('r', 2)
+          .attr('fill', '#fff');
+
+        pg.on('mousemove', event => showTooltip(event, pt))
+          .on('mouseleave', hideTooltip);
+      });
     });
   }
 
