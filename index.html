@@ -761,13 +761,14 @@
     .panel-flip { font-size: 10px; color: rgba(255,255,255,0.3); margin-left: auto; }
 
     /* ══════════════ BIO BLOCK ══════════════ */
-    .bio-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 28px;
-      margin-bottom: 20px;
+    .bio-section {
+      position: relative;
     }
-    .bio-text { flex: 1; min-width: 0; padding-top: 6px; }
+    .bio-block {
+      margin-bottom: 20px;
+      padding-right: 220px;
+    }
+    .bio-text { min-width: 0; }
     .bio-name {
       font-size: 24px; font-weight: 600;
       color: #1f1f1f; margin: 0 0 12px;
@@ -788,12 +789,11 @@
     }
     .bio-more-btn:hover { background: #444; }
     .bio-photo-wrap {
-      flex-shrink: 0;
+      position: absolute;
+      top: 0; right: 0;
       transform: rotate(3deg);
       filter: drop-shadow(0 8px 28px rgba(0,0,0,0.25));
-      position: relative;
       z-index: 3;
-      margin-bottom: -35px;
     }
     .bio-photo {
       width: 190px; height: 270px;
@@ -802,8 +802,8 @@
       display: block;
     }
     @media (max-width: 768px) {
-      .bio-block { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
-      .bio-photo-wrap { transform: rotate(2deg); margin-bottom: 0; }
+      .bio-block { padding-right: 0; }
+      .bio-photo-wrap { position: static; transform: rotate(2deg); margin-bottom: 16px; }
       .bio-photo { width: 130px; height: 175px; }
     }
 
@@ -1204,19 +1204,20 @@
         <span class="dash-subtitle">Last updated: May 2026</span>
       </div>
 
-      <div class="bio-block">
-        <div class="bio-text">
-          <h2 class="bio-name">Julia Mosina</h2>
-          <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.</p>
-          <button class="bio-more-btn">Learn more about me</button>
-        </div>
+      <div class="bio-section">
         <div class="bio-photo-wrap">
           <img src="img/photo-portrait.jpg" alt="Julia Mosina" class="bio-photo">
         </div>
-      </div>
+        <div class="bio-block">
+          <div class="bio-text">
+            <h2 class="bio-name">Julia Mosina</h2>
+            <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.</p>
+            <button class="bio-more-btn">Learn more about me</button>
+          </div>
+        </div>
 
-      <!-- KPI Row -->
-      <div class="kpi-row">
+        <!-- KPI Row -->
+        <div class="kpi-row">
         <div class="kpi-card">
           <div class="kpi-label">Experience</div>
           <div class="kpi-value">6+</div>
@@ -1242,6 +1243,7 @@
           <span class="kpi-trend trend-time">⌚ ongoing</span>
         </div>
       </div>
+      </div><!-- /.bio-section -->
 
       <!-- Mid Row -->
       <div class="mid-row">
