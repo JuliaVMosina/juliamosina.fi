@@ -687,6 +687,16 @@
     .skill-bar-fill.c-rose  { background: #A07070; }
     @keyframes barGrow { to { width: var(--w); } }
 
+    /* Coffee steam animation */
+    @keyframes steam-rise {
+      0%   { opacity: 0;   transform: translateY(2px) scaleX(1);    }
+      35%  { opacity: 0.75; transform: translateY(-1px) scaleX(0.9); }
+      100% { opacity: 0;   transform: translateY(-5px) scaleX(1.1); }
+    }
+    .coffee-steam { animation: steam-rise 2.2s ease-in-out infinite; transform-origin: center bottom; }
+    .coffee-steam.s2 { animation-delay: 0.45s; }
+    .coffee-steam.s3 { animation-delay: 0.9s; }
+
     /* Fun metrics */
     .fun-metrics { display: flex; flex-direction: column; gap: 11px; }
     .fun-metric {
@@ -1374,7 +1384,15 @@
             <div class="fun-metric">
               <div class="fun-metric-left">
                 <span class="fun-metric-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Steam (animated wavy paths) -->
+                    <path class="coffee-steam s1" d="M6,5 Q5.2,3.2 6,1.5 Q6.8,0 6,0" stroke-width="1.5"/>
+                    <path class="coffee-steam s2" d="M10,5 Q9.2,3.2 10,1.5 Q10.8,0 10,0" stroke-width="1.5"/>
+                    <path class="coffee-steam s3" d="M14,5 Q13.2,3.2 14,1.5 Q14.8,0 14,0" stroke-width="1.5"/>
+                    <!-- Cup body -->
+                    <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
+                    <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
+                  </svg>
                 </span>
                 <span class="fun-metric-name">Coffee per day</span>
               </div>
