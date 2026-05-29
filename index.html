@@ -55,10 +55,10 @@
 
     .nav-avatar {
       width: 38px; height: 38px;
-      border-radius: 50%; overflow: hidden;
+      border-radius: 8px; overflow: hidden;
       flex-shrink: 0; border: 2px solid #E0E0DC;
     }
-    .nav-avatar img { width:100%; height:100%; object-fit:cover; }
+    .nav-avatar img { width:100%; height:100%; object-fit:cover; object-position: center top; }
 
     .nav-name {
       font-size: 14px; font-weight: 500;
@@ -759,6 +759,40 @@
     .panel-dot.active { background: #fff; }
     .panel-flip { font-size: 10px; color: rgba(255,255,255,0.3); margin-left: auto; }
 
+    /* ══════════════ BIO BLOCK ══════════════ */
+    .bio-block {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-bottom: 20px;
+    }
+    .bio-text { flex: 1; min-width: 0; }
+    .bio-name {
+      font-size: 22px; font-weight: 600;
+      color: #1f1f1f; margin: 0 0 10px;
+      letter-spacing: -0.4px; line-height: 1.2;
+    }
+    .bio-desc {
+      font-size: 14px; color: #555;
+      line-height: 1.75; font-weight: 300; margin: 0;
+    }
+    .bio-photo-wrap {
+      flex-shrink: 0;
+      transform: rotate(-3deg);
+      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.22));
+    }
+    .bio-photo {
+      width: 148px; height: 196px;
+      object-fit: cover; object-position: center top;
+      border-radius: 12px;
+      display: block;
+    }
+    @media (max-width: 768px) {
+      .bio-block { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
+      .bio-photo-wrap { transform: rotate(-2deg); }
+      .bio-photo { width: 120px; height: 158px; }
+    }
+
     /* ══════════════ JOURNEY STAIRCASE ══════════════ */
     .journey-section {
       margin-top: 10px;
@@ -784,10 +818,8 @@
       user-select: none;
     }
     .journey-pill:hover { background: #7A9991; transform: translateY(-1px); }
-    .journey-item.active .journey-pill { background: #6B8880; }
     .journey-pill.edu { background: #E4B5AC; }
     .journey-pill.edu:hover { background: #D4A09A; }
-    .journey-item.active .journey-pill.edu { background: #C49088; }
     .journey-years {
       font-size: 12px; font-weight: 500;
       color: rgba(255,255,255,0.65);
@@ -806,17 +838,26 @@
       font-size: 11px; color: rgba(255,255,255,0.65);
       font-weight: 400; margin-top: 1px;
     }
-    .journey-details {
+    .journey-details { display: none; }
+
+    /* Floating tooltip for career journey */
+    .journey-tooltip {
+      position: fixed;
+      z-index: 9998;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.09);
+      border-radius: 12px;
+      padding: 14px 16px;
+      width: 290px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+      font-size: 12.5px; color: #555;
+      line-height: 1.68; font-weight: 300;
+      pointer-events: none;
+      opacity: 0;
       display: none;
-      margin-top: 8px;
-      font-size: 12.5px; color: #666;
-      line-height: 1.65; font-weight: 300;
-      padding: 12px 16px;
-      background: #F7F8F6;
-      border-radius: 10px;
-      max-width: 480px;
+      transition: opacity .14s ease;
     }
-    .journey-item.active .journey-details { display: block; }
+    .journey-tooltip.visible { opacity: 1; }
     .journey-detail-note {
       margin-top: 6px;
       font-size: 11.5px; color: #AEAEAD;
@@ -1149,11 +1190,14 @@
         <span class="dash-subtitle">Last updated: May 2026</span>
       </div>
 
-      <div style="display:flex;align-items:center;gap:16px;margin-bottom:18px;">
-        <img src="img/photo-hk.jpg" alt="Julia Mosina" style="width:72px;height:72px;border-radius:50%;object-fit:cover;object-position:center top;flex-shrink:0;border:2px solid #EAEAE6;">
-        <p style="font-size:13.5px;color:#555;line-height:1.7;max-width:480px;padding:0;font-weight:300;margin:0;">
-          6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.
-        </p>
+      <div class="bio-block">
+        <div class="bio-text">
+          <h2 class="bio-name">Julia Mosina</h2>
+          <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.</p>
+        </div>
+        <div class="bio-photo-wrap">
+          <img src="img/photo-portrait.jpg" alt="Julia Mosina" class="bio-photo">
+        </div>
       </div>
 
       <!-- KPI Row -->
@@ -1279,6 +1323,7 @@
             <span class="dash-card-title">Geography of my life</span>
             <span style="font-size:11px;color:#AEAEAD;font-weight:300">hover over points and countries for details</span>
           </div>
+          <p style="font-size:13px;color:#888;font-weight:300;line-height:1.6;margin:0 0 14px;padding:0 2px;">I believe travelling and exploring the world is how we discover ourselves — this is mine.</p>
           <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:10px;padding:0 2px;">
             <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:#888;">
               <span style="width:10px;height:10px;border-radius:50%;background:#2A6878;display:inline-block;flex-shrink:0;"></span>
@@ -1307,13 +1352,14 @@
 
       <!-- Work & Education journey -->
       <div class="journey-section">
-        <div class="journey-section-title">My journey</div>
+        <div class="journey-section-title">My Career Journey in Analytics</div>
+        <p style="font-size:13px;color:#888;font-weight:300;line-height:1.6;margin:0 0 18px;">My professional path in data analytics.</p>
         <div class="journey">
 
           <!-- Energo -->
           <div class="journey-item" data-tl="0" style="margin-left:0">
             <div class="journey-pill">
-              <span class="journey-years">15–17</span>
+              <span class="journey-years">2015–2017</span>
               <span class="journey-sep">|</span>
               <div>
                 <div class="journey-name">Energo LLC</div>
@@ -1333,7 +1379,7 @@
           <!-- Satellite -->
           <div class="journey-item" data-tl="1" style="margin-left:90px">
             <div class="journey-pill">
-              <span class="journey-years">17–21</span>
+              <span class="journey-years">2017–2021</span>
               <span class="journey-sep">|</span>
               <div>
                 <div class="journey-name">Satellite Company LLC</div>
@@ -1354,11 +1400,11 @@
           <!-- Timebook -->
           <div class="journey-item" data-tl="2" style="margin-left:180px">
             <div class="journey-pill">
-              <span class="journey-years">21–23</span>
+              <span class="journey-years">2021–2023</span>
               <span class="journey-sep">|</span>
               <div>
                 <div class="journey-name">Timebook Ltd</div>
-                <div class="journey-sub">Senior Product Analyst · WFM SaaS · Helsinki</div>
+                <div class="journey-sub">Senior Product Analyst · WFM SaaS</div>
               </div>
             </div>
             <div class="journey-details">
@@ -1375,7 +1421,7 @@
           <!-- Relocation & Upskilling -->
           <div class="journey-item" data-tl="3" style="margin-left:270px">
             <div class="journey-pill">
-              <span class="journey-years">23–24</span>
+              <span class="journey-years">2023–2024</span>
               <span class="journey-sep">|</span>
               <div>
                 <div class="journey-name">Relocation & Upskilling</div>
@@ -1396,7 +1442,7 @@
           <!-- Metropolia -->
           <div class="journey-item" data-tl="4" style="margin-left:360px">
             <div class="journey-pill edu">
-              <span class="journey-years">24–26</span>
+              <span class="journey-years">2024–2026</span>
               <span class="journey-sep">|</span>
               <div>
                 <div class="journey-name">Metropolia UAS</div>
@@ -1822,13 +1868,48 @@
     });
   });
 
-  // ── Journey staircase toggle ──
+  // ── Journey tooltip on hover ──
+  const jTooltip = document.createElement('div');
+  jTooltip.className = 'journey-tooltip';
+  document.body.appendChild(jTooltip);
+
+  let jHideTimer = null;
+  const cancelJHide = () => { if (jHideTimer) { clearTimeout(jHideTimer); jHideTimer = null; } };
+  const scheduleJHide = () => {
+    jHideTimer = setTimeout(() => {
+      jTooltip.classList.remove('visible');
+      setTimeout(() => { jTooltip.style.display = 'none'; }, 150);
+    }, 120);
+  };
+
   document.querySelectorAll('.journey-item').forEach(item => {
-    item.querySelector('.journey-pill').addEventListener('click', () => {
-      const isActive = item.classList.contains('active');
-      document.querySelectorAll('.journey-item').forEach(i => i.classList.remove('active'));
-      if (!isActive) item.classList.add('active');
+    const pill = item.querySelector('.journey-pill');
+    const details = item.querySelector('.journey-details');
+
+    pill.addEventListener('mouseenter', () => {
+      cancelJHide();
+      jTooltip.innerHTML = details.innerHTML;
+      jTooltip.style.display = 'block';
+      jTooltip.classList.remove('visible');
+
+      // Position: above the pill, left-aligned with it
+      requestAnimationFrame(() => {
+        const rect = pill.getBoundingClientRect();
+        const ttW = 290;
+        const ttH = jTooltip.offsetHeight || 130;
+        let left = rect.left;
+        let top = rect.top - ttH - 10;
+        // Keep within viewport
+        if (left + ttW > window.innerWidth - 12) left = window.innerWidth - ttW - 12;
+        if (left < 8) left = 8;
+        if (top < 8) top = rect.bottom + 8;
+        jTooltip.style.left = left + 'px';
+        jTooltip.style.top = top + 'px';
+        jTooltip.classList.add('visible');
+      });
     });
+
+    pill.addEventListener('mouseleave', scheduleJHide);
   });
 
   // ── Contact form submit (Formspree AJAX) ──
