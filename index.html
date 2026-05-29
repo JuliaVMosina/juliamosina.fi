@@ -587,6 +587,7 @@
       grid-template-columns: repeat(4, 1fr);
       gap: 10px;
       margin-bottom: 10px;
+      position: relative; z-index: 1;
     }
 
     .kpi-card {
@@ -762,11 +763,11 @@
     /* ══════════════ BIO BLOCK ══════════════ */
     .bio-block {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 28px;
       margin-bottom: 20px;
     }
-    .bio-text { flex: 1; min-width: 0; }
+    .bio-text { flex: 1; min-width: 0; padding-top: 6px; }
     .bio-name {
       font-size: 24px; font-weight: 600;
       color: #1f1f1f; margin: 0 0 12px;
@@ -789,18 +790,21 @@
     .bio-photo-wrap {
       flex-shrink: 0;
       transform: rotate(3deg);
-      filter: drop-shadow(0 8px 22px rgba(0,0,0,0.22));
+      filter: drop-shadow(0 8px 28px rgba(0,0,0,0.25));
+      position: relative;
+      z-index: 3;
+      margin-bottom: -80px;
     }
     .bio-photo {
-      width: 148px; height: 196px;
+      width: 190px; height: 270px;
       object-fit: cover; object-position: center top;
-      border-radius: 12px;
+      border-radius: 14px;
       display: block;
     }
     @media (max-width: 768px) {
       .bio-block { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
-      .bio-photo-wrap { transform: rotate(2deg); }
-      .bio-photo { width: 120px; height: 158px; }
+      .bio-photo-wrap { transform: rotate(2deg); margin-bottom: 0; }
+      .bio-photo { width: 130px; height: 175px; }
     }
 
     /* ══════════════ JOURNEY STAIRCASE ══════════════ */
