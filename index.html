@@ -1951,6 +1951,64 @@
           })
           .on('mouseleave', () => { if (pt.photos.length > 0) scheduleHide(); });
       });
+
+      // ── Plane animation along journey path ──
+      {
+        const planeCoords = [
+          [127.5,50.27],  // Blagoveshchensk
+          [-70.3,41.65],  // Cape Cod
+          [30.32,59.93],  // St. Petersburg
+          [28.98,41.01],  // Istanbul
+          [24.66,60.17],  // Espoo
+        ];
+
+        let pathD = '';
+        for (let i = 0; i < planeCoords.length - 1; i++) {
+          const pp1 = projection(planeCoords[i]);
+          const pp2 = projection(planeCoords[i+1]);
+          if (!pp1 || !pp2) continue;
+          const pmx = (pp1[0]+pp2[0])/2 - (pp2[1]-pp1[1])*0.35;
+          const pmy = (pp1[1]+pp2[1])/2 + (pp2[0]-pp1[0])*0.35;
+          if (pathD === '') pathD = `M${pp1[0]},${pp1[1]} Q${pmx},${pmy} ${pp2[0]},${pp2[1]}`;
+          else pathD += ` Q${pmx},${pmy} ${pp2[0]},${pp2[1]}`;
+        }
+
+        // Hidden reference path
+        jLayer.append('path')
+          .attr('id','plane-route').attr('d',pathD)
+          .attr('fill','none').attr('stroke','none');
+
+        // Plane shape (pointing right, auto-rotates along path)
+        const planeG = jLayer.append('g').style('pointer-events','none');
+        planeG.append('path')
+          .attr('d','M8,0 L-3,-2.5 L-1.5,0 L-3,2.5 Z')
+          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.55)').attr('stroke-width','0.6');
+        planeG.append('path')
+          .attr('d','M2,-2.5 L2,-6 L-1,-6 L-1,-2.5 Z')
+          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.4)').attr('stroke-width','0.5');
+        planeG.append('path')
+          .attr('d','M2,2.5 L2,6 L-1,6 L-1,2.5 Z')
+          .attr('fill','#D4BC82').attr('stroke','rgba(255,255,255,0.4)').attr('stroke-width','0.5');
+        planeG.append('path')
+          .attr('d','M-2,-2.5 L-4,-4.5 L-3,-2.5 Z')
+          .attr('fill','#D4BC82');
+        planeG.append('path')
+          .attr('d','M-2,2.5 L-4,4.5 L-3,2.5 Z')
+          .attr('fill','#D4BC82');
+
+        const ns = 'http://www.w3.org/2000/svg';
+        const motion = document.createElementNS(ns, 'animateMotion');
+        motion.setAttribute('dur','30s');
+        motion.setAttribute('repeatCount','indefinite');
+        motion.setAttribute('rotate','auto');
+        motion.setAttribute('calcMode','paced');
+        const mpath = document.createElementNS(ns, 'mpath');
+        mpath.setAttributeNS('http://www.w3.org/1999/xlink','href','#plane-route');
+        mpath.setAttribute('href','#plane-route');
+        motion.appendChild(mpath);
+        planeG.node().appendChild(motion);
+      }
+
     });
   }
 
