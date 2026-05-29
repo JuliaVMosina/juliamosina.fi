@@ -1674,26 +1674,26 @@
     // Journey data — photos as objects {src, pos} for cropping control
     const journeyPoints = [
       { name: 'Blagoveshchensk',   sub: 'Born & grew up · Russian Far East',
-        coords: [127.5, 50.27],
+        coords: [127.5, 50.27], label: 'Blagoveshchensk', lx: 10, ly: 14,
         photos: [{ src:'img/photo-blg-child.jpg', pos:'center 18%' }] },
       { name: 'Hyannis, Cape Cod', sub: 'Massachusetts, USA · 1 year',
-        coords: [-70.3, 41.65],
+        coords: [-70.3, 41.65], label: 'Cape Cod', lx: -6, ly: 15,
         photos: [{ src:'img/photo-capecod.jpg', pos:'center center' },
                  { src:'img/photo-ny.jpg',      pos:'center center' },
                  { src:'img/photo-ny2.jpg',     pos:'center center' }] },
       { name: 'St. Petersburg',    sub: 'Russia · 8 years',
-        coords: [30.32, 59.93],
+        coords: [30.32, 59.93], label: 'St. Petersburg', lx: 5, ly: -10,
         photos: [{ src:'img/photo-spb.jpg', pos:'center 30%' }] },
       { name: 'Istanbul',          sub: 'Turkey · 1 year',
-        coords: [28.98, 41.01],
+        coords: [28.98, 41.01], label: 'Istanbul', lx: 10, ly: 14,
         photos: [{ src:'img/photo-turk.jpg', pos:'center center' }] },
       { name: 'Espoo',             sub: 'Finland · living now 📍',
-        coords: [24.66, 60.17],
+        coords: [24.66, 60.17], label: 'Espoo', lx: -32, ly: -9,
         photos: [{ src:'img/photo-finland.jpg', pos:'center center' }] },
     ];
     const altai = {
       name: 'Altai Mountains', sub: '⛰️ Trekking expedition',
-      coords: [87.5, 50.0],
+      coords: [87.5, 50.0], label: '⛰ Altai', lx: 0, ly: 16,
       photos: [
         { src:'img/photo-altai.jpg',  pos:'center center' },
         { src:'img/photo-altai2.jpg', pos:'center center' },
@@ -1759,6 +1759,23 @@
           .attr('fill', isLast ? '#2A6878' : (isAltai ? '#A07070' : '#8FADA5'))
           .attr('stroke','#fff').attr('stroke-width',1.5);
         pg.append('circle').attr('r',2).attr('fill','#fff');
+
+        // City label
+        if (pt.label) {
+          pg.append('text')
+            .attr('dx', pt.lx || 0).attr('dy', pt.ly || 14)
+            .attr('text-anchor', (pt.lx||0) < -10 ? 'end' : 'start')
+            .attr('font-size', '8.5px')
+            .attr('font-family', 'DM Sans, sans-serif')
+            .attr('font-weight', '500')
+            .attr('fill', 'rgba(40,40,40,0.72)')
+            .attr('paint-order', 'stroke')
+            .attr('stroke', 'rgba(255,255,255,0.9)')
+            .attr('stroke-width', '2.5px')
+            .attr('stroke-linejoin', 'round')
+            .style('pointer-events', 'none')
+            .text(pt.label);
+        }
 
         pg.on('mousemove', event => {
             if (pt.photos.length > 0) showPanel(event, pt);
