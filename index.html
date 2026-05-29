@@ -1646,49 +1646,29 @@
         <h2>Let's work together!</h2>
 
         <!-- Links first -->
-        <div class="contact-links-block" style="margin-top:0; padding-top:0; border-top:none; margin-bottom:24px;">
-          <div class="contact-links-label">Find me here</div>
-          <div class="contact-links-list">
-
-            <a href="https://www.linkedin.com/in/julia-mosina/" target="_blank" class="contact-link-row">
-              <div class="contact-link-left">
-                <span class="contact-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-                </span>
-                <div>
-                  <div class="contact-link-name">LinkedIn</div>
-                  <div class="contact-link-sub">linkedin.com/in/julia-mosina</div>
-                </div>
-              </div>
-              <span class="contact-link-arrow">↗</span>
+        <div style="margin-bottom:24px;">
+          <div class="contact-links-label" style="margin-bottom:12px;">Find me here</div>
+          <div style="display:flex;flex-wrap:wrap;gap:10px;">
+            <a href="https://www.linkedin.com/in/julia-mosina/" target="_blank" class="bio-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
             </a>
-
-            <a href="https://github.com/JuliaVMosina" target="_blank" class="contact-link-row">
-              <div class="contact-link-left">
-                <span class="contact-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
-                </span>
-                <div>
-                  <div class="contact-link-name">GitHub</div>
-                  <div class="contact-link-sub">github.com/JuliaVMosina</div>
-                </div>
-              </div>
-              <span class="contact-link-arrow">↗</span>
+            <a href="https://github.com/JuliaVMosina" target="_blank" class="bio-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              GitHub
             </a>
-
-            <a href="/resume.pdf" target="_blank" class="contact-link-row">
-              <div class="contact-link-left">
-                <span class="contact-link-icon">
-                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
-                </span>
-                <div>
-                  <div class="contact-link-name">Resume</div>
-                  <div class="contact-link-sub">Download PDF</div>
-                </div>
-              </div>
-              <span class="contact-link-arrow">↓</span>
+            <a href="resume.pdf" download class="bio-btn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Resume
             </a>
-
+            <button class="bio-btn" id="copyEmailBtn" onclick="
+              navigator.clipboard.writeText('julia.v.mosina@gmail.com').then(()=>{
+                this.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><polyline points=&quot;20 6 9 17 4 12&quot;/></svg> Copied!';
+                setTimeout(()=>{ this.innerHTML='<svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;><rect x=&quot;9&quot; y=&quot;9&quot; width=&quot;13&quot; height=&quot;13&quot; rx=&quot;2&quot; ry=&quot;2&quot;/><path d=&quot;M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1&quot;/></svg> Copy My Email'; }, 2000);
+              });">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              Copy My Email
+            </button>
           </div>
         </div>
 
