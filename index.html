@@ -728,6 +728,37 @@
     }
 
     /* ══════════════ TIMELINE ══════════════ */
+    /* ══════════════ PHOTO PANEL (map) ══════════════ */
+    .photo-panel {
+      position: fixed; z-index: 9999;
+      display: none; cursor: pointer;
+    }
+    .panel-peek {
+      position: absolute;
+      width: 190px; height: 215px;
+      top: 9px; left: 8px;
+      border-radius: 10px;
+      background-size: cover; background-position: center;
+      filter: brightness(0.45);
+    }
+    .panel-front {
+      position: relative; z-index: 1;
+      width: 190px;
+      background: #1a1a1a; color: #fff;
+      border-radius: 10px; overflow: hidden;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+      transition: transform .12s;
+    }
+    .panel-front:hover { transform: translateY(-1px); }
+    .panel-front img { display: block; width: 100%; height: 140px; object-fit: cover; }
+    .panel-info { padding: 10px 12px 12px; }
+    .panel-name { font-size: 12.5px; font-weight: 600; line-height: 1.2; }
+    .panel-sub { font-size: 11px; color: rgba(255,255,255,0.5); margin-top: 2px; font-weight: 300; }
+    .panel-dots { display: flex; align-items: center; gap: 5px; margin-top: 8px; }
+    .panel-dot { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,0.22); flex-shrink:0; }
+    .panel-dot.active { background: #fff; }
+    .panel-flip { font-size: 10px; color: rgba(255,255,255,0.3); margin-left: auto; }
+
     /* ══════════════ JOURNEY STAIRCASE ══════════════ */
     .journey-section {
       margin-top: 10px;
@@ -1522,121 +1553,144 @@
     const W = container.offsetWidth || 600;
     const H = 420;
 
+    // Country hover tooltip
     const tooltip = document.createElement('div');
     tooltip.className = 'map-tooltip';
     document.body.appendChild(tooltip);
 
-    // Photos per country (ISO numeric)
+    // Photo panel (journey dots with multiple photos)
+    const photoPanel = document.createElement('div');
+    photoPanel.className = 'photo-panel';
+    document.body.appendChild(photoPanel);
+
+    let panelPt = null, panelIdx = 0, hideTimer = null;
+    const cancelHide = () => { if (hideTimer) { clearTimeout(hideTimer); hideTimer = null; } };
+    const scheduleHide = () => { hideTimer = setTimeout(() => { photoPanel.style.display = 'none'; }, 260); };
+
+    photoPanel.addEventListener('mouseenter', cancelHide);
+    photoPanel.addEventListener('mouseleave', scheduleHide);
+    photoPanel.addEventListener('click', e => {
+      e.stopPropagation();
+      if (panelPt && panelPt.photos.length > 1) {
+        panelIdx = (panelIdx + 1) % panelPt.photos.length;
+        renderPanel();
+      }
+    });
+
+    function getSrc(p) { return typeof p === 'object' ? p.src : p; }
+    function getPos(p) { return (typeof p === 'object' && p.pos) ? p.pos : 'center center'; }
+
+    function renderPanel() {
+      const photos = panelPt.photos;
+      const cur = photos[panelIdx];
+      const nxt = photos.length > 1 ? photos[(panelIdx + 1) % photos.length] : null;
+      const dots = photos.length > 1
+        ? `<div class="panel-dots">${photos.map((_,i) =>
+            `<span class="panel-dot${i===panelIdx?' active':''}"></span>`).join('')
+          }<span class="panel-flip">${panelIdx < photos.length-1 ? 'click ›' : '‹ again'}</span></div>`
+        : '';
+      const peek = nxt
+        ? `<div class="panel-peek" style="background-image:url('${getSrc(nxt)}');background-position:${getPos(nxt)}"></div>`
+        : '';
+      photoPanel.innerHTML = `${peek}
+        <div class="panel-front">
+          <img src="${getSrc(cur)}" style="object-position:${getPos(cur)}">
+          <div class="panel-info">
+            <div class="panel-name">${panelPt.name}</div>
+            <div class="panel-sub">${panelPt.sub}</div>
+            ${dots}
+          </div>
+        </div>`;
+    }
+
+    function showPanel(event, pt) {
+      cancelHide();
+      tooltip.style.opacity = '0';
+      panelPt = pt; panelIdx = 0;
+      renderPanel();
+      const x = Math.min(event.clientX + 14, window.innerWidth - 215);
+      const y = Math.min(event.clientY - 20, window.innerHeight - 280);
+      photoPanel.style.left = x + 'px';
+      photoPanel.style.top  = y + 'px';
+      photoPanel.style.display = 'block';
+    }
+
+    // Country photos
     const countryPhotos = {
-      643: 'img/photo-blag.jpg',
-      156: 'img/photo-chin.jpg',
-      840: 'img/photo-ny.jpg',
-      352: 'img/photo-icl.jpg',
-      764: 'img/photo-tai.jpg',
-      250: 'img/photo-france.jpg',
-       56: 'img/photo-belg.jpg',
-      818: 'img/photo-egp.jpg',
-      344: 'img/photo-hk2.jpg',
-      752: 'img/photo-stc.jpg',
-      380: 'img/photo-venec.jpg',
-      440: 'img/photo-litv.jpg',
-      246: 'img/photo-finland.jpg',
+      643:'img/photo-blag.jpg', 156:'img/photo-chin.jpg', 840:'img/photo-ny.jpg',
+      352:'img/photo-icl.jpg',  764:'img/photo-tai.jpg',  250:'img/photo-france.jpg',
+       56:'img/photo-belg.jpg', 818:'img/photo-egp.jpg',  344:'img/photo-hk2.jpg',
+      752:'img/photo-stc.jpg',  380:'img/photo-venec.jpg',440:'img/photo-litv.jpg',
+      246:'img/photo-finland.jpg',
     };
 
+    function showCountryTooltip(event, id) {
+      const photo = countryPhotos[id];
+      const img = photo ? `<img src="${photo}" alt="">` : '';
+      tooltip.innerHTML = `${img}<div style="font-weight:600;font-size:12px">${countryNames[id]||''}</div>`;
+      tooltip.style.opacity = '1';
+      tooltip.style.left = (event.clientX + 14) + 'px';
+      tooltip.style.top  = (event.clientY - 20) + 'px';
+    }
+    const hideCountryTooltip = () => { tooltip.style.opacity = '0'; };
+
     const svg = d3.select('#travel-map').append('svg')
-      .attr('width', '100%').attr('height', H)
-      .style('cursor', 'grab');
+      .attr('width', '100%').attr('height', H).style('cursor', 'grab');
 
     svg.append('defs').append('marker')
-      .attr('id', 'journey-arrow')
-      .attr('markerWidth', 6).attr('markerHeight', 6)
-      .attr('refX', 5).attr('refY', 3)
-      .attr('orient', 'auto')
-      .append('path').attr('d', 'M0,0 L0,6 L6,3 z')
-      .attr('fill', '#2A6878').attr('opacity', 0.7);
+      .attr('id', 'journey-arrow').attr('markerWidth', 6).attr('markerHeight', 6)
+      .attr('refX', 5).attr('refY', 3).attr('orient', 'auto')
+      .append('path').attr('d', 'M0,0 L0,6 L6,3 z').attr('fill', '#2A6878').attr('opacity', 0.7);
 
     const g = svg.append('g');
-    const projection = d3.geoNaturalEarth1().fitSize([W, H], {type: 'Sphere'});
+    const projection = d3.geoNaturalEarth1().fitSize([W, H], {type:'Sphere'});
     const path = d3.geoPath().projection(projection);
 
-    const zoom = d3.zoom()
-      .scaleExtent([1, 8])
-      .on('zoom', (event) => {
-        g.attr('transform', event.transform);
-        svg.style('cursor', event.transform.k > 1 ? 'grabbing' : 'grab');
-      });
-    svg.call(zoom);
+    svg.call(d3.zoom().scaleExtent([1,8]).on('zoom', e => {
+      g.attr('transform', e.transform);
+      svg.style('cursor', e.transform.k > 1 ? 'grabbing' : 'grab');
+    }));
 
     const hint = document.createElement('div');
     hint.style.cssText = 'position:absolute;bottom:8px;right:12px;font-size:10px;color:#AEAEAD;pointer-events:none;';
     hint.textContent = 'scroll to zoom · drag to pan';
     container.appendChild(hint);
 
-    // Life journey
+    // Journey data — photos as objects {src, pos} for cropping control
     const journeyPoints = [
-      { name: 'Blagoveshchensk',   sub: 'Born & grew up · Russian Far East',  coords: [127.5, 50.27], photos: ['img/photo-blg-child.jpg', 'img/photo-blag.jpg'] },
-      { name: 'Hyannis, Cape Cod', sub: 'Massachusetts, USA · 1 year',         coords: [-70.3, 41.65],  photos: ['img/photo-capecod.jpg'] },
-      { name: 'St. Petersburg',    sub: 'Russia · 8 years',                    coords: [30.32, 59.93],  photos: ['img/photo-spb.jpg'] },
-      { name: 'Istanbul',          sub: 'Turkey · 1 year',                     coords: [28.98, 41.01],  photos: [] },
-      { name: 'Espoo',             sub: 'Finland · living now 📍',             coords: [24.66, 60.17],  photos: ['img/photo-finland.jpg'] },
+      { name: 'Blagoveshchensk',   sub: 'Born & grew up · Russian Far East',
+        coords: [127.5, 50.27],
+        photos: [{ src:'img/photo-blg-child.jpg', pos:'center 18%' },
+                 { src:'img/photo-blag.jpg',      pos:'center center' }] },
+      { name: 'Hyannis, Cape Cod', sub: 'Massachusetts, USA · 1 year',
+        coords: [-70.3, 41.65],
+        photos: [{ src:'img/photo-capecod.jpg', pos:'center center' }] },
+      { name: 'St. Petersburg',    sub: 'Russia · 8 years',
+        coords: [30.32, 59.93],
+        photos: [{ src:'img/photo-spb.jpg', pos:'center 30%' }] },
+      { name: 'Istanbul',          sub: 'Turkey · 1 year',
+        coords: [28.98, 41.01], photos: [] },
+      { name: 'Espoo',             sub: 'Finland · living now 📍',
+        coords: [24.66, 60.17],
+        photos: [{ src:'img/photo-finland.jpg', pos:'center center' }] },
     ];
     const altai = {
       name: 'Altai Mountains', sub: '⛰️ Trekking expedition',
       coords: [87.5, 50.0],
-      photos: ['img/photo-altai.jpg', 'img/photo-altai2.jpg', 'img/photo-altai3.jpg']
+      photos: [
+        { src:'img/photo-altai.jpg',  pos:'center center' },
+        { src:'img/photo-altai2.jpg', pos:'center center' },
+        { src:'img/photo-altai3.jpg', pos:'center center' },
+      ]
     };
-
-    let carouselTimer = null;
-
-    function showTooltip(event, pt) {
-      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
-      const photos = pt.photos || [];
-      let idx = 0;
-
-      function render(src) {
-        const img = src ? `<img src="${src}" alt="${pt.name}">` : '';
-        tooltip.innerHTML = `${img}<div style="font-weight:600;font-size:12px;line-height:1.3">${pt.name}</div><div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:3px;font-weight:300">${pt.sub}</div>`;
-      }
-
-      render(photos[0] || null);
-      tooltip.style.opacity = '1';
-      tooltip.style.left = (event.clientX + 14) + 'px';
-      tooltip.style.top  = (event.clientY - 20) + 'px';
-
-      if (photos.length > 1) {
-        carouselTimer = setInterval(() => {
-          idx = (idx + 1) % photos.length;
-          render(photos[idx]);
-        }, 1400);
-      }
-    }
-
-    function showCountryTooltip(event, id) {
-      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
-      const photo = countryPhotos[id];
-      const img = photo ? `<img src="${photo}" alt="">` : '';
-      tooltip.innerHTML = `${img}<div style="font-weight:600;font-size:12px;line-height:1.3">${countryNames[id] || ''}</div>`;
-      tooltip.style.opacity = '1';
-      tooltip.style.left = (event.clientX + 14) + 'px';
-      tooltip.style.top  = (event.clientY - 20) + 'px';
-    }
-
-    function hideTooltip() {
-      tooltip.style.opacity = '0';
-      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
-    }
 
     d3.json('https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json').then(world => {
       const features = topojson.feature(world, world.objects.countries).features;
 
-      g.selectAll('path.country')
-        .data(features)
-        .join('path')
-        .attr('class', 'country')
-        .attr('d', path)
+      g.selectAll('path.country').data(features).join('path')
+        .attr('class', 'country').attr('d', path)
         .attr('fill', d => visitedIds.has(+d.id) ? '#8FADA5' : '#EAEAE6')
-        .attr('stroke', '#fff')
-        .attr('stroke-width', 0.4)
+        .attr('stroke', '#fff').attr('stroke-width', 0.4)
         .style('cursor', d => visitedIds.has(+d.id) ? 'pointer' : 'default')
         .on('mousemove', function(event, d) {
           if (!visitedIds.has(+d.id)) return;
@@ -1645,50 +1699,43 @@
         })
         .on('mouseleave', function(event, d) {
           d3.select(this).attr('fill', visitedIds.has(+d.id) ? '#8FADA5' : '#EAEAE6');
-          hideTooltip();
+          hideCountryTooltip();
         });
 
       const jLayer = g.append('g').attr('class', 'journey-layer');
 
-      // Curved dashed arrows between journey points
       for (let i = 0; i < journeyPoints.length - 1; i++) {
         const p1 = projection(journeyPoints[i].coords);
-        const p2 = projection(journeyPoints[i + 1].coords);
+        const p2 = projection(journeyPoints[i+1].coords);
         if (!p1 || !p2) continue;
-        const mx = (p1[0] + p2[0]) / 2;
-        const my = (p1[1] + p2[1]) / 2 - 26;
+        const mx = (p1[0]+p2[0])/2, my = (p1[1]+p2[1])/2 - 26;
         jLayer.append('path')
           .attr('d', `M${p1[0]},${p1[1]} Q${mx},${my} ${p2[0]},${p2[1]}`)
-          .attr('fill', 'none')
-          .attr('stroke', '#2A6878')
-          .attr('stroke-width', 1.3)
-          .attr('stroke-dasharray', '5 3')
-          .attr('marker-end', 'url(#journey-arrow)')
-          .attr('opacity', 0.6);
+          .attr('fill','none').attr('stroke','#2A6878').attr('stroke-width',1.3)
+          .attr('stroke-dasharray','5 3').attr('marker-end','url(#journey-arrow)')
+          .attr('opacity',0.6);
       }
 
-      // Journey dots + Altai
       [...journeyPoints, altai].forEach(pt => {
         const proj = projection(pt.coords);
         if (!proj) return;
-        const isLast = pt === journeyPoints[journeyPoints.length - 1];
+        const isLast  = pt === journeyPoints[journeyPoints.length-1];
         const isAltai = pt === altai;
 
         const pg = jLayer.append('g')
-          .attr('transform', `translate(${proj[0]},${proj[1]})`)
-          .style('cursor', 'pointer');
+          .attr('transform', `translate(${proj[0]},${proj[1]})`).style('cursor','pointer');
 
-        if (isLast) {
-          pg.append('circle').attr('r', 11).attr('fill', '#2A6878').attr('opacity', 0.15);
-        }
-        pg.append('circle')
-          .attr('r', isLast ? 7 : 5.5)
+        if (isLast) pg.append('circle').attr('r',11).attr('fill','#2A6878').attr('opacity',0.15);
+
+        pg.append('circle').attr('r', isLast ? 7 : 5.5)
           .attr('fill', isLast ? '#2A6878' : (isAltai ? '#A07070' : '#8FADA5'))
-          .attr('stroke', '#fff').attr('stroke-width', 1.5);
-        pg.append('circle').attr('r', 2).attr('fill', '#fff');
+          .attr('stroke','#fff').attr('stroke-width',1.5);
+        pg.append('circle').attr('r',2).attr('fill','#fff');
 
-        pg.on('mousemove', event => showTooltip(event, pt))
-          .on('mouseleave', hideTooltip);
+        pg.on('mousemove', event => {
+            if (pt.photos.length > 0) showPanel(event, pt);
+          })
+          .on('mouseleave', () => { if (pt.photos.length > 0) scheduleHide(); });
       });
     });
   }
