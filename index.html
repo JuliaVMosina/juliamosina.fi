@@ -689,13 +689,32 @@
 
     /* Coffee steam animation */
     @keyframes steam-rise {
-      0%   { opacity: 0;   transform: translateY(2px) scaleX(1);    }
-      35%  { opacity: 0.75; transform: translateY(-1px) scaleX(0.9); }
-      100% { opacity: 0;   transform: translateY(-5px) scaleX(1.1); }
+      0%   { opacity: 0;    transform: translateY(3px) scaleX(1);    }
+      30%  { opacity: 0.8;  transform: translateY(-2px) scaleX(0.85); }
+      100% { opacity: 0;    transform: translateY(-9px) scaleX(1.15); }
     }
-    .coffee-steam { animation: steam-rise 2.2s ease-in-out infinite; transform-origin: center bottom; }
-    .coffee-steam.s2 { animation-delay: 0.45s; }
-    .coffee-steam.s3 { animation-delay: 0.9s; }
+    .coffee-steam { animation: steam-rise 2.4s ease-in-out infinite; transform-origin: center bottom; }
+    .coffee-steam.s2 { animation-delay: 0.5s; }
+    .coffee-steam.s3 { animation-delay: 1s; }
+
+    /* Book page-turn animation */
+    @keyframes page-turn {
+      0%   { transform: translateX(0);    opacity: 0;   }
+      8%   { opacity: 0.75; }
+      85%  { transform: translateX(-11px); opacity: 0.35; }
+      100% { transform: translateX(-11px); opacity: 0;   }
+    }
+    .book-page { animation: page-turn 2.8s ease-in-out infinite; }
+    .book-page.p2 { animation-delay: 1.4s; }
+
+    /* Speaking dots animation */
+    @keyframes speak-dot {
+      0%, 60%, 100% { opacity: 0.2; transform: translateY(0); }
+      30%            { opacity: 1;   transform: translateY(-1.5px); }
+    }
+    .speak-dot { animation: speak-dot 1.4s ease-in-out infinite; }
+    .speak-dot.d2 { animation-delay: 0.2s; }
+    .speak-dot.d3 { animation-delay: 0.4s; }
 
     /* Fun metrics */
     .fun-metrics { display: flex; flex-direction: column; gap: 11px; }
@@ -1386,9 +1405,9 @@
                 <span class="fun-metric-icon">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
                     <!-- Steam (animated wavy paths) -->
-                    <path class="coffee-steam s1" d="M6,5 Q5.2,3.2 6,1.5 Q6.8,0 6,0" stroke-width="1.5"/>
-                    <path class="coffee-steam s2" d="M10,5 Q9.2,3.2 10,1.5 Q10.8,0 10,0" stroke-width="1.5"/>
-                    <path class="coffee-steam s3" d="M14,5 Q13.2,3.2 14,1.5 Q14.8,0 14,0" stroke-width="1.5"/>
+                    <path class="coffee-steam s1" d="M6,6 Q4.2,3.5 6,1 Q7.8,-1.5 6,-3" stroke-width="1.5"/>
+                    <path class="coffee-steam s2" d="M10,6 Q8.2,3.5 10,1 Q11.8,-1.5 10,-3" stroke-width="1.5"/>
+                    <path class="coffee-steam s3" d="M14,6 Q12.2,3.5 14,1 Q15.8,-1.5 14,-3" stroke-width="1.5"/>
                     <!-- Cup body -->
                     <path d="M18 8h1a4 4 0 0 1 0 8h-1"/>
                     <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/>
@@ -1410,7 +1429,16 @@
             <div class="fun-metric">
               <div class="fun-metric-left">
                 <span class="fun-metric-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Book outline -->
+                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                    <!-- Spine line -->
+                    <line x1="12" y1="2" x2="12" y2="17" stroke-width="1" stroke-opacity="0.3"/>
+                    <!-- Animated page lines -->
+                    <line class="book-page"    x1="17" y1="5"  x2="17" y2="14" stroke-width="1.2" stroke-opacity="0.7"/>
+                    <line class="book-page p2" x1="17" y1="5"  x2="17" y2="14" stroke-width="1.2" stroke-opacity="0.7"/>
+                  </svg>
                 </span>
                 <span class="fun-metric-name">Books read</span>
               </div>
@@ -1428,7 +1456,14 @@
             <div class="fun-metric">
               <div class="fun-metric-left">
                 <span class="fun-metric-icon">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8l6 6 6-6"/><path d="M12 2v12"/><rect x="2" y="18" width="20" height="4" rx="1"/></svg>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <!-- Speech bubble -->
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                    <!-- Animated typing dots inside bubble -->
+                    <circle class="speak-dot"    cx="8"  cy="11" r="1.2" fill="currentColor" stroke="none"/>
+                    <circle class="speak-dot d2" cx="12" cy="11" r="1.2" fill="currentColor" stroke="none"/>
+                    <circle class="speak-dot d3" cx="16" cy="11" r="1.2" fill="currentColor" stroke="none"/>
+                  </svg>
                 </span>
                 <span class="fun-metric-name">Languages spoken</span>
               </div>
