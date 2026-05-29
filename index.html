@@ -768,17 +768,27 @@
     }
     .bio-text { flex: 1; min-width: 0; }
     .bio-name {
-      font-size: 22px; font-weight: 600;
-      color: #1f1f1f; margin: 0 0 10px;
+      font-size: 24px; font-weight: 600;
+      color: #1f1f1f; margin: 0 0 12px;
       letter-spacing: -0.4px; line-height: 1.2;
     }
     .bio-desc {
-      font-size: 14px; color: #555;
-      line-height: 1.75; font-weight: 300; margin: 0;
+      font-size: 15.5px; color: #444;
+      line-height: 1.75; font-weight: 300; margin: 0 0 18px;
     }
+    .bio-more-btn {
+      display: inline-block;
+      background: #2a2a2a; color: #fff;
+      font-size: 13px; font-weight: 500;
+      padding: 10px 20px; border-radius: 8px;
+      cursor: pointer; border: none;
+      letter-spacing: 0.1px;
+      transition: background .18s;
+    }
+    .bio-more-btn:hover { background: #444; }
     .bio-photo-wrap {
       flex-shrink: 0;
-      transform: rotate(-3deg);
+      transform: rotate(3deg);
       filter: drop-shadow(0 8px 22px rgba(0,0,0,0.22));
     }
     .bio-photo {
@@ -789,7 +799,7 @@
     }
     @media (max-width: 768px) {
       .bio-block { flex-direction: column-reverse; align-items: flex-start; gap: 16px; }
-      .bio-photo-wrap { transform: rotate(-2deg); }
+      .bio-photo-wrap { transform: rotate(2deg); }
       .bio-photo { width: 120px; height: 158px; }
     }
 
@@ -1194,6 +1204,7 @@
         <div class="bio-text">
           <h2 class="bio-name">Julia Mosina</h2>
           <p class="bio-desc">6+ years making sense of data for product teams. Power BI, SQL, and the belief that a good dashboard actually changes what people do next. Based in Espoo, open to new opportunities.</p>
+          <button class="bio-more-btn">Learn more about me</button>
         </div>
         <div class="bio-photo-wrap">
           <img src="img/photo-portrait.jpg" alt="Julia Mosina" class="bio-photo">
