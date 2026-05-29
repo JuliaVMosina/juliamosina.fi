@@ -256,7 +256,108 @@
     @keyframes barFill { from{width:0%} to{width:100%} }
 
     /* ══════════════ RIGHT PANEL ══════════════ */
-    .right-panel { flex:1; padding:18px; overflow-y:auto; }
+    .right-panel { flex:1; padding:18px; overflow-y:auto; position: relative; }
+
+    /* ══════════════ PROJECT DETAIL ══════════════ */
+    .project-detail {
+      display: none;
+      position: absolute;
+      inset: 0;
+      background: #F5F5F3;
+      z-index: 20;
+      overflow-y: auto;
+      padding: 28px 36px 40px;
+    }
+    .project-detail.active {
+      display: block;
+      animation: pdIn 0.22s ease;
+    }
+    @keyframes pdIn {
+      from { opacity: 0; transform: translateX(14px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+    .pd-back {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: none; border: none; cursor: pointer;
+      font-size: 13px; color: #888; font-family: inherit;
+      padding: 0; margin-bottom: 28px; transition: color .15s;
+    }
+    .pd-back:hover { color: #111; }
+    .pd-title {
+      font-size: 28px; font-weight: 700; letter-spacing: -0.8px;
+      color: #111; margin-bottom: 10px; line-height: 1.15;
+    }
+    .pd-meta {
+      display: flex; align-items: center; gap: 24px; margin-bottom: 20px;
+    }
+    .pd-meta-item {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 13px; color: #888; font-family: monospace;
+    }
+    .pd-divider { height: 1px; background: #E4E4E0; margin-bottom: 24px; }
+    .pd-tabs {
+      display: flex; gap: 0;
+      border-bottom: 1px solid #E4E4E0; margin-bottom: 24px;
+    }
+    .pd-tab {
+      padding: 8px 18px; font-size: 13px; color: #AEAEAD; font-weight: 400;
+      cursor: pointer; border: none; background: none; font-family: inherit;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: color .15s, border-color .15s;
+    }
+    .pd-tab:hover { color: #555; }
+    .pd-tab.active { color: #111; font-weight: 500; border-bottom-color: #111; }
+    .pd-pane { display: none; }
+    .pd-pane.active { display: block; animation: pdIn 0.18s ease; }
+
+    /* Overview text */
+    .pd-section-label {
+      font-size: 11px; font-weight: 600; color: #AEAEAD;
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px;
+    }
+    .pd-body {
+      font-size: 14px; color: #444; line-height: 1.78; font-weight: 300;
+      max-width: 580px;
+    }
+    .pd-body p { margin-bottom: 14px; }
+    .pd-body p:last-child { margin-bottom: 0; }
+
+    /* Results KPI grid */
+    .pd-kpis {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      margin-bottom: 24px;
+    }
+    .pd-kpi {
+      background: #fff; border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 14px; padding: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+    .pd-kpi-value {
+      font-size: 28px; font-weight: 700; letter-spacing: -1px; color: #111; line-height: 1;
+    }
+    .pd-kpi-label { font-size: 11px; color: #888; margin-top: 6px; line-height: 1.4; }
+
+    /* Dashboard image */
+    .pd-image {
+      width: 100%; border-radius: 12px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      margin-bottom: 12px;
+    }
+    .pd-image img { display: block; width: 100%; height: auto; }
+
+    /* Stack chips */
+    .pd-stack { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+    .pd-chip {
+      padding: 6px 14px; border-radius: 20px;
+      font-size: 12px; font-weight: 500; color: #555;
+      background: #fff; border: 1px solid #E0E0DC;
+    }
+    .pd-stack-group { margin-bottom: 20px; }
+    .pd-stack-group-label {
+      font-size: 10px; font-weight: 700; color: #8FADA5;
+      text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 8px;
+    }
 
     .projects-grid {
       display: grid;
@@ -1178,7 +1279,7 @@
       </a>
 
       <!-- 2. Timebook — тиловый -->
-      <a href="#" class="project-card">
+      <a href="#" class="project-card" onclick="openProject('timebook'); return false;">
         <div class="project-bg" style="
           background:
             radial-gradient(ellipse at 15% 20%, rgba(160,220,185,0.6) 0%, transparent 50%),
@@ -1640,6 +1741,15 @@
         </div>
       </div>
 
+    </div>
+
+    <!-- PROJECT DETAIL OVERLAY -->
+    <div class="project-detail" id="projectDetail">
+      <button class="pd-back" onclick="closeProject()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+      </button>
+      <div id="pdInner"></div>
     </div>
 
     <!-- CONTACT TAB -->
@@ -2154,6 +2264,124 @@
         btn.disabled = false;
       }
     });
+  }
+
+  // ── Project Detail ──
+  const projectData = {
+    timebook: {
+      title: 'Team Performance & Workload Dashboard',
+      company: 'Timebook Ltd',
+      period: '2021–2023',
+      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      overview: `
+        <div class="pd-section-label">Overview</div>
+        <div class="pd-body">
+          <p>Timebook is a workforce management SaaS used by enterprise clients to plan shifts, track time, and manage payroll. When I joined as Senior Product Analyst, there was no analytics infrastructure — no dashboards, no tracking, no KPI framework.</p>
+          <p>I built it from scratch: instrumented the product with event tracking, designed a dimensional data model in SQL, and delivered Tableau and Power BI dashboards covering the full user lifecycle — activation, engagement, feature adoption, and retention.</p>
+          <p>Beyond reporting, I designed and ran A/B experiments on key flows (scheduling, payroll approval) and translated findings into product decisions together with PMs and engineering leads.</p>
+        </div>`,
+      dashboard: `
+        <div class="pd-image"><img src="img/timebook-dashboard.png" alt="Team Performance Dashboard"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Team performance & workload overview · Power BI</p>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">+355%</div>
+            <div class="pd-kpi-label">YoY growth in tracked hours after workload visibility went live</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">30%</div>
+            <div class="pd-kpi-label">Workload imbalance uncovered across teams — previously invisible</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">0 → 1</div>
+            <div class="pd-kpi-label">Analytics infrastructure built from scratch: tracking, models, dashboards</div>
+          </div>
+        </div>
+        <div class="pd-body">
+          <p>The dashboard became the source of truth for weekly PM reviews. Workload imbalance that had been anecdotal was now quantified and acted on. The A/B framework we built for scheduling flows continued to run experiments after I left.</p>
+        </div>`,
+      stack: `
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">BI & Visualisation</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Power BI</span>
+            <span class="pd-chip">Tableau</span>
+            <span class="pd-chip">DAX</span>
+            <span class="pd-chip">Power Query</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Data & Analytics</div>
+          <div class="pd-stack">
+            <span class="pd-chip">SQL</span>
+            <span class="pd-chip">CTEs & window functions</span>
+            <span class="pd-chip">Dimensional modelling</span>
+            <span class="pd-chip">Event tracking</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Methods</div>
+          <div class="pd-stack">
+            <span class="pd-chip">A/B testing</span>
+            <span class="pd-chip">Funnel analysis</span>
+            <span class="pd-chip">Cohort analysis</span>
+            <span class="pd-chip">Retention modelling</span>
+          </div>
+        </div>`
+    }
+  };
+
+  function openProject(id) {
+    const p = projectData[id];
+    if (!p) return;
+
+    const paneContent = {
+      Overview:  p.overview,
+      Dashboard: p.dashboard,
+      Results:   p.results,
+      Stack:     p.stack,
+    };
+
+    const tabsHtml = p.tabs.map((t, i) =>
+      `<button class="pd-tab${i===0?' active':''}" onclick="switchPdTab(this,'pd-pane-${i}')">${t}</button>`
+    ).join('');
+
+    const panesHtml = p.tabs.map((t, i) =>
+      `<div class="pd-pane${i===0?' active':''}" id="pd-pane-${i}">${paneContent[t]||''}</div>`
+    ).join('');
+
+    document.getElementById('pdInner').innerHTML = `
+      <div class="pd-title">${p.title}</div>
+      <div class="pd-meta">
+        <span class="pd-meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          ${p.company}
+        </span>
+        <span class="pd-meta-item">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          ${p.period}
+        </span>
+      </div>
+      <div class="pd-divider"></div>
+      <div class="pd-tabs">${tabsHtml}</div>
+      <div>${panesHtml}</div>
+    `;
+
+    document.getElementById('projectDetail').classList.add('active');
+    document.getElementById('projectDetail').scrollTop = 0;
+  }
+
+  function closeProject() {
+    document.getElementById('projectDetail').classList.remove('active');
+  }
+
+  function switchPdTab(btn, paneId) {
+    btn.closest('.pd-tabs').querySelectorAll('.pd-tab').forEach(t => t.classList.remove('active'));
+    btn.classList.add('active');
+    const detail = document.getElementById('projectDetail');
+    detail.querySelectorAll('.pd-pane').forEach(p => p.classList.remove('active'));
+    detail.querySelector('#' + paneId).classList.add('active');
   }
 
   // ── Custom Explore cursor ──
