@@ -1033,7 +1033,7 @@
       .about-panel.active { display: block; }
       .kpi-row { grid-template-columns: 1fr 1fr; }
       .mid-row { grid-template-columns: 1fr; }
-      #travel-map { height: 260px; }
+      #travel-map { height: 320px; }
     }
   </style>
 </head>
@@ -1755,7 +1755,7 @@
 
     const container = document.getElementById('travel-map');
     const W = container.offsetWidth || 600;
-    const H = 420;
+    const H = container.offsetHeight || 420;
 
     // Country hover tooltip
     const tooltip = document.createElement('div');
@@ -1840,7 +1840,7 @@
     const hideCountryTooltip = () => { tooltip.style.opacity = '0'; };
 
     const svg = d3.select('#travel-map').append('svg')
-      .attr('width', '100%').attr('height', H).style('cursor', 'grab');
+      .attr('width', '100%').attr('height', '100%').style('cursor', 'grab');
 
     svg.append('defs').append('marker')
       .attr('id', 'journey-arrow').attr('markerWidth', 9).attr('markerHeight', 9)
@@ -1857,15 +1857,17 @@
     });
     svg.call(mapZoom);
 
-    // Initial zoom: fit to actual projected positions of journey points
-    const _pts = [
-      [-70.3,41.65],[30.32,59.93],[127.5,50.27],[28.98,41.01],[24.66,60.17]
-    ].map(c => projection(c)).filter(Boolean);
+    // Initial zoom: fit to journey points (mobile: focus on Europe/Russia corridor, skip Cape Cod)
+    const isMobile = W < 520;
+    const _zoomCoords = isMobile
+      ? [[30.32,59.93],[127.5,50.27],[28.98,41.01],[24.66,60.17],[87.5,50.0]]
+      : [[-70.3,41.65],[30.32,59.93],[127.5,50.27],[28.98,41.01],[24.66,60.17]];
+    const _pts = _zoomCoords.map(c => projection(c)).filter(Boolean);
     const _xs = _pts.map(p=>p[0]), _ys = _pts.map(p=>p[1]);
-    const _pad = 55;
+    const _pad = isMobile ? 30 : 55;
     const _x0 = Math.min(..._xs)-_pad, _x1 = Math.max(..._xs)+_pad;
     const _y0 = Math.min(..._ys)-_pad, _y1 = Math.max(..._ys)+_pad;
-    const initScale = Math.min(W/(_x1-_x0), H/(_y1-_y0)) * 0.92;
+    const initScale = Math.min(W/(_x1-_x0), H/(_y1-_y0)) * (isMobile ? 0.88 : 0.92);
     const initTx = (W - initScale*(_x0+_x1)) / 2;
     const initTy = (H - initScale*(_y0+_y1)) / 2;
     svg.call(mapZoom.transform, d3.zoomIdentity.translate(initTx, initTy).scale(initScale));
