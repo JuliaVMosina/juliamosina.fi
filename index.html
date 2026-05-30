@@ -2459,57 +2459,99 @@
         </a>`
     },
     thesis: {
-      title: 'Wearable Health Data Analysis',
-      company: 'Metropolia UAS — Research Project',
+      title: 'Product Analytics Framework',
+      company: 'Metropolia UAS — Bachelor\'s Thesis',
       period: '2025–2026',
-      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      tabs: ['Overview', 'Analysis', 'Results', 'Stack'],
       overview: `
-        <div class="pd-section-label">Overview</div>
-        <div class="pd-body">
-          <p>An extended research project exploring whether wearable sensor data can serve as an early-warning system for health and performance changes — before the person feels them subjectively.</p>
-          <p>I built a modular data pipeline in Python and dbt that ingests raw Oura Ring exports, cleans and transforms them, and produces a feature store ready for analysis. The pipeline is documented and reproducible: anyone with their own Oura data can run it.</p>
-          <p>The analytical layer covers sleep staging patterns, HRV variability windows, and activity load modelling. Findings were presented in both a technical report and a stakeholder-facing Power BI dashboard.</p>
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Bachelor's Thesis · Metropolia University of Applied Sciences · April 2026</div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The product</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A mobile app connected to a wearable health device — tracking sleep, activity, and recovery, and turning raw sensor data into personalised health insights for everyday users.</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The challenge</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">Most health apps can tell you a user opened the app. The harder question: did the user actually receive value from it? Without a clear answer, product teams can't decide what to build, fix, or cut — and growth becomes guesswork.</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What was built</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A complete product analytics framework designed from scratch — covering what user actions to track, how to define meaningful success metrics, and how to calculate them automatically from raw data:</div>
+            <ul style="font-size:12px;color:#1E1E1C;line-height:1.8;margin:6px 0 0 16px;padding:0;">
+              <li>Event tracking plan — 20+ user actions mapped from install to subscription cancellation</li>
+              <li>North Star Metric (WIAU) — measuring real value delivery, not just app opens</li>
+              <li>Three conversion funnels — Activation, Engagement, Monetization</li>
+              <li>Layered data architecture in dbt that turns raw event logs into business metrics automatically</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">North Star Metric</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;"><strong>WIAU — Weekly Insight Active Users.</strong> Users who actively engaged with their personalised health insights at least once per week. Chosen over DAU or app opens because it measures value received, not just presence in the app.</div>
+          </div>
         </div>`,
-      dashboard: `
-        <div class="pd-image"><img src="img/thesis-project.png" alt="Wearable Health Data Analysis"></div>
-        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Wearable data pipeline & analysis · Python + Power BI</p>`,
+      analysis: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">North Star Metric — WAU vs WIAU</div>
+            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Dynamics%20of%20WAU%20and%20WIAU.png" alt="WAU and WIAU dynamics" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Weekly Active Users vs Weekly Insight Active Users over 120 days. The gap between the two lines shows users who open the app but don't engage with insights.</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Value Engagement Ratio</div>
+            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Engagement%20Ratio.png" alt="Value Engagement Ratio" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">WIAU ÷ WAU = 90.1% — over 9 in 10 weekly active users reached analytical value from their health data.</div>
+          </div>
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Subscription Conversion Trend</div>
+            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Weekly%20Conversion%20Rate%20(Smoothed%20Trend).png" alt="Weekly Conversion Rate" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Free-to-paid conversion rate over the observation period. Overall conversion: 19.6% of users upgraded to a paid subscription.</div>
+          </div>
+        </div>`,
       results: `
         <div class="pd-kpis">
           <div class="pd-kpi">
-            <div class="pd-kpi-value">72h</div>
-            <div class="pd-kpi-label">Predictive window — wearable signals precede subjective fatigue by up to three days</div>
+            <div class="pd-kpi-value">90.1%</div>
+            <div class="pd-kpi-label">Value Engagement Ratio — share of active users who received analytical value from their health data</div>
           </div>
           <div class="pd-kpi">
-            <div class="pd-kpi-value">Modular</div>
-            <div class="pd-kpi-label">Open pipeline — any Oura user can run the same analysis on their own data</div>
+            <div class="pd-kpi-value">95.5%</div>
+            <div class="pd-kpi-label">Week 1 retention — users who returned within 7 days of onboarding</div>
           </div>
           <div class="pd-kpi">
-            <div class="pd-kpi-value">dbt</div>
-            <div class="pd-kpi-label">First production use of dbt for transformation layer — documented, tested, version-controlled</div>
+            <div class="pd-kpi-value">19.6%</div>
+            <div class="pd-kpi-label">Conversion to paid subscription — from free users who engaged with health insights</div>
+          </div>
+          <div class="pd-kpi">
+            <div class="pd-kpi-value">74.5%</div>
+            <div class="pd-kpi-label">Subscription renewal rate — share of paying users who renewed their plan</div>
           </div>
         </div>
         <div class="pd-body">
-          <p>The project demonstrated that a relatively simple data engineering stack (Python + dbt + SQL) is sufficient to extract meaningful predictive signal from consumer wearables — without cloud infrastructure or ML expertise.</p>
+          <p>The framework confirmed that engagement depth — not just frequency — is the key driver of subscription conversion. Power users who regularly viewed personalised insights converted at significantly higher rates than casual app openers, validating the choice of WIAU as the North Star Metric.</p>
         </div>`,
       stack: `
         <div class="pd-stack-group">
+          <div class="pd-stack-group-label">Analytics Design</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Event taxonomy</span><span class="pd-chip">North Star Metric</span><span class="pd-chip">Funnel architecture</span><span class="pd-chip">Metric definitions</span>
+          </div>
+        </div>
+        <div class="pd-stack-group">
           <div class="pd-stack-group-label">Data Engineering</div>
           <div class="pd-stack">
-            <span class="pd-chip">Python</span><span class="pd-chip">pandas</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Git</span>
+            <span class="pd-chip">Python</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">pandas</span><span class="pd-chip">Git</span>
           </div>
         </div>
         <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Analysis & Visualisation</div>
+          <div class="pd-stack-group-label">Analysis</div>
           <div class="pd-stack">
-            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Jupyter Notebooks</span><span class="pd-chip">matplotlib</span>
+            <span class="pd-chip">Jupyter Notebooks</span><span class="pd-chip">matplotlib</span><span class="pd-chip">Cohort analysis</span><span class="pd-chip">Retention modelling</span>
           </div>
         </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Methods</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Time-series analysis</span><span class="pd-chip">HRV modelling</span><span class="pd-chip">Feature engineering</span><span class="pd-chip">Statistical testing</span>
-          </div>
-        </div>`
+        <a href="https://github.com/JuliaVMosina/product-analytics-framework" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:600;color:#1A4A9A;text-decoration:none;border:1px solid #1A4A9A;border-radius:4px;padding:6px 14px;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.245 1.905 1.245 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          View on GitHub
+        </a>`
     }
   };
 
@@ -2520,6 +2562,7 @@
     const paneContent = {
       Overview:  p.overview,
       Dashboard: p.dashboard,
+      Analysis:  p.analysis,
       Results:   p.results,
       Stack:     p.stack,
     };
