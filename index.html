@@ -528,6 +528,102 @@
       background: rgba(255,255,255,0.08);
     }
 
+    /* ══ New project card content system ══ */
+    .project-content {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+    }
+
+    /* Variant 1: text left + screenshot right */
+    .pc-v1 {
+      display: flex;
+      align-items: flex-end;
+      padding: 18px;
+      gap: 10px;
+      background: linear-gradient(to right, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.3) 55%, rgba(0,0,0,0.05) 100%);
+    }
+    .pc-left {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      min-width: 0;
+    }
+    .pc-right {
+      width: 44%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 4px;
+    }
+    .pc-right img {
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 10px 36px rgba(0,0,0,0.45);
+      transform: perspective(700px) rotateY(-6deg) rotateX(2deg);
+    }
+
+    /* Variant 2: screenshot as bg + rich text overlay */
+    .pc-v2 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0 18px 16px;
+      background: linear-gradient(to top, rgba(0,0,0,0.94) 0%, rgba(0,0,0,0.6) 42%, transparent 100%);
+    }
+
+    /* Shared text elements */
+    .pc-label {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+    .pc-label .arrow-link { font-size: 18px; }
+    .pc-title {
+      font-size: 19px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.4px;
+      line-height: 1.2;
+    }
+    .pc-subtitle {
+      font-size: 11px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.45;
+    }
+    .pc-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      margin-top: 7px;
+    }
+    .pc-chip {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 4px;
+      padding: 2px 7px;
+      font-size: 10px;
+      color: rgba(255,255,255,0.65);
+      background: rgba(255,255,255,0.09);
+    }
+    .pc-stats {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      flex-wrap: wrap;
+    }
+    .pc-stats span {
+      font-size: 10px;
+      color: rgba(255,255,255,0.4);
+    }
+
     /* ══ Elegant ring cursor ══ */
     .explore-cursor {
       position: fixed;
@@ -1271,109 +1367,96 @@
   <div class="right-panel">
     <div class="projects-grid active" id="tab-projects">
 
-      <!-- 1. Oura — nature photo bg + floating dashboard -->
+      <!-- 1. Oura — Variant 1: text left + screenshot right -->
       <a href="#" class="project-card" onclick="openProject('oura'); return false;">
         <div class="project-bg" style="
           background:
             radial-gradient(ellipse at 20% 20%, rgba(230,215,175,0.8) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 80%, rgba(120,95,50,0.5)   0%, transparent 48%),
+            radial-gradient(ellipse at 80% 80%, rgba(120,95,50,0.5) 0%, transparent 48%),
             linear-gradient(145deg, #D4BC82 0%, #B89A58 50%, #8A7040 100%);
         "></div>
-        <!-- Fallback если нет фото: раскомментируй строку ниже и закомментируй project-bg выше -->
-        <!-- <div class="project-bg" style="background:linear-gradient(145deg,#1A2A1A,#2A4A2A 40%,#3A6A3A 100%);"></div> -->
-        <div class="project-preview">
-          <div class="preview-icon">
-            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.12)" stroke-width="3.5"/>
-              <circle cx="50" cy="50" r="31" stroke="rgba(255,255,255,0.22)" stroke-width="3.5"/>
-              <circle cx="50" cy="50" r="20" stroke="rgba(255,255,255,0.38)" stroke-width="3.5"/>
-              <circle cx="50" cy="50" r="5" fill="rgba(255,255,255,0.65)"/>
-              <path d="M6 50 L26 50 L33 30 L41 70 L50 38 L59 50 L94 50" stroke="rgba(255,255,255,0.88)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
+        <div class="project-content pc-v1">
+          <div class="pc-left">
+            <div class="pc-label">Inspired by Oura <span class="arrow-link">↗</span></div>
+            <div class="pc-title">Health Intelligence Dashboard</div>
+            <div class="pc-subtitle">Sleep quality, HRV trends & recovery pattern analysis</div>
+            <div class="pc-chips">
+              <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Health Analytics</span>
+            </div>
+            <div class="pc-stats">
+              <span>5 pages</span><span>·</span><span>Star schema</span><span>·</span><span>Python pipeline</span>
+            </div>
           </div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-company">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            Inspired by Oura <span class="arrow-link">↗</span>
-          </div>
-          <div class="project-name">Health Intelligence Dashboard</div>
-          <div class="project-tags">
-            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span><span class="tag">Health Analytics</span>
+          <div class="pc-right">
+            <img src="img/oura-dashboard.png" alt="Health Intelligence Dashboard">
           </div>
         </div>
       </a>
 
-      <!-- 2. Timebook — тиловый -->
+      <!-- 2. Timebook — Variant 1: text left + screenshot right -->
       <a href="#" class="project-card" onclick="openProject('timebook'); return false;">
         <div class="project-bg" style="
           background:
-            radial-gradient(ellipse at 15% 20%, rgba(160,220,185,0.6) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 80%, rgba(40,90,65,0.5)    0%, transparent 48%),
-            linear-gradient(145deg, #7ABE9A 0%, #4E9070 50%, #2E6448 100%);
+            radial-gradient(ellipse at 15% 20%, rgba(100,180,130,0.5) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 80%, rgba(20,60,40,0.6) 0%, transparent 48%),
+            linear-gradient(145deg, #2E6448 0%, #1E4432 50%, #122A1E 100%);
         "></div>
-        <div class="project-preview">
-          <div class="preview-icon">
-            <img src="img/timebook-logo.png" alt="Timebook">
+        <div class="project-content pc-v1">
+          <div class="pc-left">
+            <div class="pc-label">Inspired by Timebook <span class="arrow-link">↗</span></div>
+            <div class="pc-title">Team Performance & Workload Dashboard</div>
+            <div class="pc-subtitle">Resource planning, workload balance & utilization analysis</div>
+            <div class="pc-chips">
+              <span class="pc-chip">Power BI</span><span class="pc-chip">SQL</span><span class="pc-chip">DAX</span><span class="pc-chip">PM Analytics</span>
+            </div>
+            <div class="pc-stats">
+              <span>Star schema</span><span>·</span><span>DAX measures</span><span>·</span><span>Incremental refresh</span>
+            </div>
           </div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-company">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            Inspired by Timebook <span class="arrow-link">↗</span>
-          </div>
-          <div class="project-name">Team Performance &amp; Workload Dashboard</div>
-          <div class="project-tags">
-            <span class="tag">Power BI</span><span class="tag">SQL</span><span class="tag">PM Analytics</span><span class="tag">KPI Tracking</span>
+          <div class="pc-right">
+            <img src="img/timebook-dashboard.png" alt="Team Performance Dashboard">
           </div>
         </div>
       </a>
 
-      <!-- 3. KONE — corporate blue -->
+      <!-- 3. KONE — Variant 2: screenshot bg + rich overlay -->
       <a href="#" class="project-card" onclick="openProject('kone'); return false;">
         <div class="project-bg" style="
           background:
-            linear-gradient(to top, rgba(7,24,69,0.97) 0%, rgba(7,24,69,0.55) 42%, rgba(7,24,69,0.08) 100%),
             url('img/kone-dashboard.png') top center / cover no-repeat;
         "></div>
-        <div class="project-preview"></div>
-        <div class="project-overlay">
-          <div class="project-company">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            Inspired by KONE <span class="arrow-link">↗</span>
+        <div class="project-content pc-v2">
+          <div class="pc-label">Inspired by KONE <span class="arrow-link">↗</span></div>
+          <div class="pc-title">Corporate BI Dashboard</div>
+          <div class="pc-subtitle">Service operations KPIs across 4 global regions & 3 revenue lines</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Corporate Analytics</span>
           </div>
-          <div class="project-name">Corporate BI Dashboard</div>
-          <div class="project-tags">
-            <span class="tag">Power BI</span><span class="tag">DAX</span><span class="tag">SQL</span><span class="tag">Corporate Analytics</span>
+          <div class="pc-stats">
+            <span>6 KPI cards</span><span>·</span><span>Drill-through</span><span>·</span><span>Star schema</span>
           </div>
         </div>
       </a>
 
-      <!-- 4. Thesis — Metropolia orange editorial -->
+      <!-- 4. Thesis — Variant 1: text left + chart right -->
       <a href="#" class="project-card" onclick="openProject('thesis'); return false;">
         <div class="project-bg" style="
           background: linear-gradient(145deg, #E8581A 0%, #C04010 55%, #8A2800 100%);
         "></div>
-        <div class="project-preview">
-          <div class="preview-icon" style="flex-direction:column;align-items:flex-start;padding:22px 24px;gap:0;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.16em;color:rgba(255,255,255,0.5);text-transform:uppercase;margin-bottom:10px;">Bachelor's Thesis</div>
-            <div style="font-size:22px;font-weight:800;color:rgba(255,255,255,0.97);line-height:1.15;letter-spacing:-0.5px;">End-to-end<br>product analytics<br>for a wearable<br>health app</div>
-            <div style="margin-top:14px;display:flex;gap:6px;flex-wrap:wrap;">
-              <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);border-radius:3px;padding:2px 7px;">dbt</span>
-              <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);border-radius:3px;padding:2px 7px;">SQL</span>
-              <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);border-radius:3px;padding:2px 7px;">Python</span>
-              <span style="font-size:9px;font-weight:600;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.15);border-radius:3px;padding:2px 7px;">North Star Metric</span>
+        <div class="project-content pc-v1">
+          <div class="pc-left">
+            <div class="pc-label">Bachelor's Thesis <span class="arrow-link">↗</span></div>
+            <div class="pc-title">End-to-end Product Analytics</div>
+            <div class="pc-subtitle">User behavior, funnel analysis, retention & revenue impact</div>
+            <div class="pc-chips">
+              <span class="pc-chip">Python</span><span class="pc-chip">dbt</span><span class="pc-chip">SQL</span><span class="pc-chip">North Star Metric</span>
+            </div>
+            <div class="pc-stats">
+              <span>12 dbt models</span><span>·</span><span>3 funnels</span><span>·</span><span>WIAU</span>
             </div>
           </div>
-        </div>
-        <div class="project-overlay">
-          <div class="project-company">
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg>
-            Master's Thesis <span class="arrow-link">↗</span>
-          </div>
-          <div class="project-name">Wearable Health Data Analysis</div>
-          <div class="project-tags">
-            <span class="tag">Python</span><span class="tag">Data Analysis</span><span class="tag">Research</span><span class="tag">Wearables</span>
+          <div class="pc-right">
+            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Dynamics%20of%20WAU%20and%20WIAU.png" alt="WAU WIAU analysis">
           </div>
         </div>
       </a>
