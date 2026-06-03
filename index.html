@@ -362,12 +362,13 @@
     .projects-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
       gap: 12px;
+      height: calc(100vh - 36px);
     }
 
-    /* Cards — 4:3 proportions like reference, light border */
+    /* Cards — fill grid rows */
     .project-card {
-      aspect-ratio: 16 / 9;
       border-radius: 16px;
       overflow: hidden;
       position: relative;
