@@ -1368,54 +1368,34 @@
   <div class="right-panel">
     <div class="projects-grid active" id="tab-projects">
 
-      <!-- 1. Oura — Variant 1: text left + screenshot right -->
+      <!-- 1. Oura — dashboard bg + vertical gradient -->
       <a href="#" class="project-card" onclick="openProject('oura'); return false;">
-        <div class="project-bg" style="
-          background:
-            radial-gradient(ellipse at 20% 20%, rgba(230,215,175,0.8) 0%, transparent 50%),
-            radial-gradient(ellipse at 80% 80%, rgba(120,95,50,0.5) 0%, transparent 48%),
-            linear-gradient(145deg, #D4BC82 0%, #B89A58 50%, #8A7040 100%);
-        "></div>
-        <div class="project-content pc-v1">
-          <div class="pc-left">
-            <div class="pc-label">Inspired by Oura <span class="arrow-link">↗</span></div>
-            <div class="pc-title">Health Intelligence Dashboard</div>
-            <div class="pc-subtitle">Sleep quality, HRV trends & recovery pattern analysis</div>
-            <div class="pc-chips">
-              <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Health Analytics</span>
-            </div>
-            <div class="pc-stats">
-              <span>5 pages</span><span>·</span><span>Star schema</span><span>·</span><span>Python pipeline</span>
-            </div>
+        <div class="project-bg" style="background: url('img/oura-dashboard.png') top center / cover no-repeat;"></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(20,12,0,0.97) 0%, rgba(20,12,0,0.82) 30%, rgba(20,12,0,0.3) 62%, transparent 100%);">
+          <div class="pc-label">Inspired by Oura <span class="arrow-link">↗</span></div>
+          <div class="pc-title">Health Intelligence Dashboard</div>
+          <div class="pc-subtitle">Sleep quality, HRV trends & recovery pattern analysis</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Health Analytics</span>
           </div>
-          <div class="pc-right">
-            <img src="img/oura-dashboard.png" alt="Health Intelligence Dashboard">
+          <div class="pc-stats">
+            <span>5 pages</span><span>·</span><span>Star schema</span><span>·</span><span>Python pipeline</span>
           </div>
         </div>
       </a>
 
-      <!-- 2. Timebook — Variant 1: text left + screenshot right -->
+      <!-- 2. Timebook — dashboard bg + vertical gradient -->
       <a href="#" class="project-card" onclick="openProject('timebook'); return false;">
-        <div class="project-bg" style="
-          background:
-            radial-gradient(ellipse at 15% 20%, rgba(100,180,130,0.5) 0%, transparent 50%),
-            radial-gradient(ellipse at 85% 80%, rgba(20,60,40,0.6) 0%, transparent 48%),
-            linear-gradient(145deg, #2E6448 0%, #1E4432 50%, #122A1E 100%);
-        "></div>
-        <div class="project-content pc-v1">
-          <div class="pc-left">
-            <div class="pc-label">Inspired by Timebook <span class="arrow-link">↗</span></div>
-            <div class="pc-title">Team Performance & Workload Dashboard</div>
-            <div class="pc-subtitle">Resource planning, workload balance & utilization analysis</div>
-            <div class="pc-chips">
-              <span class="pc-chip">Power BI</span><span class="pc-chip">SQL</span><span class="pc-chip">DAX</span><span class="pc-chip">PM Analytics</span>
-            </div>
-            <div class="pc-stats">
-              <span>Star schema</span><span>·</span><span>DAX measures</span><span>·</span><span>Incremental refresh</span>
-            </div>
+        <div class="project-bg" style="background: url('img/timebook-dashboard.png') top center / cover no-repeat;"></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(8,22,14,0.97) 0%, rgba(8,22,14,0.82) 30%, rgba(8,22,14,0.3) 62%, transparent 100%);">
+          <div class="pc-label">Inspired by Timebook <span class="arrow-link">↗</span></div>
+          <div class="pc-title">Team Performance & Workload Dashboard</div>
+          <div class="pc-subtitle">Resource planning, workload balance & utilization analysis</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Power BI</span><span class="pc-chip">SQL</span><span class="pc-chip">DAX</span><span class="pc-chip">PM Analytics</span>
           </div>
-          <div class="pc-right">
-            <img src="img/timebook-dashboard.png" alt="Team Performance Dashboard">
+          <div class="pc-stats">
+            <span>Star schema</span><span>·</span><span>DAX measures</span><span>·</span><span>Incremental refresh</span>
           </div>
         </div>
       </a>
@@ -1438,25 +1418,18 @@
         </div>
       </a>
 
-      <!-- 4. Thesis — Variant 1: text left + chart right -->
+      <!-- 4. Thesis — chart bg + vertical gradient orange -->
       <a href="#" class="project-card" onclick="openProject('thesis'); return false;">
-        <div class="project-bg" style="
-          background: linear-gradient(145deg, #E8581A 0%, #C04010 55%, #8A2800 100%);
-        "></div>
-        <div class="project-content pc-v1">
-          <div class="pc-left">
-            <div class="pc-label">Bachelor's Thesis <span class="arrow-link">↗</span></div>
-            <div class="pc-title">End-to-end Product Analytics</div>
-            <div class="pc-subtitle">User behavior, funnel analysis, retention & revenue impact</div>
-            <div class="pc-chips">
-              <span class="pc-chip">Python</span><span class="pc-chip">dbt</span><span class="pc-chip">SQL</span><span class="pc-chip">North Star Metric</span>
-            </div>
-            <div class="pc-stats">
-              <span>12 dbt models</span><span>·</span><span>3 funnels</span><span>·</span><span>WIAU</span>
-            </div>
+        <div class="project-bg" style="background: url('img/thesis-wiau.png') top center / cover no-repeat; filter: hue-rotate(0deg) saturate(0.7);"></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(80,28,0,0.98) 0%, rgba(80,28,0,0.85) 30%, rgba(80,28,0,0.35) 62%, transparent 100%);">
+          <div class="pc-label">Bachelor's Thesis <span class="arrow-link">↗</span></div>
+          <div class="pc-title">End-to-end Product Analytics</div>
+          <div class="pc-subtitle">User behavior, funnel analysis, retention & revenue impact</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Python</span><span class="pc-chip">dbt</span><span class="pc-chip">SQL</span><span class="pc-chip">North Star Metric</span>
           </div>
-          <div class="pc-right">
-            <img src="img/thesis-wiau.png" alt="WAU WIAU analysis">
+          <div class="pc-stats">
+            <span>12 dbt models</span><span>·</span><span>3 funnels</span><span>·</span><span>WIAU</span>
           </div>
         </div>
       </a>
