@@ -1420,21 +1420,28 @@
         </div>
       </a>
 
-      <!-- 3. KONE — Variant 2: screenshot bg + rich overlay -->
+      <!-- 3. KONE — Variant 1: text left + screenshot right, navy bg -->
       <a href="#" class="project-card" onclick="openProject('kone'); return false;">
         <div class="project-bg" style="
           background:
-            url('img/kone-dashboard.png') top center / cover no-repeat;
+            radial-gradient(ellipse at 15% 20%, rgba(60,100,180,0.4) 0%, transparent 50%),
+            radial-gradient(ellipse at 85% 80%, rgba(4,14,45,0.7) 0%, transparent 48%),
+            linear-gradient(145deg, #1A4A9A 0%, #0F2F6E 50%, #071845 100%);
         "></div>
-        <div class="project-content pc-v2">
-          <div class="pc-label">Inspired by KONE <span class="arrow-link">↗</span></div>
-          <div class="pc-title">Corporate BI Dashboard</div>
-          <div class="pc-subtitle">Service operations KPIs across 4 global regions & 3 revenue lines</div>
-          <div class="pc-chips">
-            <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Corporate Analytics</span>
+        <div class="project-content pc-v1">
+          <div class="pc-left">
+            <div class="pc-label">Inspired by KONE <span class="arrow-link">↗</span></div>
+            <div class="pc-title">Corporate BI Dashboard</div>
+            <div class="pc-subtitle">Service operations KPIs across 4 global regions & 3 revenue lines</div>
+            <div class="pc-chips">
+              <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">SQL</span><span class="pc-chip">Corporate Analytics</span>
+            </div>
+            <div class="pc-stats">
+              <span>6 KPI cards</span><span>·</span><span>Drill-through</span><span>·</span><span>Star schema</span>
+            </div>
           </div>
-          <div class="pc-stats">
-            <span>6 KPI cards</span><span>·</span><span>Drill-through</span><span>·</span><span>Star schema</span>
+          <div class="pc-right">
+            <img src="img/kone-dashboard.png" alt="Corporate BI Dashboard">
           </div>
         </div>
       </a>
