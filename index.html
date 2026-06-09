@@ -2614,7 +2614,7 @@
       title: 'Product Analytics Framework',
       company: 'Metropolia UAS — Bachelor\'s Thesis',
       period: '2025–2026',
-      tabs: ['Overview', 'Analysis', 'Results', 'Stack'],
+      tabs: ['Overview', 'Analysis', 'Design', 'Results'],
       overview: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
           <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Bachelor's Thesis · Metropolia University of Applied Sciences · April 2026</div>
@@ -2625,6 +2625,15 @@
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The challenge</div>
             <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">Most health apps can tell you a user opened the app. The harder question: did the user actually receive value from it? Without a clear answer, product teams can't decide what to build, fix, or cut — and growth becomes guesswork.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li>Are users getting real value — or just opening the app?</li>
+              <li>Which behaviors predict conversion to a paid subscription?</li>
+              <li>How well do we retain users in their first week and month?</li>
+              <li>Where do users drop off — activation, engagement, or monetization?</li>
+            </ul>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What was built</div>
@@ -2675,6 +2684,23 @@
             <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Free-to-paid conversion rate over the observation period. Overall conversion: 19.6% of users upgraded to a paid subscription.</div>
           </div>
         </div>`,
+      design: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Design decisions</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>WIAU over DAU as the North Star.</strong> App opens measure presence; "Weekly Insight Active Users" measures value actually received. The metric had to reward the behavior the product exists for.</li>
+              <li><strong>Activation = onboarding + first insight within 24h.</strong> Defined around the first meaningful experience, not just account creation — so the metric tracks real value, not signups.</li>
+              <li><strong>Three separate funnels</strong> (activation, engagement, monetization) instead of one — to isolate exactly where users drop off and act on the right stage.</li>
+              <li><strong>Engagement depth, not just frequency.</strong> Measured deep interactions per session, because depth — not raw visit count — turned out to predict conversion.</li>
+              <li><strong>Layered dbt architecture</strong> (staging → intermediate → marts) so every metric is reproducible, testable, and documented — not a one-off query.</li>
+            </ul>
+          </div>
+          <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">On the data</div>
+            <div style="font-size:13px;color:#64748B;line-height:1.5;">Built a probabilistic behavioral model in Python — 1,000 synthetic users across three types (casual / regular / power) over 120 days — to produce realistic distributions for activation, retention and conversion without using real user data.</div>
+          </div>
+        </div>`,
       results: `
         <div class="pd-kpis">
           <div class="pd-kpi">
@@ -2696,24 +2722,11 @@
         </div>
         <div class="pd-body">
           <p>The framework confirmed that engagement depth — not just frequency — is the key driver of subscription conversion. Power users who regularly viewed personalised insights converted at significantly higher rates than casual app openers, validating the choice of WIAU as the North Star Metric.</p>
-        </div>`,
-      stack: `
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Analytics Design</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Event taxonomy</span><span class="pd-chip">North Star Metric</span><span class="pd-chip">Funnel architecture</span><span class="pd-chip">Metric definitions</span>
-          </div>
         </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Data Engineering / ETL</div>
+        <div class="pd-stack-group" style="margin-top:6px;">
+          <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">pandas</span><span class="pd-chip">Staging → Marts</span><span class="pd-chip">dbt tests</span><span class="pd-chip">Git</span>
-          </div>
-        </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Analysis</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Jupyter Notebooks</span><span class="pd-chip">matplotlib</span><span class="pd-chip">Cohort analysis</span><span class="pd-chip">Retention modelling</span>
+            <span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">Event taxonomy</span><span class="pd-chip">North Star Metric</span><span class="pd-chip">Funnel architecture</span><span class="pd-chip">Cohort & retention</span>
           </div>
         </div>
         <a href="https://github.com/JuliaVMosina/product-analytics-framework" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:600;color:#1A4A9A;text-decoration:none;border:1px solid #1A4A9A;border-radius:4px;padding:6px 14px;">
