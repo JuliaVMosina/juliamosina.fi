@@ -2527,25 +2527,22 @@
       title: 'Corporate BI Dashboard',
       company: 'Inspired by KONE',
       period: '2024',
-      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      tabs: ['Overview', 'Dashboard', 'Design', 'Results'],
       overview: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
           <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">All data is synthetic, generated for demonstration purposes.</div>
           <div>
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Company</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">KONE — Finnish manufacturer of elevators, escalators, and automatic building doors. Operates across four global regions: Europe, Greater China, Americas, and APMEA.</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Context</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A service-operations dashboard modeled on KONE — Finnish manufacturer of elevators and escalators operating across four global regions (Europe, Greater China, Americas, APMEA). Built to replace a manual monthly Excel process with a self-serve Power BI solution for regional managers and global leadership.</div>
           </div>
           <div>
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Dashboard goal</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">Replace a manual monthly Excel reporting process with a self-serve Power BI solution — giving regional managers and global leadership instant access to service operations KPIs without analyst involvement.</div>
-          </div>
-          <div>
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Business question</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">Which regions and business lines are growing or declining? Are equipment uptime and contract renewal rates on track? Where are service call volumes concentrated — and why?</div>
-          </div>
-          <div>
-            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What we found</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">Greater China leads in service call volume (7K+). The Service revenue line dominates and grows steadily year-over-year, while New Building Solutions shows a gradual decline consistent with post-peak construction cycles. Contract renewal rate at 89% signals strong retention, but Emergency Share at 5.8% flags a reactive maintenance pattern worth addressing.</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
+            <ul style="font-size:12px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li>Which regions and business lines are growing or declining?</li>
+              <li>Are equipment uptime and contract renewal rates on track?</li>
+              <li>Where are service call volumes concentrated — and why?</li>
+              <li>How does revenue split across Service, New Building & Modernization?</li>
+            </ul>
           </div>
         </div>`,
       dashboard: `
@@ -2555,6 +2552,23 @@
           </video>
         </div>
         <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Corporate operations & KPI reporting · Power BI</p>`,
+      design: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Design decisions</div>
+            <ul style="font-size:12px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>Five KPI cards first.</strong> Leadership reads top-down — operational health is visible in 90 seconds before any drill-down.</li>
+              <li><strong>Replaced a donut with a horizontal bar chart</strong> for regions. Ranking by volume is far easier to read than comparing arc angles.</li>
+              <li><strong>Conditional color on KPIs</strong> (green/red vs target) so status is pre-attentive — no need to read the number to know if it's good.</li>
+              <li><strong>Drill-through to a regional detail page</strong> with a dynamic title — keeps the overview clean while letting users reach root cause in two clicks.</li>
+              <li><strong>Custom muted theme</strong> instead of default Power BI colors — suppressed gridlines, one accent color, calmer palette for an executive audience.</li>
+            </ul>
+          </div>
+          <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What changed along the way</div>
+            <div style="font-size:12px;color:#64748B;line-height:1.5;">First version used default styling, three competing blues on the trend lines, and snake_case field names exposed in the UI. I renamed every field to human-readable labels, gave each revenue line a distinct color, and rebuilt the theme — small things that move a dashboard from "analyst draft" to "executive-ready".</div>
+          </div>
+        </div>`,
       results: `
         <div class="pd-kpis">
           <div class="pd-kpi">
@@ -2571,25 +2585,12 @@
           </div>
         </div>
         <div class="pd-body">
-          <p>The dashboard uses row-level security so regional managers only see their own data, while global leadership sees the full picture. Drill-through pages let users move from summary KPIs to root-cause detail in two clicks.</p>
-        </div>`,
-      stack: `
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">BI & Visualisation</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Power Query</span><span class="pd-chip">Row-level security</span>
-          </div>
+          <p><strong>Key findings:</strong> Greater China leads service call volume (7K+). Service revenue dominates and grows steadily, while New Building Solutions declines — consistent with post-peak construction cycles. Renewal rate at 89% signals strong retention, but a 5.8% emergency share flags a reactive maintenance pattern worth addressing.</p>
         </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Data Layer</div>
+        <div class="pd-stack-group" style="margin-top:6px;">
+          <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">SQL Server</span><span class="pd-chip">Star schema</span><span class="pd-chip">CTEs</span>
-          </div>
-        </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Features</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Drill-through</span><span class="pd-chip">Bookmarks</span><span class="pd-chip">Dynamic titles</span><span class="pd-chip">Mobile layout</span>
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">SQL Server</span><span class="pd-chip">Star schema</span><span class="pd-chip">Drill-through</span><span class="pd-chip">Row-level security</span>
           </div>
         </div>
         <a href="https://github.com/JuliaVMosina/kone-service-dashboard" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:600;color:#1A4A9A;text-decoration:none;border:1px solid #1A4A9A;border-radius:4px;padding:6px 14px;">
@@ -2702,6 +2703,7 @@
       Overview:  p.overview,
       Dashboard: p.dashboard,
       Analysis:  p.analysis,
+      Design:    p.design,
       Results:   p.results,
       Stack:     p.stack,
     };
