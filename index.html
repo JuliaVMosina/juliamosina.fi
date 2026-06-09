@@ -2802,7 +2802,7 @@
   function buildThesisChart(canvas) {
     if (!canvas || canvas.dataset.rendered || typeof Chart === 'undefined') return;
     const kind = canvas.dataset.chart;
-    const baseOpts = {
+    const makeOpts = () => ({
       responsive: true, maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: { legend: { labels: { font: { size: 11 }, color: '#64748B', usePointStyle: true, boxWidth: 8 } } },
@@ -2810,7 +2810,7 @@
         x: { grid: { display: false }, ticks: { font: { size: 10 }, color: '#94A3B8', maxRotation: 0, autoSkip: false, callback: (val, index) => THESIS_MONTH_TICKS[index] } },
         y: { grid: { color: '#F1F5F9' }, ticks: { font: { size: 9 }, color: '#94A3B8' }, beginAtZero: true }
       }
-    };
+    });
     if (kind === 'wauWiau') {
       new Chart(canvas, {
         type: 'line',
@@ -2818,10 +2818,10 @@
           { label: 'WAU', data: THESIS_WAU, borderColor: '#94A3B8', backgroundColor: 'rgba(148,163,184,0.08)', borderWidth: 2, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 },
           { label: 'WIAU', data: THESIS_WIAU, borderColor: '#7C3AED', backgroundColor: 'rgba(124,58,237,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
         ]},
-        options: baseOpts
+        options: makeOpts()
       });
     } else if (kind === 'conversion') {
-      const opts = JSON.parse(JSON.stringify(baseOpts));
+      const opts = makeOpts();
       opts.plugins.legend = { display: false };
       opts.scales.y.ticks = { font: { size: 9 }, color: '#94A3B8', callback: v => v + '%' };
       opts.plugins.tooltip = { callbacks: { label: c => ' ' + c.parsed.y + '%' } };
@@ -2832,9 +2832,8 @@
         ]},
         options: opts
       });
-      // tooltip % formatting
     } else if (kind === 'engagement') {
-      const opts = JSON.parse(JSON.stringify(baseOpts));
+      const opts = makeOpts();
       opts.plugins.legend = { display: false };
       opts.scales.y.beginAtZero = false;
       opts.scales.y.suggestedMin = 60;
