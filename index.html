@@ -276,7 +276,7 @@
       background: #F5F5F3;
       z-index: 20;
       overflow-y: auto;
-      padding: 28px 36px 40px;
+      padding: 30px 56px 44px;
     }
     .project-detail.active {
       display: block;
@@ -326,8 +326,8 @@
       text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px;
     }
     .pd-body {
-      font-size: 14px; color: #444; line-height: 1.78; font-weight: 300;
-      max-width: 580px;
+      font-size: 15px; color: #444; line-height: 1.8; font-weight: 300;
+      max-width: 760px;
     }
     .pd-body p { margin-bottom: 14px; }
     .pd-body p:last-child { margin-bottom: 0; }
@@ -2543,11 +2543,11 @@
           <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">All data is synthetic, generated for demonstration purposes.</div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Context</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A service-operations dashboard modeled on KONE — Finnish manufacturer of elevators and escalators operating across four global regions (Europe, Greater China, Americas, APMEA). Built to replace a manual monthly Excel process with a self-serve Power BI solution for regional managers and global leadership.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;">A service-operations dashboard modeled on KONE — Finnish manufacturer of elevators and escalators operating across four global regions (Europe, Greater China, Americas, APMEA). Built to replace a manual monthly Excel process with a self-serve Power BI solution for regional managers and global leadership.</div>
           </div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
-            <ul style="font-size:12px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+            <ul style="font-size:13px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
               <li>Which regions and business lines are growing or declining?</li>
               <li>Are equipment uptime and contract renewal rates on track?</li>
               <li>Where are service call volumes concentrated — and why?</li>
@@ -2566,7 +2566,7 @@
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Design decisions</div>
-            <ul style="font-size:12px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+            <ul style="font-size:13px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
               <li><strong>Five KPI cards first.</strong> Leadership reads top-down — operational health is visible in 90 seconds before any drill-down.</li>
               <li><strong>Replaced a donut with a horizontal bar chart</strong> for regions. Ranking by volume is far easier to read than comparing arc angles.</li>
               <li><strong>Conditional color on KPIs</strong> (green/red vs target) so status is pre-attentive — no need to read the number to know if it's good.</li>
@@ -2580,22 +2580,23 @@
           </div>
         </div>`,
       results: `
+        <div style="font-size:11px;color:#AEAEAD;margin-bottom:12px;">Designed outcomes of the modeled scenario:</div>
         <div class="pd-kpis">
           <div class="pd-kpi">
-            <div class="pd-kpi-value">3d→2h</div>
-            <div class="pd-kpi-label">Executive reporting time — from manual Excel process to automated self-serve</div>
+            <div class="pd-kpi-value">3d→min</div>
+            <div class="pd-kpi-label">Designed to replace a 3-day manual Excel process with automated self-serve reporting</div>
           </div>
           <div class="pd-kpi">
-            <div class="pd-kpi-value">Self-serve</div>
-            <div class="pd-kpi-label">C-level and regional managers access live data without analyst bottleneck</div>
+            <div class="pd-kpi-value">4 regions</div>
+            <div class="pd-kpi-label">Unified in one view — built to serve regional managers and global leadership</div>
           </div>
           <div class="pd-kpi">
             <div class="pd-kpi-value">1 source</div>
-            <div class="pd-kpi-label">Of truth for operational KPIs across regions — replacing 5+ spreadsheet reports</div>
+            <div class="pd-kpi-label">Single source of truth for operational KPIs, replacing 5+ separate spreadsheet reports</div>
           </div>
         </div>
         <div class="pd-body">
-          <p><strong>Key findings:</strong> Greater China leads service call volume (7K+). Service revenue dominates and grows steadily, while New Building Solutions declines — consistent with post-peak construction cycles. Renewal rate at 89% signals strong retention, but a 5.8% emergency share flags a reactive maintenance pattern worth addressing.</p>
+          <p><strong>Key findings from the data:</strong> Greater China leads service call volume (7K+). Service revenue dominates and grows steadily, while New Building Solutions declines — consistent with post-peak construction cycles. Renewal rate at 89% signals strong retention, but a 5.8% emergency share flags a reactive maintenance pattern worth addressing.</p>
         </div>
         <div class="pd-stack-group" style="margin-top:6px;">
           <div class="pd-stack-group-label">Stack</div>
@@ -2618,16 +2619,16 @@
           <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Bachelor's Thesis · Metropolia University of Applied Sciences · April 2026</div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The product</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A mobile app connected to a wearable health device — tracking sleep, activity, and recovery, and turning raw sensor data into personalised health insights for everyday users.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;">A mobile app connected to a wearable health device — tracking sleep, activity, and recovery, and turning raw sensor data into personalised health insights for everyday users.</div>
           </div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The challenge</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">Most health apps can tell you a user opened the app. The harder question: did the user actually receive value from it? Without a clear answer, product teams can't decide what to build, fix, or cut — and growth becomes guesswork.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;">Most health apps can tell you a user opened the app. The harder question: did the user actually receive value from it? Without a clear answer, product teams can't decide what to build, fix, or cut — and growth becomes guesswork.</div>
           </div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What was built</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;">A complete product analytics framework designed from scratch — covering what user actions to track, how to define meaningful success metrics, and how to calculate them automatically from raw data:</div>
-            <ul style="font-size:12px;color:#1E1E1C;line-height:1.8;margin:6px 0 0 16px;padding:0;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;">A complete product analytics framework designed from scratch — covering what user actions to track, how to define meaningful success metrics, and how to calculate them automatically from raw data:</div>
+            <ul style="font-size:13px;color:#1E1E1C;line-height:1.8;margin:6px 0 0 16px;padding:0;">
               <li>Event tracking plan — 20+ user actions mapped from install to subscription cancellation</li>
               <li>North Star Metric (WIAU) — measuring real value delivery, not just app opens</li>
               <li>Three conversion funnels — Activation, Engagement, Monetization</li>
@@ -2636,14 +2637,14 @@
           </div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">North Star Metric</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;"><strong>WIAU — Weekly Insight Active Users.</strong> Users who actively engaged with their personalised health insights at least once per week. Chosen over DAU or app opens because it measures value received, not just presence in the app.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;"><strong>WIAU — Weekly Insight Active Users.</strong> Users who actively engaged with their personalised health insights at least once per week. Chosen over DAU or app opens because it measures value received, not just presence in the app.</div>
           </div>
         </div>`,
       analysis: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data pipeline — end-to-end ETL</div>
-            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;margin-bottom:10px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-bottom:10px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
             <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:600;">
               <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">Python<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">generate raw data</span></span>
               <span style="color:#CBD5E1;">→</span>
