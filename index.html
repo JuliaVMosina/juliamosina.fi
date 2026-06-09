@@ -17,6 +17,7 @@
   <!-- D3 + topojson -->
   <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
@@ -2683,8 +2684,8 @@
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">North Star Metric — WAU vs WIAU</div>
-            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Dynamics%20of%20WAU%20and%20WIAU.png" alt="WAU and WIAU dynamics" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:520px;border-radius:6px;border:1px solid #E8E8E4;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Weekly Active Users vs Weekly Insight Active Users over 120 days. The gap between the two lines shows users who open the app but don't engage with insights.</div>
+            <div style="position:relative;height:280px;max-width:560px;"><canvas data-chart="wauWiau"></canvas></div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Weekly Active Users vs Weekly Insight Active Users over 120 days. The gap between the two lines shows users who open the app but don't engage with insights. <em>Hover for values.</em></div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Value Engagement Ratio</div>
@@ -2693,8 +2694,8 @@
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Subscription Conversion Trend</div>
-            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Weekly%20Conversion%20Rate%20(Smoothed%20Trend).png" alt="Weekly Conversion Rate" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:520px;border-radius:6px;border:1px solid #E8E8E4;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Free-to-paid conversion rate over the observation period. Overall conversion: 19.6% of users upgraded to a paid subscription.</div>
+            <div style="position:relative;height:280px;max-width:560px;"><canvas data-chart="conversion"></canvas></div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Weekly free-to-paid conversion rate over the observation period. Overall conversion: 19.6% of users upgraded to a paid subscription. <em>Hover for values.</em></div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Conversion funnels</div>
@@ -2786,6 +2787,54 @@
   }
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
+  // ── Interactive thesis charts (Chart.js) ──
+  const THESIS_WEEKS = ['Dec 30','Jan 6','Jan 13','Jan 20','Jan 27','Feb 3','Feb 10','Feb 17','Feb 24','Mar 3','Mar 10','Mar 17','Mar 24','Mar 31','Apr 7','Apr 14','Apr 21','Apr 28','May 5','May 12','May 19','May 26'];
+  const THESIS_WAU  = [127,331,546,795,945,958,955,955,953,949,956,960,961,957,957,969,948,954,768,549,328,94];
+  const THESIS_WIAU = [92,291,475,705,847,866,882,867,859,854,871,878,872,872,870,881,867,870,677,494,272,70];
+  const THESIS_CONV = [0,1.81,2.01,1.38,2.12,2.71,2.83,4.71,3.57,4.11,3.14,3.75,1.77,1.67,1.36,0.72,0.42,0,0,0,0,0];
+
+  function buildThesisChart(canvas) {
+    if (!canvas || canvas.dataset.rendered || typeof Chart === 'undefined') return;
+    const kind = canvas.dataset.chart;
+    const baseOpts = {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: { legend: { labels: { font: { size: 11 }, color: '#64748B', usePointStyle: true, boxWidth: 8 } } },
+      scales: {
+        x: { grid: { display: false }, ticks: { font: { size: 9 }, color: '#94A3B8', maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } },
+        y: { grid: { color: '#F1F5F9' }, ticks: { font: { size: 9 }, color: '#94A3B8' }, beginAtZero: true }
+      }
+    };
+    if (kind === 'wauWiau') {
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: THESIS_WEEKS, datasets: [
+          { label: 'WAU', data: THESIS_WAU, borderColor: '#94A3B8', backgroundColor: 'rgba(148,163,184,0.08)', borderWidth: 2, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 },
+          { label: 'WIAU', data: THESIS_WIAU, borderColor: '#7C3AED', backgroundColor: 'rgba(124,58,237,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
+        ]},
+        options: baseOpts
+      });
+    } else if (kind === 'conversion') {
+      const opts = JSON.parse(JSON.stringify(baseOpts));
+      opts.plugins.legend = { display: false };
+      opts.scales.y.ticks = { font: { size: 9 }, color: '#94A3B8', callback: v => v + '%' };
+      opts.plugins.tooltip = { callbacks: { label: c => ' ' + c.parsed.y + '%' } };
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: THESIS_WEEKS, datasets: [
+          { label: 'Conversion rate', data: THESIS_CONV, borderColor: '#0D9488', backgroundColor: 'rgba(13,148,136,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
+        ]},
+        options: opts
+      });
+      // tooltip % formatting
+    }
+    canvas.dataset.rendered = '1';
+  }
+
+  function renderVisibleCharts() {
+    document.querySelectorAll('.pd-pane.active canvas[data-chart]').forEach(buildThesisChart);
+  }
+
   function openProject(id) {
     const p = projectData[id];
     if (!p) return;
@@ -2826,6 +2875,7 @@
 
     document.getElementById('projectDetail').classList.add('active');
     document.getElementById('projectDetail').scrollTop = 0;
+    requestAnimationFrame(renderVisibleCharts);
   }
 
   function closeProject() {
@@ -2838,6 +2888,7 @@
     const detail = document.getElementById('projectDetail');
     detail.querySelectorAll('.pd-pane').forEach(p => p.classList.remove('active'));
     detail.querySelector('#' + paneId).classList.add('active');
+    requestAnimationFrame(renderVisibleCharts);
   }
 
   // ── Custom Explore cursor ──
