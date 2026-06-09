@@ -200,6 +200,13 @@
     }
     .skill-chip:hover { border-color:#999; color:#111; }
     .chip-icon { font-size:11px; line-height:1; filter: grayscale(1) opacity(0.5); }
+    .skill-tier-label {
+      grid-column: 1 / -1;
+      font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+      color: #AEAEAD; text-transform: uppercase;
+      margin-bottom: 1px;
+    }
+    .skill-tier-label:not(:first-child) { margin-top: 8px; }
 
     /* ══════════════ Highlights (diagonal lines bg) ══════════════ */
     .left-bottom {
@@ -1316,14 +1323,17 @@
         </a>
       </div>
 
-      <!-- Skills: 4 per row, sitting in the dot-gradient zone -->
+      <!-- Skills: grouped by proficiency, sitting in the dot-gradient zone -->
       <div class="skills">
+        <span class="skill-tier-label">Core · 5+ years</span>
         <span class="skill-chip"><span class="chip-icon">📊</span> Power BI</span>
         <span class="skill-chip"><span class="chip-icon">⚡</span> DAX</span>
         <span class="skill-chip"><span class="chip-icon">🗄️</span> SQL</span>
+        <span class="skill-chip"><span class="chip-icon">🔄</span> Power Query</span>
+        <span class="skill-tier-label">Working knowledge</span>
         <span class="skill-chip"><span class="chip-icon">🐍</span> Python</span>
-        <span class="skill-chip"><span class="chip-icon">📈</span> Tableau</span>
         <span class="skill-chip"><span class="chip-icon">🔧</span> dbt</span>
+        <span class="skill-chip"><span class="chip-icon">📈</span> Tableau</span>
         <span class="skill-chip"><span class="chip-icon">☁️</span> Azure</span>
         <span class="skill-chip"><span class="chip-icon">🧩</span> Fabric</span>
         </div>
