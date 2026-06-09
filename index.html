@@ -2621,7 +2621,7 @@
               <li>Event tracking plan — 20+ user actions mapped from install to subscription cancellation</li>
               <li>North Star Metric (WIAU) — measuring real value delivery, not just app opens</li>
               <li>Three conversion funnels — Activation, Engagement, Monetization</li>
-              <li>Layered data architecture in dbt that turns raw event logs into business metrics automatically</li>
+              <li><strong>End-to-end ETL pipeline</strong> — raw event logs transformed into business metrics automatically through a layered dbt architecture (staging → intermediate → marts)</li>
             </ul>
           </div>
           <div>
@@ -2631,6 +2631,22 @@
         </div>`,
       analysis: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data pipeline — end-to-end ETL</div>
+            <div style="font-size:12px;color:#1E1E1C;line-height:1.5;margin-bottom:10px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:600;">
+              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">Python<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">generate raw data</span></span>
+              <span style="color:#CBD5E1;">→</span>
+              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt staging<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">clean & type</span></span>
+              <span style="color:#CBD5E1;">→</span>
+              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt intermediate<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">cohorts, activity</span></span>
+              <span style="color:#CBD5E1;">→</span>
+              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt marts<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">WAU, WIAU, retention</span></span>
+              <span style="color:#CBD5E1;">→</span>
+              <span style="background:#E0EAF7;color:#1A4A9A;border-radius:5px;padding:6px 10px;">BI / Analysis</span>
+            </div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">SQL transformations, dbt tests on every model, reusable macros — built to be documented and reproducible.</div>
+          </div>
           <div>
             <div style="font-size:9px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">North Star Metric — WAU vs WIAU</div>
             <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Dynamics%20of%20WAU%20and%20WIAU.png" alt="WAU and WIAU dynamics" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
@@ -2677,9 +2693,9 @@
           </div>
         </div>
         <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Data Engineering</div>
+          <div class="pd-stack-group-label">Data Engineering / ETL</div>
           <div class="pd-stack">
-            <span class="pd-chip">Python</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">pandas</span><span class="pd-chip">Git</span>
+            <span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">pandas</span><span class="pd-chip">Staging → Marts</span><span class="pd-chip">dbt tests</span><span class="pd-chip">Git</span>
           </div>
         </div>
         <div class="pd-stack-group">
