@@ -2654,18 +2654,8 @@
         <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data pipeline — end-to-end ETL</div>
-            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;margin-bottom:10px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
-            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:600;">
-              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">Python<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">generate raw data</span></span>
-              <span style="color:#CBD5E1;">→</span>
-              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt staging<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">clean & type</span></span>
-              <span style="color:#CBD5E1;">→</span>
-              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt intermediate<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">cohorts, activity</span></span>
-              <span style="color:#CBD5E1;">→</span>
-              <span style="background:#EEF2F7;color:#475569;border-radius:5px;padding:6px 10px;">dbt marts<br><span style="font-size:9px;font-weight:400;color:#94A3B8;">WAU, WIAU, retention</span></span>
-              <span style="color:#CBD5E1;">→</span>
-              <span style="background:#E0EAF7;color:#1A4A9A;border-radius:5px;padding:6px 10px;">BI / Analysis</span>
-            </div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;margin-bottom:12px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
+            <div style="text-align:center;"><img src="img/thesis-pipeline.svg" alt="dbt ETL pipeline architecture" style="max-height:420px;width:auto;max-width:100%;"></div>
             <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">SQL transformations, dbt tests on every model, reusable macros — built to be documented and reproducible.</div>
           </div>
           <div>
@@ -2683,6 +2673,19 @@
             <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Weekly%20Conversion%20Rate%20(Smoothed%20Trend).png" alt="Weekly Conversion Rate" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
             <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Free-to-paid conversion rate over the observation period. Overall conversion: 19.6% of users upgraded to a paid subscription.</div>
           </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Conversion funnels</div>
+            <div style="display:flex;gap:24px;flex-wrap:wrap;align-items:flex-start;">
+              <div style="flex:1;min-width:200px;">
+                <img src="img/thesis-funnel-activation.svg" alt="Activation funnel" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+                <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Activation funnel — install → first open → onboarding → device connected → first insight.</div>
+              </div>
+              <div style="flex:1;min-width:200px;">
+                <img src="img/thesis-funnel-monetization.svg" alt="Monetization funnel" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+                <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Monetization funnel — insight view → paywall → subscription start → renewal.</div>
+              </div>
+            </div>
+          </div>
         </div>`,
       design: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
@@ -2699,6 +2702,16 @@
           <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">On the data</div>
             <div style="font-size:13px;color:#64748B;line-height:1.5;">Built a probabilistic behavioral model in Python — 1,000 synthetic users across three types (casual / regular / power) over 120 days — to produce realistic distributions for activation, retention and conversion without using real user data.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Event taxonomy & user journey</div>
+            <img src="img/thesis-user-journey.svg" alt="User journey and event groups" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">User lifecycle mapped to event groups — from launch & activation through engagement to subscription.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data model (ER diagram)</div>
+            <img src="img/thesis-er-diagram.svg" alt="Entity-relationship diagram" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Relational schema behind the framework — users, events, sessions, subscriptions, health metrics and feature usage.</div>
           </div>
         </div>`,
       results: `
