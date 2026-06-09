@@ -2723,12 +2723,14 @@
               <li><strong>Activation = onboarding + first insight within 24h.</strong> Defined around the first meaningful experience, not just account creation — so the metric tracks real value, not signups.</li>
               <li><strong>Three separate funnels</strong> (activation, engagement, monetization) instead of one — to isolate exactly where users drop off and act on the right stage.</li>
               <li><strong>Engagement depth, not just frequency.</strong> Measured deep interactions per session, because depth — not raw visit count — turned out to predict conversion.</li>
-              <li><strong>Layered dbt architecture</strong> (staging → intermediate → marts) so every metric is reproducible, testable, and documented — not a one-off query.</li>
+              <li><strong>Layered dbt architecture on Snowflake</strong> (staging → intermediate → marts) so every metric is reproducible, testable, and documented — not a one-off query.</li>
+              <li><strong>Built-in data governance.</strong> Defined event-data quality checks, schema governance, a naming convention, metric-integrity rules and access/privacy controls — so the framework stays trustworthy as it scales.</li>
+              <li><strong>Validated the driver statistically.</strong> Used regression analysis to confirm that engagement depth measurably increases payment probability — evidence, not assumption.</li>
             </ul>
           </div>
           <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">On the data</div>
-            <div style="font-size:13px;color:#64748B;line-height:1.5;">Built a probabilistic behavioral model in Python — 1,000 synthetic users across three types (casual / regular / power) over 120 days — to produce realistic distributions for activation, retention and conversion without using real user data.</div>
+            <div style="font-size:13px;color:#64748B;line-height:1.5;">Built a probabilistic behavioral model in Python — 1,000 synthetic users across three types (casual / regular / power) over 120 days — loaded into <strong>Snowflake</strong> and transformed with dbt + SQL (CTEs, window functions). Realistic distributions for activation, retention and conversion, without using real user data.</div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Event taxonomy & user journey</div>
@@ -2766,7 +2768,7 @@
         <div class="pd-stack-group" style="margin-top:6px;">
           <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">Event taxonomy</span><span class="pd-chip">North Star Metric</span><span class="pd-chip">Funnel architecture</span><span class="pd-chip">Cohort & retention</span>
+            <span class="pd-chip">Snowflake</span><span class="pd-chip">dbt</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">Event taxonomy</span><span class="pd-chip">North Star Metric</span><span class="pd-chip">Funnel architecture</span><span class="pd-chip">Cohort & retention</span><span class="pd-chip">Data governance</span><span class="pd-chip">Regression analysis</span>
           </div>
         </div>
         <a href="https://github.com/JuliaVMosina/product-analytics-framework" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-size:11px;font-weight:600;color:#1A4A9A;text-decoration:none;border:1px solid #1A4A9A;border-radius:4px;padding:6px 14px;">
