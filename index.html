@@ -634,6 +634,22 @@
       font-size: 10px;
       color: rgba(255,255,255,0.4);
     }
+    /* Lightbox for zoomable diagrams */
+    .lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(10,12,18,0.92);
+      align-items: center; justify-content: center;
+      padding: 30px; cursor: zoom-out;
+    }
+    .lightbox.active { display: flex; }
+    .lightbox img { max-width: 96%; max-height: 94%; border-radius: 6px; box-shadow: 0 20px 60px rgba(0,0,0,0.5); }
+    .lightbox-close {
+      position: absolute; top: 18px; right: 24px;
+      color: rgba(255,255,255,0.7); font-size: 30px; line-height: 1;
+      cursor: pointer; background: none; border: none;
+    }
+    .zoomable { cursor: zoom-in; }
     .pc-arrow {
       position: absolute;
       bottom: 16px;
@@ -1974,6 +1990,12 @@
 
   <!-- Elegant ring cursor -->
   <div class="explore-cursor" id="exploreCursor"></div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
 </main>
 
 <script>
@@ -2655,7 +2677,8 @@
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data pipeline — end-to-end ETL</div>
             <div style="font-size:14px;color:#1E1E1C;line-height:1.5;margin-bottom:12px;">Raw event logs flow through a layered dbt model into analysis-ready metrics — the same ETL pattern used in production analytics teams.</div>
-            <div style="text-align:center;"><img src="img/thesis-pipeline.svg" alt="dbt ETL pipeline architecture" style="max-height:420px;width:auto;max-width:100%;"></div>
+            <div><img src="img/thesis-pipline-v2.png" alt="dbt ETL pipeline architecture" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"></div>
+            <div style="font-size:10px;color:#CBD5E1;margin-top:3px;">Click to enlarge</div>
             <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">SQL transformations, dbt tests on every model, reusable macros — built to be documented and reproducible.</div>
           </div>
           <div>
@@ -2752,6 +2775,16 @@
         </a>`
     }
   };
+
+  function openLightbox(src) {
+    const lb = document.getElementById('lightbox');
+    document.getElementById('lightboxImg').src = src;
+    lb.classList.add('active');
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('active');
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
   function openProject(id) {
     const p = projectData[id];
