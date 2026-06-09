@@ -2692,8 +2692,8 @@
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Value Engagement Ratio</div>
-            <img src="https://raw.githubusercontent.com/JuliaVMosina/product-analytics-framework/main/assets/charts/Engagement%20Ratio.png" alt="Value Engagement Ratio" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:520px;border-radius:6px;border:1px solid #E8E8E4;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">WIAU ÷ WAU = 90.1% — over 9 in 10 weekly active users reached analytical value from their health data.</div>
+            <div style="position:relative;height:280px;max-width:560px;"><canvas data-chart="engagement"></canvas></div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">WIAU ÷ WAU per week — averaging 90.1%. Over 9 in 10 weekly active users reached analytical value from their health data. <em>Hover for values.</em></div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Subscription Conversion Trend</div>
@@ -2795,6 +2795,7 @@
   const THESIS_WAU  = [127,331,546,795,945,958,955,955,953,949,956,960,961,957,957,969,948,954,768,549,328,94];
   const THESIS_WIAU = [92,291,475,705,847,866,882,867,859,854,871,878,872,872,870,881,867,870,677,494,272,70];
   const THESIS_CONV = [0,1.81,2.01,1.38,2.12,2.71,2.83,4.71,3.57,4.11,3.14,3.75,1.77,1.67,1.36,0.72,0.42,0,0,0,0,0];
+  const THESIS_ENG  = [72.4,87.9,87.0,88.7,89.6,90.4,92.4,90.8,90.1,90.0,91.1,91.5,90.7,91.1,90.9,90.9,91.5,91.2,88.2,90.0,82.9,74.5];
 
   function buildThesisChart(canvas) {
     if (!canvas || canvas.dataset.rendered || typeof Chart === 'undefined') return;
@@ -2830,6 +2831,21 @@
         options: opts
       });
       // tooltip % formatting
+    } else if (kind === 'engagement') {
+      const opts = JSON.parse(JSON.stringify(baseOpts));
+      opts.plugins.legend = { display: false };
+      opts.scales.y.beginAtZero = false;
+      opts.scales.y.suggestedMin = 60;
+      opts.scales.y.suggestedMax = 100;
+      opts.scales.y.ticks = { font: { size: 9 }, color: '#94A3B8', callback: v => v + '%' };
+      opts.plugins.tooltip = { callbacks: { label: c => ' ' + c.parsed.y + '%' } };
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: THESIS_WEEKS, datasets: [
+          { label: 'WIAU / WAU', data: THESIS_ENG, borderColor: '#7C3AED', backgroundColor: 'rgba(124,58,237,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
+        ]},
+        options: opts
+      });
     }
     canvas.dataset.rendered = '1';
   }
