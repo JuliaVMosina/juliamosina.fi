@@ -1504,14 +1504,14 @@
       <a href="#" class="project-card" onclick="openProject('timebook'); return false;">
         <div class="project-bg" style="
           background:
-            linear-gradient(to right, rgba(5,16,10,0.92) 0%, rgba(5,16,10,0.6) 32%, rgba(5,16,10,0.15) 52%, rgba(5,16,10,0) 70%),
-            url('img/timebook-dashboard.png') right top / cover no-repeat,
-            #05100a;
+            radial-gradient(ellipse at 78% 28%, rgba(45,170,140,0.45) 0%, transparent 55%),
+            radial-gradient(ellipse at 20% 85%, rgba(8,40,28,0.7) 0%, transparent 50%),
+            linear-gradient(145deg, #1E5C46 0%, #123A2C 52%, #0A2018 100%);
         "></div>
         <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(5,16,10,0.97) 0%, rgba(5,16,10,0.75) 28%, transparent 55%);">
-          <div class="pc-label">Inspired by Timebook</div>
+          <div class="pc-label">Timebook · Senior Product Analyst</div>
           <div class="pc-title">Team Performance & Workload Dashboard</div>
-          <div class="pc-subtitle">Resource planning, workload balance & utilization analysis</div>
+          <div class="pc-subtitle">Real work project — delivery, workload & capacity reporting</div>
           <div class="pc-chips">
             <span class="pc-chip">Power BI</span><span class="pc-chip">SQL</span><span class="pc-chip">DAX</span><span class="pc-chip">PM Analytics</span>
           </div>
@@ -2573,63 +2573,72 @@
     },
     timebook: {
       title: 'Team Performance & Workload Dashboard',
-      company: 'Timebook Ltd',
+      company: 'Timebook · Senior Product Analyst',
       period: '2021–2023',
-      tabs: ['Overview', 'Dashboard', 'Results', 'Stack'],
+      tabs: ['Overview', 'Dashboard', 'Design', 'Results'],
       overview: `
-        <div class="pd-section-label">Overview</div>
-        <div class="pd-body">
-          <p>Timebook is a workforce management SaaS used by enterprise clients to plan shifts, track time, and manage payroll. When I joined as Senior Product Analyst, there was no analytics infrastructure — no dashboards, no tracking, no KPI framework.</p>
-          <p>I built it from scratch: instrumented the product with event tracking, designed a dimensional data model in SQL, and delivered Tableau and Power BI dashboards covering the full user lifecycle — activation, engagement, feature adoption, and retention.</p>
-          <p>Beyond reporting, I designed and ran A/B experiments on key flows (scheduling, payroll approval) and translated findings into product decisions together with PMs and engineering leads.</p>
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Real work project · client names anonymized · figures representative</div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Context</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">Timebook is a workforce-management SaaS used by large retailers to plan shifts and track work. As Senior Product Analyst I owned reporting for the development team — features shipped, bugs, tech debt, workload by client, and capacity planning.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li>Is the team shipping more — features vs bugs vs tech debt, year over year?</li>
+              <li>Where does the team's time actually go — by work type and by client?</li>
+              <li>Are we keeping up — created vs resolved tasks over time?</li>
+              <li>What's our real capacity and backlog potential for planning?</li>
+            </ul>
+          </div>
         </div>`,
       dashboard: `
-        <div class="pd-image"><img src="img/timebook-dashboard.png" alt="Team Performance Dashboard"></div>
-        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Team performance & workload overview · Power BI</p>`,
-      results: `
         <div class="pd-kpis">
-          <div class="pd-kpi">
-            <div class="pd-kpi-value">+355%</div>
-            <div class="pd-kpi-label">YoY growth in tracked hours after workload visibility went live</div>
-          </div>
-          <div class="pd-kpi">
-            <div class="pd-kpi-value">30%</div>
-            <div class="pd-kpi-label">Workload imbalance uncovered across teams — previously invisible</div>
-          </div>
-          <div class="pd-kpi">
-            <div class="pd-kpi-value">0 → 1</div>
-            <div class="pd-kpi-label">Analytics infrastructure built from scratch: tracking, models, dashboards</div>
-          </div>
+          <div class="pd-kpi"><div class="pd-kpi-value">+156%</div><div class="pd-kpi-label">Features shipped YoY — 111 → 284 closed</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">13</div><div class="pd-kpi-label">Team size (+6 people in a year)</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">95%</div><div class="pd-kpi-label">Overall task completion rate</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">+355%</div><div class="pd-kpi-label">Tracked work hours YoY after visibility went live</div></div>
         </div>
-        <div class="pd-body">
-          <p>The dashboard became the source of truth for weekly PM reviews. Workload imbalance that had been anecdotal was now quantified and acted on. The A/B framework we built for scheduling flows continued to run experiments after I left.</p>
+        <div style="display:flex;flex-direction:column;gap:22px;margin-top:18px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Closed tasks by type — 2022 vs 2023</div>
+            <div style="position:relative;height:260px;max-width:560px;"><canvas data-chart="tbTasks"></canvas></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Created vs resolved tasks (rolling)</div>
+            <div style="position:relative;height:260px;max-width:560px;"><canvas data-chart="tbFlow"></canvas></div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">The gap narrowing shows the team catching up to incoming work. <em>Hover for values.</em></div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Workload by client — 2023 (anonymized)</div>
+            <div style="position:relative;height:300px;max-width:420px;"><canvas data-chart="tbClients"></canvas></div>
+          </div>
         </div>`,
-      stack: `
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">BI & Visualisation</div>
-          <div class="pd-stack">
-            <span class="pd-chip">Power BI</span>
-            <span class="pd-chip">Tableau</span>
-            <span class="pd-chip">DAX</span>
-            <span class="pd-chip">Power Query</span>
+      design: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Design decisions</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>KPI cards with before → after.</strong> Leadership cares about change, not just totals — every headline metric shows the delta (e.g. 111 → 284 features).</li>
+              <li><strong>Split work by type</strong> (features / bugs / tech debt) so the team could prove it was shipping value, not just firefighting.</li>
+              <li><strong>Created-vs-resolved as the health signal.</strong> A single trend that instantly shows whether the team is keeping up with incoming work.</li>
+              <li><strong>Workload by client</strong> to make capacity and over-allocation visible — and support fair planning across accounts.</li>
+            </ul>
           </div>
-        </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Data & Analytics</div>
-          <div class="pd-stack">
-            <span class="pd-chip">SQL</span>
-            <span class="pd-chip">CTEs & window functions</span>
-            <span class="pd-chip">Dimensional modelling</span>
-            <span class="pd-chip">Event tracking</span>
+          <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">How it was built &amp; maintained</div>
+            <div style="font-size:13px;color:#64748B;line-height:1.55;">Timebook was an early-stage company without a dedicated BI budget — Power BI or Tableau licences weren't justified at that stage, so I delivered executive reporting from the tools already in the stack. Data came from <strong>SQL queries against the production databases</strong> plus <strong>Kibana</strong> logs; I composed the dashboards in <strong>Figma</strong> for a clean, board-ready layout, refreshed each quarter. What began as a manual quarterly pull I later turned into a <strong>lightweight scripted extraction</strong> — cutting the manual prep and keeping the numbers consistent sprint over sprint.</div>
           </div>
+        </div>`,
+      results: `
+        <div class="pd-body">
+          <p><strong>Impact:</strong> the dashboard became the source of truth for quarterly reviews. Workload imbalance that had been anecdotal was now quantified and acted on, and the shift from reactive bug-fixing toward shipping features (tech debt closed dropping from 23 to 3, features up 156%) was finally visible to leadership. Reporting that once took days of manual work each quarter became a repeatable, semi-automated process.</p>
         </div>
-        <div class="pd-stack-group">
-          <div class="pd-stack-group-label">Methods</div>
+        <div class="pd-stack-group" style="margin-top:6px;">
+          <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">A/B testing</span>
-            <span class="pd-chip">Funnel analysis</span>
-            <span class="pd-chip">Cohort analysis</span>
-            <span class="pd-chip">Retention modelling</span>
+            <span class="pd-chip">SQL</span><span class="pd-chip">Kibana</span><span class="pd-chip">Figma</span><span class="pd-chip">Python (scripted extraction)</span><span class="pd-chip">CTEs & window functions</span><span class="pd-chip">Capacity planning</span>
           </div>
         </div>`
     },
@@ -2875,6 +2884,17 @@
   // Month labels for X-axis (only first week of each month shows the month name)
   const THESIS_MONTH_TICKS = ['Dec','Jan','','','','Feb','','','','Mar','','','','','Apr','','','','May','','',''];
 
+  // ── Timebook dashboard data (anonymized, representative) ──
+  const TB_TASK_LABELS = ['Features', 'Bugs', 'Tech debt'];
+  const TB_TASKS_2022 = [111, 87, 23];
+  const TB_TASKS_2023 = [284, 48, 3];
+  const TB_FLOW_LABELS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
+  const TB_CREATED  = [90, 165, 285, 360, 545, 775];
+  const TB_RESOLVED = [55, 105, 180, 260, 380, 480];
+  const TB_CLIENT_LABELS = ['Client A', 'Internal product', 'Client B', 'Client C', 'Client D', 'Other'];
+  const TB_CLIENT_HOURS  = [3183, 1629, 232, 214, 164, 180];
+  const TB_PIE_COLORS = ['#7C3AED', '#E59820', '#0D9488', '#3B82F6', '#EC4899', '#94A3B8'];
+
   function buildThesisChart(canvas) {
     if (!canvas || canvas.dataset.rendered || typeof Chart === 'undefined') return;
     const kind = canvas.dataset.chart;
@@ -2922,6 +2942,42 @@
           { label: 'WIAU / WAU', data: THESIS_ENG, borderColor: '#7C3AED', backgroundColor: 'rgba(124,58,237,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
         ]},
         options: opts
+      });
+    } else if (kind === 'tbTasks') {
+      const opts = makeOpts();
+      opts.scales.x.ticks = { font: { size: 11 }, color: '#64748B' };
+      new Chart(canvas, {
+        type: 'bar',
+        data: { labels: TB_TASK_LABELS, datasets: [
+          { label: '2022', data: TB_TASKS_2022, backgroundColor: '#CBD5E1', borderRadius: 4 },
+          { label: '2023', data: TB_TASKS_2023, backgroundColor: '#7C3AED', borderRadius: 4 }
+        ]},
+        options: opts
+      });
+    } else if (kind === 'tbFlow') {
+      const opts = makeOpts();
+      opts.scales.x.ticks = { font: { size: 10 }, color: '#94A3B8' };
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: TB_FLOW_LABELS, datasets: [
+          { label: 'Created', data: TB_CREATED, borderColor: '#E59820', backgroundColor: 'rgba(229,152,32,0.10)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 },
+          { label: 'Resolved', data: TB_RESOLVED, borderColor: '#0D9488', backgroundColor: 'rgba(13,148,136,0.12)', borderWidth: 2.4, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
+        ]},
+        options: opts
+      });
+    } else if (kind === 'tbClients') {
+      new Chart(canvas, {
+        type: 'doughnut',
+        data: { labels: TB_CLIENT_LABELS, datasets: [
+          { data: TB_CLIENT_HOURS, backgroundColor: TB_PIE_COLORS, borderWidth: 2, borderColor: '#F5F5F3' }
+        ]},
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { font: { size: 11 }, color: '#64748B', usePointStyle: true, boxWidth: 8, padding: 10 } },
+            tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + c.parsed + ' h' } }
+          }
+        }
       });
     }
     canvas.dataset.rendered = '1';
