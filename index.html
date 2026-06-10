@@ -208,6 +208,16 @@
       margin-bottom: 1px;
     }
     .skill-tier-label:not(:first-child) { margin-top: 8px; }
+    .skill-chip.has-cert { cursor: zoom-in; position: relative; }
+    .skill-chip.has-cert:hover { border-color: #1A4A9A; color: #1A4A9A; }
+    .skill-chip.has-cert::after {
+      content: '📄';
+      font-size: 9px;
+      margin-left: 2px;
+      opacity: 0.35;
+      transition: opacity .15s;
+    }
+    .skill-chip.has-cert:hover::after { opacity: 1; }
 
     /* ══════════════ Highlights (diagonal lines bg) ══════════════ */
     .left-bottom {
@@ -1343,12 +1353,12 @@
       <!-- Skills: grouped by proficiency, sitting in the dot-gradient zone -->
       <div class="skills">
         <span class="skill-tier-label">Core · 5+ years</span>
-        <span class="skill-chip"><span class="chip-icon">📊</span> Power BI</span>
+        <span class="skill-chip has-cert" title="View certificate (PL-300)" onclick="openLightbox('img/certs/power-bi.jpg')"><span class="chip-icon">📊</span> Power BI</span>
         <span class="skill-chip"><span class="chip-icon">⚡</span> DAX</span>
-        <span class="skill-chip"><span class="chip-icon">🗄️</span> SQL</span>
+        <span class="skill-chip has-cert" title="View certificate" onclick="openLightbox('img/certs/sql.jpg')"><span class="chip-icon">🗄️</span> SQL</span>
         <span class="skill-tier-label">Working knowledge</span>
-        <span class="skill-chip"><span class="chip-icon">🐍</span> Python</span>
-        <span class="skill-chip"><span class="chip-icon">🔧</span> dbt</span>
+        <span class="skill-chip has-cert" title="View certificate (Google Advanced Data Analytics)" onclick="openLightbox('img/certs/google-advanced.png')"><span class="chip-icon">🐍</span> Python</span>
+        <span class="skill-chip has-cert" title="View certificate (dbt Fundamentals)" onclick="openLightbox('img/certs/dbt.png')"><span class="chip-icon">🔧</span> dbt</span>
         <span class="skill-chip"><span class="chip-icon">❄️</span> Snowflake</span>
         <span class="skill-chip"><span class="chip-icon">📈</span> Tableau</span>
         <span class="skill-chip"><span class="chip-icon">☁️</span> Azure</span>
