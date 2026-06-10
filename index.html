@@ -2664,6 +2664,31 @@
             <div class="tb-chart-wrap" style="height:240px;"><canvas data-chart="wfmCoverage"></canvas></div>
             <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">Red = fixed demand · grey = fixed + balanced demand · green = coverage · purple = coverage + free shifts. Toggle lines, switch FTE/hours, filter by store zone. <em>Hover for values.</em></div>
           </div>
+        </div>
+
+        <div class="tb-section-label"><span class="tb-num">3</span> App Performance &amp; Support <span style="font-size:10px;font-weight:500;color:#7C8A84;">· the project I'm most proud of</span></div>
+        <div style="font-size:12px;color:#64748B;line-height:1.55;background:#F1F0F6;border-radius:10px;padding:10px 14px;margin-bottom:12px;">
+          Clients kept calling support claiming the app was slow — but without data it was hard to prove performance was fine. I built a self-service dashboard that let clients check real-time response times against a clear benchmark. Within weeks, performance-related tickets dropped sharply.
+        </div>
+        <div class="tb-dash">
+          <div class="tb-dash-header">
+            <div class="tb-dash-title">Self-service performance visibility</div>
+            <div class="tb-dash-sub">Response times vs benchmark · support-ticket impact · representative</div>
+          </div>
+          <div class="tb-kpis">
+            <div class="tb-kpi"><div class="tb-kpi-val" style="color:#84CC16;">−79%</div><div class="tb-kpi-lbl">Performance-related support tickets (120 → 25)</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">&lt;300ms</div><div class="tb-kpi-lbl">Typical response — well under the 500ms benchmark</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">Self-serve</div><div class="tb-kpi-lbl">Clients verify performance themselves, no call needed</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">Weeks</div><div class="tb-kpi-lbl">Time to visible impact after launch</div></div>
+          </div>
+          <div class="tb-card">
+            <div class="tb-card-title">Support tickets — performance-related dropping</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbSupport"></canvas></div>
+          </div>
+          <div class="tb-card">
+            <div class="tb-card-title">App response time vs benchmark</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbResponse"></canvas></div>
+          </div>
         </div>`,
       design: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
@@ -2955,6 +2980,13 @@
   const TB_CLIENT_HOURS  = [3183, 1629, 232, 214, 164, 180];
   const TB_PIE_COLORS = ['#7C3AED', '#84CC16', '#E11D48', '#E59820', '#3B82F6', '#94A3B8'];
 
+  // Support tickets & app performance (representative)
+  const TB_SUP_LABELS = ['Jan','Feb','Mar','Apr','May','Jun'];
+  const TB_SUP_TOTAL  = [210, 225, 200, 185, 175, 170];
+  const TB_SUP_PERF   = [120, 132, 95, 60, 38, 25];
+  const TB_RESP       = [320, 310, 305, 290, 298, 285];
+  const TB_RESP_BENCH = [500, 500, 500, 500, 500, 500];
+
   // WFM demand-coverage (representative store-day, hourly FTE)
   const WFM_HOURS = ['08','09','10','11','12','13','14','15','16','17','18','19','20','21'];
   const WFM_FIXED    = [4,6,9,11,12,12,11,11,12,12,10,8,6,4];
@@ -3045,6 +3077,29 @@
             tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + c.parsed + ' h' } }
           }
         }
+      });
+    } else if (kind === 'tbSupport') {
+      const opts = makeOpts();
+      opts.scales.x.ticks = { font: { size: 10 }, color: '#94A3B8' };
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: TB_SUP_LABELS, datasets: [
+          { label: 'All support tickets', data: TB_SUP_TOTAL, borderColor: '#94A3B8', backgroundColor: 'transparent', borderWidth: 2, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 },
+          { label: 'Performance-related', data: TB_SUP_PERF, borderColor: '#E11D48', backgroundColor: 'rgba(225,29,72,0.10)', borderWidth: 2.6, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 }
+        ]},
+        options: opts
+      });
+    } else if (kind === 'tbResponse') {
+      const opts = makeOpts();
+      opts.scales.x.ticks = { font: { size: 10 }, color: '#94A3B8' };
+      opts.scales.y.title = { display: true, text: 'ms', font: { size: 9 }, color: '#94A3B8' };
+      new Chart(canvas, {
+        type: 'line',
+        data: { labels: TB_SUP_LABELS, datasets: [
+          { label: 'Avg response time', data: TB_RESP, borderColor: '#84CC16', backgroundColor: 'rgba(132,204,22,0.12)', borderWidth: 2.6, fill: true, tension: 0.35, pointRadius: 0, pointHoverRadius: 4 },
+          { label: 'Benchmark (normal)', data: TB_RESP_BENCH, borderColor: '#94A3B8', backgroundColor: 'transparent', borderWidth: 1.5, borderDash: [5,4], pointRadius: 0 }
+        ]},
+        options: opts
       });
     } else if (kind === 'wfmCoverage') {
       const opts = makeOpts();
