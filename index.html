@@ -234,6 +234,28 @@
     .cert-card:hover .cert-view { opacity: 1; }
     .cert-soon { font-size: 9px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #B8860B; background: #FBF4E0; border-radius: 4px; padding: 2px 6px; }
 
+    /* Dashboard-slide layout (Timebook) */
+    .tb-dash {
+      background: #E8EAE8; border-radius: 16px; padding: 14px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .tb-card { background: #fff; border-radius: 12px; padding: 14px 16px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .tb-card.full { grid-column: 1 / -1; }
+    .tb-dash-header { grid-column: 1 / -1; display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding: 2px 4px; }
+    .tb-dash-title { font-size: 16px; font-weight: 800; color: #143A2C; letter-spacing: -0.3px; }
+    .tb-dash-sub { font-size: 11px; color: #7C8A84; }
+    .tb-kpis { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .tb-kpi { background: #fff; border-radius: 12px; padding: 12px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+    .tb-kpi-val { font-size: 23px; font-weight: 800; color: #1E5C46; letter-spacing: -0.5px; line-height: 1; }
+    .tb-kpi-lbl { font-size: 10px; color: #888; margin-top: 5px; line-height: 1.3; }
+    .tb-card-title { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; color: #AEAEAD; text-transform: uppercase; margin-bottom: 10px; }
+    .tb-chart-wrap { position: relative; height: 220px; }
+    @media (max-width: 620px) {
+      .tb-dash { grid-template-columns: 1fr; }
+      .tb-kpis { grid-template-columns: repeat(2, 1fr); }
+      .tb-card { grid-column: 1 / -1; }
+    }
+
     /* ══════════════ Highlights (diagonal lines bg) ══════════════ */
     .left-bottom {
       flex-shrink: 0;
@@ -2594,25 +2616,29 @@
           </div>
         </div>`,
       dashboard: `
-        <div class="pd-kpis">
-          <div class="pd-kpi"><div class="pd-kpi-value">+156%</div><div class="pd-kpi-label">Features shipped YoY — 111 → 284 closed</div></div>
-          <div class="pd-kpi"><div class="pd-kpi-value">13</div><div class="pd-kpi-label">Team size (+6 people in a year)</div></div>
-          <div class="pd-kpi"><div class="pd-kpi-value">95%</div><div class="pd-kpi-label">Overall task completion rate</div></div>
-          <div class="pd-kpi"><div class="pd-kpi-value">+355%</div><div class="pd-kpi-label">Tracked work hours YoY after visibility went live</div></div>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:22px;margin-top:18px;">
-          <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Closed tasks by type — 2022 vs 2023</div>
-            <div style="position:relative;height:260px;max-width:560px;"><canvas data-chart="tbTasks"></canvas></div>
+        <div class="tb-dash">
+          <div class="tb-dash-header">
+            <div class="tb-dash-title">Development Team — Performance</div>
+            <div class="tb-dash-sub">H1 2023 vs 2022 · representative figures</div>
           </div>
-          <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Created vs resolved tasks (rolling)</div>
-            <div style="position:relative;height:260px;max-width:560px;"><canvas data-chart="tbFlow"></canvas></div>
-            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">The gap narrowing shows the team catching up to incoming work. <em>Hover for values.</em></div>
+          <div class="tb-kpis">
+            <div class="tb-kpi"><div class="tb-kpi-val">+156%</div><div class="tb-kpi-lbl">Features shipped YoY (111 → 284)</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">13</div><div class="tb-kpi-lbl">Team size (+6 in a year)</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">95%</div><div class="tb-kpi-lbl">Task completion rate</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">+355%</div><div class="tb-kpi-lbl">Tracked work hours YoY</div></div>
           </div>
-          <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Workload by client — 2023 (anonymized)</div>
-            <div style="position:relative;height:300px;max-width:420px;"><canvas data-chart="tbClients"></canvas></div>
+          <div class="tb-card">
+            <div class="tb-card-title">Closed tasks by type — 2022 vs 2023</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbTasks"></canvas></div>
+          </div>
+          <div class="tb-card">
+            <div class="tb-card-title">Workload by client — 2023 (anonymized)</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbClients"></canvas></div>
+          </div>
+          <div class="tb-card full">
+            <div class="tb-card-title">Created vs resolved tasks (rolling)</div>
+            <div class="tb-chart-wrap" style="height:200px;"><canvas data-chart="tbFlow"></canvas></div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">The narrowing gap shows the team catching up to incoming work. <em>Hover for values.</em></div>
           </div>
         </div>`,
       design: `
