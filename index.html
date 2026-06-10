@@ -219,6 +219,21 @@
     }
     .skill-chip.has-cert:hover::after { opacity: 1; }
 
+    /* Certification cards (About) */
+    .cert-card {
+      background: #fff; border: 1px solid rgba(0,0,0,0.07);
+      border-radius: 12px; padding: 14px 16px;
+      cursor: zoom-in; transition: border-color .15s, transform .15s, box-shadow .15s;
+    }
+    .cert-card:hover { border-color: #1A4A9A; transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.07); }
+    .cert-card.cert-static { cursor: default; }
+    .cert-card.cert-static:hover { border-color: rgba(0,0,0,0.07); transform: none; box-shadow: none; }
+    .cert-name { font-size: 13px; font-weight: 600; color: #1f1f1f; line-height: 1.35; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+    .cert-meta { font-size: 11px; color: #999; margin-top: 4px; }
+    .cert-view { font-size: 10px; font-weight: 600; color: #1A4A9A; opacity: 0; transition: opacity .15s; }
+    .cert-card:hover .cert-view { opacity: 1; }
+    .cert-soon { font-size: 9px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; color: #B8860B; background: #FBF4E0; border-radius: 4px; padding: 2px 6px; }
+
     /* ══════════════ Highlights (diagonal lines bg) ══════════════ */
     .left-bottom {
       flex-shrink: 0;
@@ -1913,6 +1928,55 @@
                 <span class="journey-tag">Completed 2026</span>
               </div>
             </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Certifications -->
+      <div class="journey-section" style="margin-top:26px;">
+        <div class="journey-section-title">Certifications &amp; Courses</div>
+        <p style="font-size:13px;color:#888;font-weight:300;line-height:1.6;margin:0 0 18px;">Click a certificate to view it.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;">
+
+          <div class="cert-card" onclick="openLightbox('img/certs/power-bi.jpg')">
+            <div class="cert-name">PL-300 · Power BI Data Analyst <span class="cert-view">📄 View</span></div>
+            <div class="cert-meta">Microsoft (Udemy prep) · 2026</div>
+          </div>
+
+          <div class="cert-card" onclick="openLightbox('img/certs/sql.jpg')">
+            <div class="cert-name">Advanced SQL for Data Analysis <span class="cert-view">📄 View</span></div>
+            <div class="cert-meta">Udemy · 2026</div>
+          </div>
+
+          <div class="cert-card" onclick="openLightbox('img/certs/dbt.png')">
+            <div class="cert-name">dbt Fundamentals <span class="cert-view">📄 View</span></div>
+            <div class="cert-meta">dbt Labs · 2026</div>
+          </div>
+
+          <div class="cert-card" onclick="openLightbox('img/certs/google-advanced.png')">
+            <div class="cert-name">Google Advanced Data Analytics <span class="cert-view">📄 View</span></div>
+            <div class="cert-meta">Google · 2022</div>
+          </div>
+
+          <div class="cert-card cert-static">
+            <div class="cert-name">Data Analysis with Python</div>
+            <div class="cert-meta">University of Helsinki · 2024 · grade 5/5</div>
+          </div>
+
+          <div class="cert-card cert-static">
+            <div class="cert-name">Snowflake Hands-On Essentials <span class="cert-soon">In progress</span></div>
+            <div class="cert-meta">Snowflake University · 2026</div>
+          </div>
+
+          <div class="cert-card cert-static">
+            <div class="cert-name">DP-600 · Microsoft Fabric <span class="cert-soon">In progress</span></div>
+            <div class="cert-meta">Microsoft · 2026</div>
+          </div>
+
+          <div class="cert-card cert-static">
+            <div class="cert-name">DP-900 · Azure Data Fundamentals <span class="cert-soon">In progress</span></div>
+            <div class="cert-meta">Microsoft · 2026</div>
           </div>
 
         </div>
