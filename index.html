@@ -254,6 +254,14 @@
     .tb-section-label:first-child { margin-top: 4px; }
     .tb-section-label .tb-num { background: #7C3AED; color: #fff; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .tb-cov-pct { font-size: 30px; font-weight: 800; letter-spacing: -1px; line-height: 1; }
+    /* Mini process strip shown above each dashboard */
+    .tb-process { display: flex; align-items: center; flex-wrap: wrap; gap: 4px; margin: 0 0 10px; }
+    .tb-process span.step {
+      font-size: 9.5px; font-weight: 600; color: #6D5BA6;
+      background: #EFEBFA; border-radius: 4px; padding: 3px 8px; white-space: nowrap;
+    }
+    .tb-process span.sep { font-size: 9px; color: #C4B8E8; }
+    .tb-process span.note { font-size: 10.5px; color: #8B82A6; font-style: italic; margin-left: 6px; }
     @media (max-width: 620px) {
       .tb-dash { grid-template-columns: 1fr; }
       .tb-kpis { grid-template-columns: repeat(2, 1fr); }
@@ -2621,6 +2629,10 @@
         </div>`,
       dashboard: `
         <div class="tb-section-label"><span class="tb-num">1</span> Team Performance &amp; Workload</div>
+        <div class="tb-process">
+          <span class="step">Discovery</span><span class="sep">→</span><span class="step">Data model</span><span class="sep">→</span><span class="step">Early draft</span><span class="sep">→</span><span class="step">Finalize</span><span class="sep">→</span><span class="step">Adoption</span>
+          <span class="note">Discovery: leadership wanted proof of delivery — not raw Jira exports.</span>
+        </div>
         <div class="tb-dash">
           <div class="tb-dash-header">
             <div class="tb-dash-title">Development Team — Performance</div>
@@ -2647,7 +2659,11 @@
           </div>
         </div>
 
-        <div class="tb-section-label"><span class="tb-num">2</span> WFM Demand-Coverage Dashboard <span style="font-size:10px;font-weight:500;color:#7C8A84;">· in-product feature I designed</span></div>
+        <div class="tb-section-label"><span class="tb-num">2</span> WFM Demand-Coverage Dashboard <span style="font-size:10px;font-weight:500;color:#8B82A6;">· in-product feature I designed</span></div>
+        <div class="tb-process">
+          <span class="step">Discovery</span><span class="sep">→</span><span class="step">Data model</span><span class="sep">→</span><span class="step">Early draft</span><span class="sep">→</span><span class="step">Finalize</span><span class="sep">→</span><span class="step">Adoption</span>
+          <span class="note">Early draft: tested with store managers in usability sessions before development.</span>
+        </div>
         <div class="tb-dash">
           <div class="tb-dash-header">
             <div class="tb-dash-title">Staffing demand vs coverage</div>
@@ -2666,7 +2682,11 @@
           </div>
         </div>
 
-        <div class="tb-section-label"><span class="tb-num">3</span> App Performance &amp; Support <span style="font-size:10px;font-weight:500;color:#7C8A84;">· the project I'm most proud of</span></div>
+        <div class="tb-section-label"><span class="tb-num">3</span> App Performance &amp; Support <span style="font-size:10px;font-weight:500;color:#8B82A6;">· the project I'm most proud of</span></div>
+        <div class="tb-process">
+          <span class="step">Discovery</span><span class="sep">→</span><span class="step">Data model</span><span class="sep">→</span><span class="step">Early draft</span><span class="sep">→</span><span class="step">Finalize</span><span class="sep">→</span><span class="step">Adoption</span>
+          <span class="note">Adoption: the rare case where impact was visible within weeks — tickets simply stopped.</span>
+        </div>
         <div style="font-size:12px;color:#64748B;line-height:1.55;background:#F1F0F6;border-radius:10px;padding:10px 14px;margin-bottom:12px;">
           Clients kept calling support claiming the app was slow — but without data it was hard to prove performance was fine. I built a self-service dashboard that let clients check real-time response times against a clear benchmark. Within weeks, performance-related tickets dropped sharply.
         </div>
@@ -2689,6 +2709,35 @@
             <div class="tb-card-title">App response time vs benchmark</div>
             <div class="tb-chart-wrap"><canvas data-chart="tbResponse"></canvas></div>
           </div>
+        </div>
+
+        <div class="tb-section-label"><span class="tb-num">4</span> Revenue by Client &amp; Module <span style="font-size:10px;font-weight:500;color:#8B82A6;">· one model, two audiences</span></div>
+        <div class="tb-process">
+          <span class="step">Discovery</span><span class="sep">→</span><span class="step">Data model</span><span class="sep">→</span><span class="step">Early draft</span><span class="sep">→</span><span class="step">Finalize</span><span class="sep">→</span><span class="step">Adoption</span>
+          <span class="note">Data model: requirements changed mid-build — rebuilt the model to support both client and module views.</span>
+        </div>
+        <div style="font-size:12px;color:#64748B;line-height:1.55;background:#F1F0F6;border-radius:10px;padding:10px 14px;margin-bottom:12px;">
+          Finance asked for revenue by client; halfway through they also needed it by product module. Instead of two reports, I redesigned the model to support both dimensions with drill-down — client view for account management, module view for product decisions. Since then I run a 30-minute discovery session before any new dashboard.
+        </div>
+        <div class="tb-dash">
+          <div class="tb-dash-header">
+            <div class="tb-dash-title">Revenue — client &amp; module views</div>
+            <div class="tb-dash-sub">One semantic model · two audiences · representative kEUR</div>
+          </div>
+          <div class="tb-kpis">
+            <div class="tb-kpi"><div class="tb-kpi-val">2</div><div class="tb-kpi-lbl">Teams served by one model — finance &amp; product</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">2 views</div><div class="tb-kpi-lbl">By client and by module, drill-down between them</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">5</div><div class="tb-kpi-lbl">Client accounts tracked (anonymized)</div></div>
+            <div class="tb-kpi"><div class="tb-kpi-val">30 min</div><div class="tb-kpi-lbl">Discovery session now standard before any build</div></div>
+          </div>
+          <div class="tb-card">
+            <div class="tb-card-title">Revenue by client, split by module (kEUR)</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbRevenue"></canvas></div>
+          </div>
+          <div class="tb-card">
+            <div class="tb-card-title">Revenue mix by module (kEUR)</div>
+            <div class="tb-chart-wrap"><canvas data-chart="tbModules"></canvas></div>
+          </div>
         </div>`,
       design: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
@@ -2706,14 +2755,54 @@
             <div style="font-size:13px;color:#64748B;line-height:1.55;">Timebook was an early-stage company without a dedicated BI budget — Power BI or Tableau licences weren't justified at that stage, so I delivered executive reporting from the tools already in the stack. Data came from <strong>SQL queries against the production databases</strong> plus <strong>Kibana</strong> logs; I composed the dashboards in <strong>Figma</strong> for a clean, board-ready layout, refreshed each quarter. What began as a manual quarterly pull I later turned into a <strong>lightweight scripted extraction</strong> — cutting the manual prep and keeping the numbers consistent sprint over sprint.</div>
           </div>
           <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">How I build a dashboard</div>
+            <svg viewBox="0 0 980 150" style="width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
+              <defs>
+                <marker id="pArrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                  <path d="M0 0 L8 4 L0 8 z" fill="#C4B8E8"/>
+                </marker>
+              </defs>
+              <line x1="186" y1="62" x2="206" y2="62" stroke="#C4B8E8" stroke-width="2" marker-end="url(#pArrow)"/>
+              <line x1="382" y1="62" x2="402" y2="62" stroke="#C4B8E8" stroke-width="2" marker-end="url(#pArrow)"/>
+              <line x1="578" y1="62" x2="598" y2="62" stroke="#C4B8E8" stroke-width="2" marker-end="url(#pArrow)"/>
+              <line x1="774" y1="62" x2="794" y2="62" stroke="#C4B8E8" stroke-width="2" marker-end="url(#pArrow)"/>
+              <!-- step 1 -->
+              <rect x="10" y="22" width="176" height="80" rx="12" fill="#EFEBFA"/>
+              <text x="98" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#4C1D95">1 · Discovery</text>
+              <text x="98" y="66" text-anchor="middle" font-size="9.5" fill="#6D5BA6">the business question behind</text>
+              <text x="98" y="79" text-anchor="middle" font-size="9.5" fill="#6D5BA6">the request · who uses it · how often</text>
+              <!-- step 2 -->
+              <rect x="206" y="22" width="176" height="80" rx="12" fill="#EFEBFA"/>
+              <text x="294" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#4C1D95">2 · Data model</text>
+              <text x="294" y="66" text-anchor="middle" font-size="9.5" fill="#6D5BA6">dimensions &amp; grain agreed</text>
+              <text x="294" y="79" text-anchor="middle" font-size="9.5" fill="#6D5BA6">up front, built to extend</text>
+              <!-- step 3 -->
+              <rect x="402" y="22" width="176" height="80" rx="12" fill="#7C3AED"/>
+              <text x="490" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">3 · Early draft</text>
+              <text x="490" y="66" text-anchor="middle" font-size="9.5" fill="#DDD2F7">share before it's perfect —</text>
+              <text x="490" y="79" text-anchor="middle" font-size="9.5" fill="#DDD2F7">early feedback saves rework</text>
+              <!-- step 4 -->
+              <rect x="598" y="22" width="176" height="80" rx="12" fill="#EFEBFA"/>
+              <text x="686" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#4C1D95">4 · Finalize &amp; document</text>
+              <text x="686" y="66" text-anchor="middle" font-size="9.5" fill="#6D5BA6">KPI definitions written down ·</text>
+              <text x="686" y="79" text-anchor="middle" font-size="9.5" fill="#6D5BA6">the requester knows how to use it</text>
+              <!-- step 5 -->
+              <rect x="794" y="22" width="176" height="80" rx="12" fill="#EFEBFA"/>
+              <text x="882" y="48" text-anchor="middle" font-size="13" font-weight="700" fill="#4C1D95">5 · Adoption check</text>
+              <text x="882" y="66" text-anchor="middle" font-size="9.5" fill="#6D5BA6">weeks later: is it used? —</text>
+              <text x="882" y="79" text-anchor="middle" font-size="9.5" fill="#6D5BA6">unused reports are wasted work</text>
+              <text x="490" y="132" text-anchor="middle" font-size="10" fill="#AEAEAD" font-style="italic">Early feedback over big reveals — most conflicts get resolved before they become conflicts.</text>
+            </svg>
+          </div>
+          <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">Data flow</div>
             <img src="img/tmb_schema_viz.png" alt="Timebook data flow" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;">
             <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">Two sources (production databases + Kibana logs) feed a scheduled Python extraction, modelled in SQL, composed in Figma, and delivered to quarterly leadership reviews.</div>
           </div>
           <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">How I approach product work</div>
-            <img src="img/work_product_team.png" alt="Product development process" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:520px;border-radius:6px;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">A continuous loop — from customer development and hypotheses through usability testing, development and launch, with launch evaluation feeding the next cycle of hypotheses.</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">How our cross-functional product team worked</div>
+            <img src="img/work_product_team.png?v=2" alt="Product team process" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:520px;border-radius:6px;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">The team's continuous delivery loop — customer development and hypotheses, usability testing, development and launch, with launch evaluation feeding the next cycle. As Product Analyst I drove the research, testing analysis and launch evaluation stages.</div>
           </div>
         </div>`,
       results: `
@@ -2987,6 +3076,15 @@
   const TB_RESP       = [320, 310, 305, 290, 298, 285];
   const TB_RESP_BENCH = [500, 500, 500, 500, 500, 500];
 
+  // Revenue by client & module (representative, kEUR)
+  const TB_REV_CLIENTS = ['Client A', 'Client B', 'Client C', 'Client D', 'Other'];
+  const TB_REV_MODULES = [
+    { label: 'Scheduling',    data: [120, 90, 70, 40, 30], color: '#7C3AED' },
+    { label: 'Time tracking', data: [80, 60, 50, 30, 20],  color: '#84CC16' },
+    { label: 'Payroll',       data: [60, 40, 30, 25, 15],  color: '#E59820' },
+    { label: 'Mobile app',    data: [30, 20, 15, 10, 10],  color: '#94A3B8' }
+  ];
+
   // WFM demand-coverage (representative store-day, hourly FTE)
   const WFM_HOURS = ['08','09','10','11','12','13','14','15','16','17','18','19','20','21'];
   const WFM_FIXED    = [4,6,9,11,12,12,11,11,12,12,10,8,6,4];
@@ -3100,6 +3198,37 @@
           { label: 'Benchmark (normal)', data: TB_RESP_BENCH, borderColor: '#94A3B8', backgroundColor: 'transparent', borderWidth: 1.5, borderDash: [5,4], pointRadius: 0 }
         ]},
         options: opts
+      });
+    } else if (kind === 'tbRevenue') {
+      const opts = makeOpts();
+      opts.indexAxis = 'y';
+      opts.scales.x.stacked = true;
+      opts.scales.y.stacked = true;
+      opts.scales.x.ticks = { font: { size: 9 }, color: '#94A3B8', callback: v => v + 'k' };
+      opts.scales.y.ticks = { font: { size: 11 }, color: '#64748B' };
+      opts.scales.x.grid = { color: '#F1F5F9' };
+      opts.scales.y.grid = { display: false };
+      opts.plugins.tooltip = { callbacks: { label: c => ' ' + c.dataset.label + ': ' + c.parsed.x + ' kEUR' } };
+      new Chart(canvas, {
+        type: 'bar',
+        data: { labels: TB_REV_CLIENTS, datasets: TB_REV_MODULES.map(m => ({
+          label: m.label, data: m.data, backgroundColor: m.color, borderRadius: 3, barPercentage: 0.7
+        }))},
+        options: opts
+      });
+    } else if (kind === 'tbModules') {
+      new Chart(canvas, {
+        type: 'doughnut',
+        data: { labels: TB_REV_MODULES.map(m => m.label), datasets: [
+          { data: TB_REV_MODULES.map(m => m.data.reduce((a,b) => a+b, 0)), backgroundColor: TB_REV_MODULES.map(m => m.color), borderWidth: 2, borderColor: '#F5F5F3' }
+        ]},
+        options: {
+          responsive: true, maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'right', labels: { font: { size: 11 }, color: '#64748B', usePointStyle: true, boxWidth: 8, padding: 10 } },
+            tooltip: { callbacks: { label: c => ' ' + c.label + ': ' + c.parsed + ' kEUR' } }
+          }
+        }
       });
     } else if (kind === 'wfmCoverage') {
       const opts = makeOpts();
