@@ -1,0 +1,61 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- bg -->
+  <rect width="1200" height="675" fill="#241046"/>
+  <radialGradient id="glow1" cx="0.82" cy="0.18" r="0.6">
+    <stop offset="0" stop-color="#84CC16" stop-opacity="0.22"/>
+    <stop offset="1" stop-color="#84CC16" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="glow2" cx="0.15" cy="0.85" r="0.7">
+    <stop offset="0" stop-color="#7C3AED" stop-opacity="0.35"/>
+    <stop offset="1" stop-color="#7C3AED" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#glow1)"/>
+  <rect width="1200" height="675" fill="url(#glow2)"/>
+
+  <!-- floating dashboard panel -->
+  <g opacity="0.92">
+    <rect x="430" y="60" width="700" height="420" rx="18" fill="#2E1463" stroke="#4C2A8F" stroke-width="1.5"/>
+
+    <!-- KPI row -->
+    <rect x="460" y="90" width="150" height="74" rx="10" fill="#3A1D78"/>
+    <rect x="475" y="106" width="62" height="16" rx="4" fill="#84CC16"/>
+    <rect x="475" y="132" width="100" height="8" rx="4" fill="#5B3FA0"/>
+    <rect x="626" y="90" width="150" height="74" rx="10" fill="#3A1D78"/>
+    <rect x="641" y="106" width="48" height="16" rx="4" fill="#A78BFA"/>
+    <rect x="641" y="132" width="100" height="8" rx="4" fill="#5B3FA0"/>
+    <rect x="792" y="90" width="150" height="74" rx="10" fill="#3A1D78"/>
+    <rect x="807" y="106" width="56" height="16" rx="4" fill="#E11D48"/>
+    <rect x="807" y="132" width="100" height="8" rx="4" fill="#5B3FA0"/>
+    <rect x="958" y="90" width="142" height="74" rx="10" fill="#3A1D78"/>
+    <rect x="973" y="106" width="52" height="16" rx="4" fill="#84CC16"/>
+    <rect x="973" y="132" width="92" height="8" rx="4" fill="#5B3FA0"/>
+
+    <!-- bar chart card -->
+    <rect x="460" y="184" width="320" height="270" rx="10" fill="#3A1D78"/>
+    <rect x="480" y="200" width="120" height="9" rx="4" fill="#5B3FA0"/>
+    <rect x="492" y="380" width="36" height="50" rx="4" fill="#94A3B8" opacity="0.55"/>
+    <rect x="534" y="330" width="36" height="100" rx="4" fill="#84CC16"/>
+    <rect x="592" y="395" width="36" height="35" rx="4" fill="#94A3B8" opacity="0.55"/>
+    <rect x="634" y="355" width="36" height="75" rx="4" fill="#84CC16"/>
+    <rect x="692" y="408" width="36" height="22" rx="4" fill="#94A3B8" opacity="0.55"/>
+    <rect x="734" y="392" width="36" height="38" rx="4" fill="#84CC16"/>
+
+    <!-- donut card -->
+    <rect x="800" y="184" width="300" height="270" rx="10" fill="#3A1D78"/>
+    <rect x="820" y="200" width="120" height="9" rx="4" fill="#5B3FA0"/>
+    <g transform="translate(950, 330)">
+      <circle r="78" fill="none" stroke="#7C3AED" stroke-width="30" stroke-dasharray="295 490" transform="rotate(-90)"/>
+      <circle r="78" fill="none" stroke="#84CC16" stroke-width="30" stroke-dasharray="120 490" stroke-dashoffset="-295" transform="rotate(-90)"/>
+      <circle r="78" fill="none" stroke="#E11D48" stroke-width="30" stroke-dasharray="46 490" stroke-dashoffset="-415" transform="rotate(-90)"/>
+      <circle r="78" fill="none" stroke="#94A3B8" stroke-width="30" stroke-dasharray="29 490" stroke-dashoffset="-461" transform="rotate(-90)"/>
+    </g>
+  </g>
+
+  <!-- stepped coverage line, drawn across lower-left -->
+  <g opacity="0.9">
+    <path d="M40 560 H110 V520 H180 V545 H250 V490 H320 V515 H390 V470 H460 V500 H530 V450 H600 V480 H670"
+          stroke="#84CC16" stroke-width="5" fill="none" stroke-linejoin="round"/>
+    <path d="M40 590 H125 V555 H195 V575 H265 V525 H335 V550 H405 V505 H475 V535 H545 V488 H615 V515 H670"
+          stroke="#A78BFA" stroke-width="4" fill="none" stroke-linejoin="round" opacity="0.8"/>
+  </g>
+</svg>
