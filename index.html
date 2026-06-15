@@ -1530,10 +1530,10 @@
           <div class="pc-title">Team Performance & Workload Dashboard</div>
           <div class="pc-subtitle">Real work — delivery, workload, demand-coverage & revenue reporting</div>
           <div class="pc-chips">
-            <span class="pc-chip">SQL</span><span class="pc-chip">Kibana</span><span class="pc-chip">Figma</span><span class="pc-chip">Python</span>
+            <span class="pc-chip">Power BI</span><span class="pc-chip">SQL</span><span class="pc-chip">Kibana</span><span class="pc-chip">Python</span>
           </div>
           <div class="pc-stats">
-            <span>4 dashboards</span><span>·</span><span>WFM coverage</span><span>·</span><span>scripted extraction</span>
+            <span>4 dashboards</span><span>·</span><span>right tool per job</span><span>·</span><span>WFM coverage</span>
           </div>
           <span class="pc-arrow">↗</span>
         </div>
@@ -2614,7 +2614,7 @@
         <div class="tb-dash">
           <div class="tb-dash-header">
             <div class="tb-dash-title">Development Team — Performance</div>
-            <div class="tb-dash-sub">H1 2023 vs 2022 · representative figures</div>
+            <div class="tb-dash-sub">Custom build (SQL) · H1 2023 vs 2022 · representative figures</div>
           </div>
           <div class="tb-kpis">
             <div class="tb-kpi"><div class="tb-kpi-val">+156%</div><div class="tb-kpi-lbl">Features shipped YoY (111 → 284)</div></div>
@@ -2671,7 +2671,7 @@
         <div class="tb-dash">
           <div class="tb-dash-header">
             <div class="tb-dash-title">Self-service performance visibility</div>
-            <div class="tb-dash-sub">Response times vs benchmark · support-ticket impact · representative</div>
+            <div class="tb-dash-sub">Built on Kibana · response times vs benchmark · representative</div>
           </div>
           <div class="tb-kpis">
             <div class="tb-kpi"><div class="tb-kpi-val" style="color:#84CC16;">−79%</div><div class="tb-kpi-lbl">Performance-related support tickets (120 → 25)</div></div>
@@ -2700,7 +2700,7 @@
         <div class="tb-dash">
           <div class="tb-dash-header">
             <div class="tb-dash-title">Revenue — client &amp; module views</div>
-            <div class="tb-dash-sub">One semantic model · two audiences · representative kEUR</div>
+            <div class="tb-dash-sub">Built in Power BI · one semantic model, two audiences · representative kEUR</div>
           </div>
           <div class="tb-kpis">
             <div class="tb-kpi"><div class="tb-kpi-val">2</div><div class="tb-kpi-lbl">Teams served by one model — finance &amp; product</div></div>
@@ -2729,8 +2729,8 @@
             </ul>
           </div>
           <div style="border-left:2px solid #E2E8F0;padding-left:12px;">
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">How it was built &amp; maintained</div>
-            <div style="font-size:13px;color:#64748B;line-height:1.55;">Timebook was an early-stage company without a dedicated BI budget — Power BI or Tableau licences weren't justified at that stage, so I delivered executive reporting from the tools already in the stack. Data came from <strong>SQL queries against the production databases</strong> plus <strong>Kibana</strong> logs; I composed the dashboards in <strong>Figma</strong> for a clean, board-ready layout, refreshed each quarter. What began as a manual quarterly pull I later turned into a <strong>lightweight scripted extraction</strong> — cutting the manual prep and keeping the numbers consistent sprint over sprint.</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Right tool for each dashboard</div>
+            <div style="font-size:13px;color:#64748B;line-height:1.55;">I matched the tool to the job rather than forcing everything onto one platform. <strong>Financial reporting</strong> was built in <strong>Power BI</strong> (DAX, data models); <strong>product &amp; client-facing performance monitoring</strong> ran on <strong>Kibana</strong>; and for <strong>team-productivity reporting</strong> — where no off-the-shelf tool fit our metrics — I built a <strong>custom solution on SQL</strong> with a lightweight scripted extraction, refreshed each quarter. Choosing the right tool per use case kept reporting fast to deliver and trusted by leadership.</div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">How I build a dashboard</div>
@@ -2773,9 +2773,9 @@
             </svg>
           </div>
           <div>
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">Data flow</div>
-            <img src="img/tmb_schema_viz.png" alt="Timebook data flow" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">Two sources (production databases + Kibana logs) feed a scheduled Python extraction, modelled in SQL, composed in Figma, and delivered to quarterly leadership reviews.</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">Data flow — the custom team dashboard</div>
+            <img src="img/tmb_schema_viz.png" alt="Timebook custom dashboard data flow" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:6px;">For the custom team-productivity dashboard: two sources (production databases + Kibana logs) feed a scheduled Python extraction, modelled in SQL, and delivered to quarterly leadership reviews.</div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:10px;">How our cross-functional product team worked</div>
@@ -2790,7 +2790,7 @@
         <div class="pd-stack-group" style="margin-top:6px;">
           <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">SQL</span><span class="pd-chip">Kibana</span><span class="pd-chip">Figma</span><span class="pd-chip">Python (scripted extraction)</span><span class="pd-chip">CTEs & window functions</span><span class="pd-chip">Capacity planning</span>
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">SQL</span><span class="pd-chip">Kibana</span><span class="pd-chip">Python</span><span class="pd-chip">CTEs & window functions</span><span class="pd-chip">Capacity planning</span>
           </div>
         </div>`
     },
