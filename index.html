@@ -1548,7 +1548,7 @@
             linear-gradient(145deg, #0E7C6B 0%, #0A5247 52%, #06302C 100%);
         "></div>
         <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(6,40,36,0.96) 0%, rgba(6,40,36,0.6) 35%, transparent 62%);">
-          <div class="pc-label">Personal project · Microsoft Fabric <span style="background:#FBF4E0;color:#B8860B;font-size:8px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;border-radius:4px;padding:1px 6px;margin-left:4px;">In progress</span></div>
+          <div class="pc-label">Personal project · Microsoft Fabric</div>
           <div class="pc-title">Retail Analytics — Cloud BI Pipeline</div>
           <div class="pc-subtitle">End-to-end on Microsoft Fabric — OneLake, Data Factory, Lakehouse & Power BI</div>
           <div class="pc-chips">
@@ -3044,18 +3044,18 @@
       tabs: ['Overview', 'Architecture', 'Dashboard', 'Results'],
       overview: `
         <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
-          <div style="font-size:10px;color:#B8860B;background:#FBF4E0;border-radius:4px;padding:6px 10px;">🚧 In progress — building on Microsoft Fabric. Data model &amp; architecture done; dashboards next.</div>
+          <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Personal project · synthetic data · built end-to-end on Microsoft Fabric</div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The project</div>
-            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">An end-to-end cloud BI pipeline for a multi-store retailer, built entirely on <strong>Microsoft Fabric</strong> — from raw data landing in OneLake through transformation to a self-serve Power BI report. A hands-on demonstration of the modern Microsoft data stack (Fabric runs on Azure).</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">An end-to-end cloud BI pipeline for a multi-store retailer, built entirely on <strong>Microsoft Fabric</strong> — raw data lands in OneLake, is ingested with Data Factory, typed and modelled with T-SQL into a star schema, and served through a self-serve Power BI report. A hands-on demonstration of the modern Microsoft data stack (Fabric runs on Azure).</div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
             <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
               <li>Which stores, regions and categories drive revenue?</li>
-              <li>How do sales trend over time — and where are the weekend / seasonal patterns?</li>
-              <li>Which products are over- or under-stocked vs reorder levels?</li>
-              <li>What's the margin (price vs cost) by category?</li>
+              <li>How do sales trend over the year — where are the peaks?</li>
+              <li>Which categories sit close to their reorder level (inventory risk)?</li>
+              <li>What are the headline KPIs — revenue, units, average order value?</li>
             </ul>
           </div>
           <div>
@@ -3064,7 +3064,7 @@
           </div>
         </div>`,
       architecture: `
-        <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:22px;">
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Pipeline — end-to-end on Fabric</div>
             <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:600;">
@@ -3074,30 +3074,43 @@
               <span style="color:#9CC;">→</span>
               <span style="background:#E6F4F1;color:#0A5247;border-radius:5px;padding:6px 10px;">Data Factory<br><span style="font-size:9px;font-weight:400;color:#6B9B91;">ingestion</span></span>
               <span style="color:#9CC;">→</span>
-              <span style="background:#E6F4F1;color:#0A5247;border-radius:5px;padding:6px 10px;">Lakehouse<br><span style="font-size:9px;font-weight:400;color:#6B9B91;">T-SQL · star schema</span></span>
+              <span style="background:#E6F4F1;color:#0A5247;border-radius:5px;padding:6px 10px;">Warehouse<br><span style="font-size:9px;font-weight:400;color:#6B9B91;">T-SQL · typed star schema</span></span>
               <span style="color:#9CC;">→</span>
               <span style="background:#D6EBE5;color:#0E7C6B;border-radius:5px;padding:6px 10px;">Power BI</span>
             </div>
-            <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">Microsoft Fabric unifies storage (OneLake), ingestion (Data Factory), transformation (T-SQL / Spark) and visualization (Power BI) in one platform — running on Azure.</div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">Fabric unifies storage (OneLake), ingestion (Data Factory), transformation (T-SQL) and visualization (Power BI) in one platform on Azure. Raw CSVs land in a Lakehouse; typed star-schema tables are built in a Warehouse with T-SQL (medallion: raw → modelled).</div>
           </div>
           <div>
             <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Data model — galaxy schema</div>
             <img src="img/fabric-star-schema.svg" alt="Retail star schema" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Two fact tables (sales, inventory) sharing conformed dimensions (stores, products, date) — the standard dimensional model for self-serve BI.</div>
+            <div style="font-size:11px;color:#AEAEAD;margin-top:5px;">Two fact tables (sales, inventory) sharing conformed dimensions (stores, products, date).</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Built in Fabric — the real steps</div>
+            <div style="display:grid;gap:14px;">
+              <div><img src="img/fabric-copyjob.png" alt="Data Factory Copy job succeeded" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Data Factory Copy job — 116K rows ingested into the Lakehouse (no Spark).</div></div>
+              <div><img src="img/fabric-sql-views.png" alt="T-SQL typed transformation" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">T-SQL transformation — raw text cast to typed columns (TRY_CAST) into the star schema.</div></div>
+              <div><img src="img/fabric-model.png" alt="Star schema model in Fabric" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Semantic model — clean star schema (DirectLake) with relationships across both facts.</div></div>
+            </div>
           </div>
         </div>`,
       dashboard: `
-        <div class="pd-body">
-          <div style="font-size:13px;color:#64748B;line-height:1.55;background:#F1F5F4;border-radius:10px;padding:14px 16px;">🚧 <strong>Building now.</strong> The Power BI report on the Fabric Lakehouse is in progress — revenue by store/region/category, sales trends, and inventory vs reorder levels. Screenshots coming soon.</div>
-        </div>`,
+        <div class="pd-image"><img src="img/fabric-dashboard.png" alt="Retail Analytics Power BI dashboard on Fabric" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Retail Analytics — Sales &amp; Inventory · Power BI on Microsoft Fabric · <em>click to enlarge</em></p>`,
       results: `
-        <div class="pd-body">
-          <div style="font-size:13px;color:#64748B;line-height:1.55;background:#F1F5F4;border-radius:10px;padding:14px 16px;">🚧 Results &amp; findings will be added once the dashboards are complete.</div>
+        <div class="pd-kpis">
+          <div class="pd-kpi"><div class="pd-kpi-value">€3.07M</div><div class="pd-kpi-label">Total revenue across 8 stores &amp; 51 products</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">332K</div><div class="pd-kpi-label">Units sold over the year</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">~50%</div><div class="pd-kpi-label">Revenue concentrated in the Helsinki region</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">end-to-end</div><div class="pd-kpi-label">Raw CSV → OneLake → Data Factory → T-SQL → Power BI, all in Fabric</div></div>
         </div>
-        <div class="pd-stack-group" style="margin-top:14px;">
+        <div class="pd-body">
+          <p><strong>Key findings:</strong> Helsinki dominates revenue (~half of the total), with Tampere a distant second. Bakery is the top category and Produce the lowest. Sales peak in March with clear month-to-month variation. The inventory view flags categories sitting close to their reorder level — an operational signal from the second fact table.</p>
+        </div>
+        <div class="pd-stack-group" style="margin-top:6px;">
           <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
-            <span class="pd-chip">Microsoft Fabric</span><span class="pd-chip">OneLake</span><span class="pd-chip">Data Factory</span><span class="pd-chip">Lakehouse</span><span class="pd-chip">T-SQL</span><span class="pd-chip">Power BI</span><span class="pd-chip">Python</span><span class="pd-chip">Azure</span>
+            <span class="pd-chip">Microsoft Fabric</span><span class="pd-chip">OneLake</span><span class="pd-chip">Data Factory</span><span class="pd-chip">Lakehouse</span><span class="pd-chip">Warehouse</span><span class="pd-chip">T-SQL</span><span class="pd-chip">Power BI</span><span class="pd-chip">Python</span><span class="pd-chip">Azure</span>
           </div>
         </div>`
     }
