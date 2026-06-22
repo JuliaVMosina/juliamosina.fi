@@ -1437,7 +1437,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#A855C8"></span>
             <span class="highlight-project">Bachelor's Thesis</span>
-            <span class="highlight-counter">1 / 5</span>
+            <span class="highlight-counter">1 / 6</span>
           </div>
           <div class="highlight-text">90.1% of active users reached analytical value — product analytics framework on Snowflake + dbt ETL with a North Star Metric</div>
           <div class="highlight-progress"><div class="highlight-bar bar-animate"></div></div>
@@ -1447,7 +1447,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#4A6FA5"></span>
             <span class="highlight-project">KONE</span>
-            <span class="highlight-counter">2 / 5</span>
+            <span class="highlight-counter">2 / 6</span>
           </div>
           <div class="highlight-text">Self-serve Power BI dashboard unifying service KPIs across 4 global regions — star schema, drill-through & DAX</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
@@ -1457,7 +1457,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#7C3AED"></span>
             <span class="highlight-project">Timebook</span>
-            <span class="highlight-counter">3 / 5</span>
+            <span class="highlight-counter">3 / 6</span>
           </div>
           <div class="highlight-text">Owned BI for 2 years with no BI-tool budget — SQL, Kibana &amp; Figma. Features shipped +156% YoY; −79% performance support tickets after a self-service dashboard</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
@@ -1467,7 +1467,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#0E9E86"></span>
             <span class="highlight-project">F-Group · Fabric</span>
-            <span class="highlight-counter">4 / 5</span>
+            <span class="highlight-counter">4 / 6</span>
           </div>
           <div class="highlight-text">End-to-end cloud BI pipeline on Microsoft Fabric — OneLake → Data Factory → T-SQL star schema → Power BI. €3.07M revenue across 8 stores, all in one platform</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
@@ -1477,9 +1477,19 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#E8743B"></span>
             <span class="highlight-project">Databricks · Energy</span>
-            <span class="highlight-counter">5 / 5</span>
+            <span class="highlight-counter">5 / 6</span>
           </div>
           <div class="highlight-text">Code-first PySpark medallion lakehouse on real Finnish energy data — 1.2M+ rows from 3 live APIs, with a Spark ML demand forecast (MAE 3.8%, R² 0.74)</div>
+          <div class="highlight-progress"><div class="highlight-bar"></div></div>
+        </div>
+
+        <div class="highlight-item">
+          <div class="highlight-meta">
+            <span class="highlight-dot" style="background:#F4511E"></span>
+            <span class="highlight-project">Aspia · Finance BI</span>
+            <span class="highlight-counter">6 / 6</span>
+          </div>
+          <div class="highlight-text">Executive Power BI dashboard for a Nordic finance &amp; payroll outsourcing firm — revenue, churn &amp; workforce utilization across 4 service lines, ~400 clients</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
         </div>
 
@@ -1597,6 +1607,28 @@
           </div>
           <div class="pc-stats">
             <span>Medallion</span><span>·</span><span>1.2M+ rows</span><span>·</span><span>Forecast R² 0.74</span>
+          </div>
+          <span class="pc-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- 6. Aspia — finance & HR exec dashboard -->
+      <a href="#" class="project-card" onclick="openProject('aspia'); return false;">
+        <div class="project-bg" style="
+          background:
+            linear-gradient(to top, rgba(27,43,64,0.92) 0%, rgba(27,43,64,0.4) 38%, transparent 65%),
+            url('img/aspia-card.svg') center / cover no-repeat,
+            #1B2B40;
+        "></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(27,43,64,0.96) 0%, rgba(27,43,64,0.6) 35%, transparent 62%);">
+          <div class="pc-label">Inspired by Aspia · Power BI</div>
+          <div class="pc-title">Finance & HR Outsourcing — Exec Dashboard</div>
+          <div class="pc-subtitle">Executive BI for a Nordic finance &amp; payroll outsourcing firm — revenue, churn & workforce utilization</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Power BI</span><span class="pc-chip">DAX</span><span class="pc-chip">Power Query</span><span class="pc-chip">Star schema</span>
+          </div>
+          <div class="pc-stats">
+            <span>4 pages</span><span>·</span><span>~400 clients</span><span>·</span><span>97% retention</span>
           </div>
           <span class="pc-arrow">↗</span>
         </div>
@@ -3233,6 +3265,57 @@
           <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
             <span class="pd-chip">Databricks</span><span class="pd-chip">PySpark</span><span class="pd-chip">Spark ML</span><span class="pd-chip">Delta Lake</span><span class="pd-chip">Unity Catalog</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">REST/WFS APIs</span>
+          </div>
+        </div>`
+    },
+    aspia: {
+      title: 'Finance & HR Outsourcing — Executive Dashboard',
+      company: 'Inspired by Aspia (fictional data) · Power BI',
+      period: '2026',
+      tabs: ['Overview', 'Dashboard', 'Results'],
+      overview: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Personal project · corporate simulation · synthetic data proportioned from a real company profile · <a href="https://github.com/JuliaVMosina/aspia-financial-dashboard" target="_blank" style="color:#1A4A9A;">code on GitHub ↗</a></div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">The business</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">A Nordic <strong>finance &amp; payroll outsourcing</strong> firm serving ~400 clients across Accounting, Payroll, HR Services and Tax &amp; Legal. Modelled after Aspia Group's public business profile (data is synthetic).</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What I built</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">A 4-page executive Power BI dashboard answering the questions a Head of BI or Regional Director brings to a monthly review — revenue growth, client retention, workforce utilization — on a clean star schema with DAX time-intelligence.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">The four pages</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>Executive Overview</strong> — global KPIs: revenue, active clients, retention, NPS</li>
+              <li><strong>Financial Performance</strong> — revenue by service line, MoM % &amp; YoY, regional mix</li>
+              <li><strong>Client Portfolio</strong> — base trend, new vs churned, industry &amp; size</li>
+              <li><strong>Operational Efficiency</strong> — utilization by role, contracts, services per client</li>
+            </ul>
+          </div>
+        </div>`,
+      dashboard: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:18px;">
+          <div><img src="img/aspia-overview.png" alt="Aspia Executive Overview" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Executive Overview — headline KPIs, revenue trend, region &amp; service-line mix.</div></div>
+          <div><img src="img/aspia-financial.png" alt="Aspia Financial Performance" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Financial Performance — MoM growth, YoY comparison, regional matrix.</div></div>
+          <div><img src="img/aspia-clients.png" alt="Aspia Client Portfolio" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Client Portfolio — new vs churned, industry &amp; size breakdown.</div></div>
+          <div><img src="img/aspia-operational.png" alt="Aspia Operational Efficiency" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Operational Efficiency — utilization by role, contracts per service line.</div></div>
+        </div>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi"><div class="pd-kpi-value">€91M</div><div class="pd-kpi-label">Total revenue (2022–2024)</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">~97%</div><div class="pd-kpi-label">Client retention rate</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">~87%</div><div class="pd-kpi-label">Average employee utilization</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">~400</div><div class="pd-kpi-label">Active clients · NPS 46</div></div>
+        </div>
+        <div class="pd-body">
+          <p><strong>What it shows:</strong> Accounting and Payroll lead revenue; Helsinki is the dominant region (~35%). Retention is high (~97%) but revenue is roughly flat YoY (−1%), so growth has to come from utilization and upsell rather than client count. The operational page ties workforce utilization to the service mix.</p>
+          <p style="font-size:12px;color:#AEAEAD;">DAX highlight: month-over-month and year-over-year revenue measures built with date arithmetic and CALCULATE; modelled on a star schema (monthly_revenue / monthly_kpis facts + client, contract, employee dimensions).</p>
+        </div>
+        <div class="pd-stack-group" style="margin-top:6px;">
+          <div class="pd-stack-group-label">Stack</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Power BI</span><span class="pd-chip">DAX</span><span class="pd-chip">Power Query</span><span class="pd-chip">Star schema</span><span class="pd-chip">Time intelligence</span><span class="pd-chip">Python</span>
           </div>
         </div>`
     }
