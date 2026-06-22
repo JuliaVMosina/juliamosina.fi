@@ -3490,6 +3490,8 @@
       <div>${panesHtml}</div>
     `;
 
+    // Hide the (now scrollable) cards grid so it can't peek below the detail overlay
+    document.getElementById('tab-projects').style.display = 'none';
     document.getElementById('projectDetail').classList.add('active');
     document.getElementById('projectDetail').scrollTop = 0;
     requestAnimationFrame(renderVisibleCharts);
@@ -3497,6 +3499,7 @@
 
   function closeProject() {
     document.getElementById('projectDetail').classList.remove('active');
+    document.getElementById('tab-projects').style.display = '';
   }
 
   function switchPdTab(btn, paneId) {
