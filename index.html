@@ -443,10 +443,9 @@
 
     .projects-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+      grid-auto-rows: calc((100vh - 100px) / 2);
       gap: 12px;
-      height: calc(100vh - 88px);
     }
 
     /* Cards — fill grid rows */
