@@ -1438,7 +1438,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#A855C8"></span>
             <span class="highlight-project">Bachelor's Thesis</span>
-            <span class="highlight-counter">1 / 4</span>
+            <span class="highlight-counter">1 / 5</span>
           </div>
           <div class="highlight-text">90.1% of active users reached analytical value — product analytics framework on Snowflake + dbt ETL with a North Star Metric</div>
           <div class="highlight-progress"><div class="highlight-bar bar-animate"></div></div>
@@ -1448,7 +1448,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#4A6FA5"></span>
             <span class="highlight-project">KONE</span>
-            <span class="highlight-counter">2 / 4</span>
+            <span class="highlight-counter">2 / 5</span>
           </div>
           <div class="highlight-text">Self-serve Power BI dashboard unifying service KPIs across 4 global regions — star schema, drill-through & DAX</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
@@ -1458,7 +1458,7 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#7C3AED"></span>
             <span class="highlight-project">Timebook</span>
-            <span class="highlight-counter">3 / 4</span>
+            <span class="highlight-counter">3 / 5</span>
           </div>
           <div class="highlight-text">Owned BI for 2 years with no BI-tool budget — SQL, Kibana &amp; Figma. Features shipped +156% YoY; −79% performance support tickets after a self-service dashboard</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
@@ -1468,9 +1468,19 @@
           <div class="highlight-meta">
             <span class="highlight-dot" style="background:#0E9E86"></span>
             <span class="highlight-project">F-Group · Fabric</span>
-            <span class="highlight-counter">4 / 4</span>
+            <span class="highlight-counter">4 / 5</span>
           </div>
           <div class="highlight-text">End-to-end cloud BI pipeline on Microsoft Fabric — OneLake → Data Factory → T-SQL star schema → Power BI. €3.07M revenue across 8 stores, all in one platform</div>
+          <div class="highlight-progress"><div class="highlight-bar"></div></div>
+        </div>
+
+        <div class="highlight-item">
+          <div class="highlight-meta">
+            <span class="highlight-dot" style="background:#E8743B"></span>
+            <span class="highlight-project">Databricks · Energy</span>
+            <span class="highlight-counter">5 / 5</span>
+          </div>
+          <div class="highlight-text">Code-first PySpark medallion lakehouse on real Finnish energy data — 1.2M+ rows from 3 live APIs, with a Spark ML demand forecast (MAE 3.8%, R² 0.74)</div>
           <div class="highlight-progress"><div class="highlight-bar"></div></div>
         </div>
 
@@ -1566,6 +1576,28 @@
           </div>
           <div class="pc-stats">
             <span>Galaxy schema</span><span>·</span><span>Lakehouse</span><span>·</span><span>Data Factory</span>
+          </div>
+          <span class="pc-arrow">↗</span>
+        </div>
+      </a>
+
+      <!-- 5. Databricks — electricity lakehouse -->
+      <a href="#" class="project-card" onclick="openProject('databricks'); return false;">
+        <div class="project-bg" style="
+          background:
+            linear-gradient(to top, rgba(22,32,46,0.92) 0%, rgba(22,32,46,0.4) 38%, transparent 65%),
+            url('img/databricks-card.svg') center / cover no-repeat,
+            #16202E;
+        "></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(22,32,46,0.96) 0%, rgba(22,32,46,0.6) 35%, transparent 62%);">
+          <div class="pc-label">Databricks · open data</div>
+          <div class="pc-title">Finnish Electricity Market Analytics</div>
+          <div class="pc-subtitle">Code-first PySpark medallion lakehouse on real Finnish energy data — with an ML demand forecast</div>
+          <div class="pc-chips">
+            <span class="pc-chip">PySpark</span><span class="pc-chip">Spark ML</span><span class="pc-chip">Delta Lake</span><span class="pc-chip">Databricks</span>
+          </div>
+          <div class="pc-stats">
+            <span>Medallion</span><span>·</span><span>1.2M+ rows</span><span>·</span><span>Forecast R² 0.74</span>
           </div>
           <span class="pc-arrow">↗</span>
         </div>
@@ -3130,6 +3162,78 @@
           <div class="pd-stack-group-label">Stack</div>
           <div class="pd-stack">
             <span class="pd-chip">Microsoft Fabric</span><span class="pd-chip">OneLake</span><span class="pd-chip">Data Factory</span><span class="pd-chip">Lakehouse</span><span class="pd-chip">Warehouse</span><span class="pd-chip">T-SQL</span><span class="pd-chip">Power BI</span><span class="pd-chip">Python</span><span class="pd-chip">Azure</span>
+          </div>
+        </div>`
+    },
+    databricks: {
+      title: 'Finnish Electricity Market Analytics',
+      company: 'Databricks Lakehouse · real Finnish open data',
+      period: '2026',
+      tabs: ['Overview', 'Architecture', 'Dashboard', 'Results'],
+      overview: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:16px;">
+          <div style="font-size:10px;color:#AEAEAD;background:#F5F5F3;border-radius:4px;padding:6px 10px;">Personal project · real open data · built end-to-end on Databricks (PySpark) · <a href="https://github.com/JuliaVMosina/databricks-electricity-analytics" target="_blank" style="color:#1A4A9A;">code on GitHub ↗</a></div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">What I built</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">A code-first <strong>PySpark medallion lakehouse</strong> on <strong>Databricks</strong> over real Finnish electricity data — consumption, production mix, day-ahead price and weather — pulled live from three open APIs, cleaned and modelled into an hourly star, and topped with a <strong>Spark ML demand forecast</strong> and a native Databricks AI/BI dashboard.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Data sources (live APIs)</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>Fingrid</strong> — consumption &amp; production by source (wind, nuclear, hydro, solar)</li>
+              <li><strong>ENTSO-E</strong> — day-ahead spot price, Finland bidding zone</li>
+              <li><strong>FMI</strong> — weather (temperature, wind speed)</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Questions it answers</div>
+            <ul style="font-size:14px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li>Is Finland a net importer or exporter of electricity?</li>
+              <li>How does spot price move with temperature and demand?</li>
+              <li>What's the renewable share of generation, and how does it shift seasonally?</li>
+              <li>Can next-day hourly demand be forecast from weather + calendar?</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:4px;">Why this project</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.5;">The code-first Spark counterpart to my Fabric project — PySpark, Delta Lake, Spark ML and Unity Catalog on Databricks. Demonstrates distributed processing of 1.2M+ rows and time-series feature engineering on genuinely messy multi-source data.</div>
+          </div>
+        </div>`,
+      architecture: `
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:22px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">Pipeline — medallion on Databricks</div>
+            <img src="img/databricks-architecture.svg" alt="Medallion architecture on Databricks" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:11px;color:#AEAEAD;margin-top:8px;">Bronze (raw, 8 Delta tables, 1.2M+ rows) → Silver (resampled to hourly, units harmonised to MWh/h, all sources joined + Helsinki calendar) → Gold (marts + ML forecast) → AI/BI dashboard. All in PySpark on serverless Databricks.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:8px;">The messy-real-data part</div>
+            <ul style="font-size:13.5px;color:#1E1E1C;line-height:1.7;margin:0 0 0 16px;padding:0;">
+              <li><strong>Mixed resolutions</strong> — sources arrive at 3-min, 15-min and hourly; all resampled to a common hourly grain.</li>
+              <li><strong>Mixed units</strong> — power (MW) vs energy-rate (MWh/h), harmonised to MWh per hour.</li>
+              <li><strong>API limits</strong> — Fingrid throttling (1 req / 2 s) and FMI interval caps handled with chunked, paced pulls.</li>
+              <li><strong>Time zones</strong> — stored in UTC, reported in Europe/Helsinki.</li>
+            </ul>
+          </div>
+        </div>`,
+      dashboard: `
+        <div class="pd-image"><img src="img/databricks-dashboard.png" alt="Finnish Electricity Market Analytics — Databricks AI/BI dashboard" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"></div>
+        <p style="font-size:12px;color:#AEAEAD;text-align:center;margin-top:6px;">Finnish Electricity Market Analytics · native Databricks AI/BI dashboard · <em>click to enlarge</em></p>`,
+      results: `
+        <div class="pd-kpis">
+          <div class="pd-kpi"><div class="pd-kpi-value">net importer</div><div class="pd-kpi-label">Production averages 9,100 vs 9,624 MWh/h demand</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">~42%</div><div class="pd-kpi-label">Average renewable share of generation</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">3.8% · R² 0.74</div><div class="pd-kpi-label">Demand forecast MAE (Spark ML GBT, 90-day holdout)</div></div>
+          <div class="pd-kpi"><div class="pd-kpi-value">1.2M+ rows</div><div class="pd-kpi-label">Ingested from 3 live open APIs into a Delta lakehouse</div></div>
+        </div>
+        <div class="pd-body">
+          <p><strong>Key findings:</strong> Finland runs as a net electricity importer. Spot price rises sharply as temperature falls — cold snaps drive electric-heating demand. Renewables average ~42% of generation, with wind's share climbing toward winter. The demand forecast tracks the daily peak/trough cycle closely; its top drivers are <em>yesterday's demand</em> and <em>temperature</em>.</p>
+          <p style="font-size:12px;color:#AEAEAD;">Honesty notes: solar is Fingrid's forecast series (Finland has little metered solar); the model uses actual weather as a feature (a production day-ahead model would use forecast weather); day-ahead price was hourly for most of the window.</p>
+        </div>
+        <div class="pd-stack-group" style="margin-top:6px;">
+          <div class="pd-stack-group-label">Stack</div>
+          <div class="pd-stack">
+            <span class="pd-chip">Databricks</span><span class="pd-chip">PySpark</span><span class="pd-chip">Spark ML</span><span class="pd-chip">Delta Lake</span><span class="pd-chip">Unity Catalog</span><span class="pd-chip">SQL</span><span class="pd-chip">Python</span><span class="pd-chip">REST/WFS APIs</span>
           </div>
         </div>`
     }

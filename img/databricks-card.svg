@@ -1,0 +1,43 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#16202E"/>
+  <radialGradient id="dg1" cx="0.8" cy="0.16" r="0.6">
+    <stop offset="0" stop-color="#E8743B" stop-opacity="0.28"/>
+    <stop offset="1" stop-color="#E8743B" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="dg2" cx="0.12" cy="0.9" r="0.7">
+    <stop offset="0" stop-color="#2E8B6F" stop-opacity="0.45"/>
+    <stop offset="1" stop-color="#2E8B6F" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#dg1)"/>
+  <rect width="1200" height="675" fill="url(#dg2)"/>
+
+  <!-- medallion layers (bronze / silver / gold) -->
+  <g opacity="0.95">
+    <rect x="430" y="120" width="710" height="70" rx="10" fill="#3A2C1C" stroke="#B07A3C" stroke-width="1.5"/>
+    <rect x="452" y="146" width="120" height="18" rx="4" fill="#B07A3C"/>
+    <text x="452" y="138" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#C9924E">BRONZE</text>
+
+    <rect x="430" y="210" width="710" height="70" rx="10" fill="#26303C" stroke="#8B97A5" stroke-width="1.5"/>
+    <rect x="452" y="236" width="180" height="18" rx="4" fill="#8B97A5"/>
+    <text x="452" y="228" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#AEBAC6">SILVER</text>
+
+    <rect x="430" y="300" width="710" height="70" rx="10" fill="#3A341A" stroke="#C9A227" stroke-width="1.5"/>
+    <rect x="452" y="326" width="150" height="18" rx="4" fill="#C9A227"/>
+    <text x="452" y="318" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#D9B73E">GOLD</text>
+  </g>
+
+  <!-- forecast motif: actual vs predicted -->
+  <g>
+    <polyline points="450,470 510,440 570,475 630,430 690,470 750,425 810,468 870,420 930,465 990,415 1050,460 1110,418"
+      fill="none" stroke="#5BD3BD" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="450,478 510,450 570,482 630,442 690,478 750,438 810,476 870,432 930,474 990,428 1050,470 1110,430"
+      fill="none" stroke="#E8743B" stroke-width="3" stroke-dasharray="2 7" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- mini bars (upper-left accent) -->
+  <g opacity="0.5">
+    <rect x="92" y="110" width="34" height="70" rx="4" fill="#E8743B"/>
+    <rect x="138" y="138" width="34" height="42" rx="4" fill="#C9A227"/>
+    <rect x="184" y="92" width="34" height="88" rx="4" fill="#5BD3BD"/>
+  </g>
+</svg>
