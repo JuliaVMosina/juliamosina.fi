@@ -1,0 +1,44 @@
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#0E3B2E"/>
+  <radialGradient id="pag1" cx="0.82" cy="0.16" r="0.62">
+    <stop offset="0" stop-color="#34D399" stop-opacity="0.30"/>
+    <stop offset="1" stop-color="#34D399" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="pag2" cx="0.12" cy="0.9" r="0.7">
+    <stop offset="0" stop-color="#0E7C6B" stop-opacity="0.45"/>
+    <stop offset="1" stop-color="#0E7C6B" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="1200" height="675" fill="url(#pag1)"/>
+  <rect width="1200" height="675" fill="url(#pag2)"/>
+
+  <!-- funnel panel -->
+  <g opacity="0.96">
+    <rect x="430" y="110" width="330" height="380" rx="16" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <rect x="470" y="150" width="250" height="46" rx="6" fill="#94A3B8"/>
+    <rect x="495" y="216" width="200" height="46" rx="6" fill="#3FBFA6"/>
+    <rect x="525" y="282" width="140" height="46" rx="6" fill="#2E9E8A"/>
+    <rect x="555" y="348" width="80"  height="46" rx="6" fill="#34D399"/>
+    <text x="595" y="430" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#7FE6D2">ACTIVATION FUNNEL</text>
+  </g>
+
+  <!-- retention curves panel -->
+  <g opacity="0.96">
+    <rect x="790" y="110" width="350" height="380" rx="16" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <line x1="825" y1="450" x2="1110" y2="450" stroke="#1d6b52" stroke-width="2"/>
+    <line x1="825" y1="150" x2="825" y2="450" stroke="#1d6b52" stroke-width="2"/>
+    <!-- activated (stays high) -->
+    <polyline points="830,175 880,195 935,220 990,250 1045,280 1105,305"
+      fill="none" stroke="#34D399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- not activated (drops fast) -->
+    <polyline points="830,300 880,370 935,415 990,435 1045,444 1105,448"
+      fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="900" y="135" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#7FE6D2">RETENTION</text>
+  </g>
+
+  <!-- mini bars (upper-left accent) -->
+  <g opacity="0.5">
+    <rect x="92" y="100" width="34" height="64" rx="4" fill="#34D399"/>
+    <rect x="138" y="128" width="34" height="36" rx="4" fill="#2E9E8A"/>
+    <rect x="184" y="84" width="34" height="80" rx="4" fill="#7FE6D2"/>
+  </g>
+</svg>
