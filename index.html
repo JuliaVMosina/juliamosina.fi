@@ -3827,13 +3827,23 @@
     document.getElementById('tab-projects').style.display = 'none';
     document.getElementById('projectDetail').classList.add('active');
     document.getElementById('projectDetail').scrollTop = 0;
+    history.replaceState(null, '', '#' + id);          // deep-linkable URL
     requestAnimationFrame(renderVisibleCharts);
   }
 
   function closeProject() {
     document.getElementById('projectDetail').classList.remove('active');
     document.getElementById('tab-projects').style.display = '';
+    if (projectData[location.hash.replace('#', '')]) history.replaceState(null, '', location.pathname);
   }
+
+  // Deep-link: open a project (or tab) directly from the URL hash on load
+  (function initFromHash() {
+    const h = location.hash.replace('#', '');
+    if (!h) return;
+    if (projectData[h]) { openProject(h); }
+    else { const t = document.querySelector('.nav-tab[data-tab="' + h + '"]'); if (t) t.click(); }
+  })();
 
   function switchPdTab(btn, paneId) {
     btn.closest('.pd-tabs').querySelectorAll('.pd-tab').forEach(t => t.classList.remove('active'));
