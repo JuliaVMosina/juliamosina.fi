@@ -1,44 +1,58 @@
-<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="1200" height="675" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg" font-family="'Segoe UI',system-ui,sans-serif">
   <rect width="1200" height="675" fill="#0E3B2E"/>
-  <radialGradient id="pag1" cx="0.82" cy="0.16" r="0.62">
-    <stop offset="0" stop-color="#34D399" stop-opacity="0.30"/>
+  <radialGradient id="pag1" cx="0.82" cy="0.14" r="0.7">
+    <stop offset="0" stop-color="#34D399" stop-opacity="0.32"/>
     <stop offset="1" stop-color="#34D399" stop-opacity="0"/>
   </radialGradient>
-  <radialGradient id="pag2" cx="0.12" cy="0.9" r="0.7">
+  <radialGradient id="pag2" cx="0.1" cy="0.85" r="0.75">
     <stop offset="0" stop-color="#0E7C6B" stop-opacity="0.45"/>
     <stop offset="1" stop-color="#0E7C6B" stop-opacity="0"/>
   </radialGradient>
   <rect width="1200" height="675" fill="url(#pag1)"/>
   <rect width="1200" height="675" fill="url(#pag2)"/>
 
-  <!-- funnel panel -->
-  <g opacity="0.96">
-    <rect x="430" y="110" width="330" height="380" rx="16" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
-    <rect x="470" y="150" width="250" height="46" rx="6" fill="#94A3B8"/>
-    <rect x="495" y="216" width="200" height="46" rx="6" fill="#3FBFA6"/>
-    <rect x="525" y="282" width="140" height="46" rx="6" fill="#2E9E8A"/>
-    <rect x="555" y="348" width="80"  height="46" rx="6" fill="#34D399"/>
-    <text x="595" y="430" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#7FE6D2">ACTIVATION FUNNEL</text>
-  </g>
+  <g opacity="0.97">
+    <!-- TILE 1: activation funnel -->
+    <rect x="90" y="70" width="490" height="225" rx="14" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <rect x="112" y="92" width="160" height="12" rx="5" fill="#1f7d60"/>
+    <rect x="120" y="128" width="430" height="32" rx="5" fill="#94A3B8"/>
+    <rect x="150" y="170" width="350" height="32" rx="5" fill="#3FBFA6"/>
+    <rect x="185" y="212" width="260" height="32" rx="5" fill="#2E9E8A"/>
+    <rect x="220" y="254" width="170" height="32" rx="5" fill="#34D399"/>
 
-  <!-- retention curves panel -->
-  <g opacity="0.96">
-    <rect x="790" y="110" width="350" height="380" rx="16" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
-    <line x1="825" y1="450" x2="1110" y2="450" stroke="#1d6b52" stroke-width="2"/>
-    <line x1="825" y1="150" x2="825" y2="450" stroke="#1d6b52" stroke-width="2"/>
-    <!-- activated (stays high) -->
-    <polyline points="830,175 880,195 935,220 990,250 1045,280 1105,305"
-      fill="none" stroke="#34D399" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-    <!-- not activated (drops fast) -->
-    <polyline points="830,300 880,370 935,415 990,435 1045,444 1105,448"
-      fill="none" stroke="#94A3B8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    <text x="900" y="135" text-anchor="middle" font-family="'Segoe UI',system-ui,sans-serif" font-size="13" font-weight="700" fill="#7FE6D2">RETENTION</text>
-  </g>
+    <!-- TILE 2: retention curves -->
+    <rect x="600" y="70" width="510" height="225" rx="14" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <rect x="622" y="92" width="160" height="12" rx="5" fill="#1f7d60"/>
+    <line x1="640" y1="270" x2="1080" y2="270" stroke="#1d6b52" stroke-width="2"/>
+    <line x1="640" y1="125" x2="640" y2="270" stroke="#1d6b52" stroke-width="2"/>
+    <polyline points="645,135 730,150 815,170 900,192 985,214 1075,234"
+      fill="none" stroke="#34D399" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <polyline points="645,200 730,238 815,258 900,266 985,269 1075,270"
+      fill="none" stroke="#94A3B8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
 
-  <!-- mini bars (upper-left accent) -->
-  <g opacity="0.5">
-    <rect x="92" y="100" width="34" height="64" rx="4" fill="#34D399"/>
-    <rect x="138" y="128" width="34" height="36" rx="4" fill="#2E9E8A"/>
-    <rect x="184" y="84" width="34" height="80" rx="4" fill="#7FE6D2"/>
+    <!-- TILE 3: North Star trend -->
+    <rect x="90" y="315" width="490" height="215" rx="14" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <rect x="112" y="337" width="160" height="12" rx="5" fill="#1f7d60"/>
+    <polyline points="120,500 190,485 260,470 330,448 400,430 470,405 540,378"
+      fill="none" stroke="#7FE6D2" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <g fill="#34D399"><circle cx="120" cy="500" r="5"/><circle cx="260" cy="470" r="5"/><circle cx="400" cy="430" r="5"/><circle cx="540" cy="378" r="5"/></g>
+
+    <!-- TILE 4: KPI / cohort grid -->
+    <rect x="600" y="315" width="510" height="215" rx="14" fill="#0F4A39" stroke="#1d6b52" stroke-width="1.5"/>
+    <rect x="624" y="345" width="220" height="76" rx="10" fill="#135a45"/>
+    <rect x="644" y="363" width="76" height="22" rx="5" fill="#34D399"/>
+    <rect x="644" y="395" width="150" height="9" rx="4" fill="#1d6b52"/>
+    <rect x="866" y="345" width="220" height="76" rx="10" fill="#135a45"/>
+    <rect x="886" y="363" width="60" height="22" rx="5" fill="#7FE6D2"/>
+    <rect x="886" y="395" width="150" height="9" rx="4" fill="#1d6b52"/>
+    <g>
+      <rect x="624" y="437" width="52" height="70" rx="6" fill="#135a45"/>
+      <rect x="686" y="437" width="52" height="70" rx="6" fill="#1f7d60"/>
+      <rect x="748" y="437" width="52" height="70" rx="6" fill="#2E9E8A"/>
+      <rect x="810" y="437" width="52" height="70" rx="6" fill="#3FBFA6"/>
+      <rect x="872" y="437" width="52" height="70" rx="6" fill="#135a45"/>
+      <rect x="934" y="437" width="52" height="70" rx="6" fill="#1f7d60"/>
+      <rect x="996" y="437" width="52" height="70" rx="6" fill="#2E9E8A"/>
+    </g>
   </g>
 </svg>
