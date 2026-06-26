@@ -3454,17 +3454,39 @@
           </div>
         </div>`,
       dashboard: `
-        <div class="pd-body" style="display:flex;flex-direction:column;gap:18px;">
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:22px;">
+
           <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">1 · HR Hiring Analytics</div>
             <img src="img/tableau-hr.png" alt="HR Hiring Analytics dashboard" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
-            <div style="font-size:11px;color:#AEAEAD;margin-top:4px;">HR Hiring Analytics — Finnish IT hiring funnel, time-to-hire by role, regional split.</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.6;margin-top:8px;">
+              <strong>Question:</strong> where do candidates drop off in the Finnish IT hiring funnel, and how does time-to-hire vary by role?<br>
+              <strong>Data:</strong> stat.fi (StatFin API) employment data + a modelled hiring funnel.<br>
+              <strong>Built:</strong> in <strong>both Tableau and Power BI</strong> (dual-tool) — funnel, time-to-hire by role &amp; seniority, regional split.<br>
+              <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/HRHiringAnalyticsFinlandITMarket2024-2026/Dashboard3" target="_blank" style="color:#1A4A9A;font-weight:600;">→ Open live on Tableau Public ↗</a>
+            </div>
           </div>
-          <div style="display:flex;flex-direction:column;gap:10px;">
-            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;">Open the live, interactive dashboards on Tableau Public</div>
-            <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/HRHiringAnalyticsFinlandITMarket2024-2026/Dashboard3" target="_blank" style="font-size:14px;color:#1A4A9A;font-weight:600;">→ HR Hiring Analytics ↗</a>
-            <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/FinlandTechJobMarketSkillDemandTracker20242026/Dashboard1" target="_blank" style="font-size:14px;color:#1A4A9A;font-weight:600;">→ Finland Tech Job Market — Skill Demand Tracker ↗</a>
-            <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/FinlandEconomicPulseGDPCPIEmployment20152026/Dashboard1" target="_blank" style="font-size:14px;color:#1A4A9A;font-weight:600;">→ Finland Economic Pulse — GDP · CPI · Employment ↗</a>
+
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">2 · Finland Tech Job Market — Skill Demand Tracker</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.6;">
+              <strong>Question:</strong> which tools &amp; skills does the Finnish IT market actually demand, and how does that shift by seniority?<br>
+              <strong>Data:</strong> ~600 job postings (Duunitori RSS + modelled dataset), parsed with <strong>keyword NLP</strong> to extract skill frequencies.<br>
+              <strong>Shows:</strong> top in-demand skills, demand trend 2024–2026, requirements by seniority level.<br>
+              <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/FinlandTechJobMarketSkillDemandTracker20242026/Dashboard1" target="_blank" style="color:#1A4A9A;font-weight:600;">→ Open live on Tableau Public ↗</a>
+            </div>
           </div>
+
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">3 · Finland Economic Pulse</div>
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.6;">
+              <strong>Question:</strong> where does the Finnish economy stand, and how has it moved since 2015?<br>
+              <strong>Data:</strong> live <strong>StatFin REST API</strong> (Statistics Finland) — GDP, CPI, employment.<br>
+              <strong>Shows:</strong> four macro indicators consolidated into one always-current view (scheduled refresh).<br>
+              <a href="https://public.tableau.com/app/profile/julia.v.mosina/viz/FinlandEconomicPulseGDPCPIEmployment20152026/Dashboard1" target="_blank" style="color:#1A4A9A;font-weight:600;">→ Open live on Tableau Public ↗</a>
+            </div>
+          </div>
+
         </div>`,
       stack: `
         <div class="pd-body">
@@ -3504,9 +3526,26 @@
           </div>
         </div>`,
       analysis: `
-        <div class="pd-body" style="display:flex;flex-direction:column;gap:18px;">
-          <div><img src="img/ab-conversion.png" alt="Conversion by group" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:430px;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Primary: +1.43pp (+12% relative), p = 0.0005 — significant and positive.</div></div>
-          <div><img src="img/ab-segments.png" alt="Effect by segment" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Heterogeneous effect — new users benefit most (significant); returning n.s. after Šidák correction.</div></div>
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Design &amp; power</div>
+            <div style="font-size:14px;color:#1E1E1C;line-height:1.6;">Before collecting data I ran a <strong>power analysis</strong>: to detect the minimum effect worth caring about (+1.2pp on an 11.8% baseline) at α = 0.05 and 80% power, the test needs <strong>~11,800 users per arm</strong>. The experiment ran ~13,250 per arm over 14 days, randomised at user level. A <strong>Sample-Ratio-Mismatch (SRM)</strong> χ² check confirmed the 50/50 split before any result was trusted.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Primary metric — conversion</div>
+            <img src="img/ab-conversion.png" alt="Conversion by group" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:430px;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Variant B lifts conversion <strong>+1.43pp (+12% relative), p = 0.0005</strong> — clearly significant. Two-proportion z-test; 95% CI on the lift = [+0.63pp, +2.23pp]. Honest caveat: the CI lower bound sits just below the +1.2pp MDE, so the effect is real but possibly modest.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Guardrail — order value (AOV)</div>
+            <img src="img/ab-aov.png" alt="Order value distribution" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:480px;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">AOV is right-skewed, so I tested it with a Welch t-test, a Mann-Whitney backup and a <strong>bootstrap CI</strong>. No significant change — crucially, AOV <strong>did not drop</strong>, so the extra orders aren't smaller ones.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">Segmentation (exploratory)</div>
+            <img src="img/ab-segments.png" alt="Effect by segment" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Heterogeneous effect — <strong>new users benefit most</strong> (+1.9pp, significant); returning users smaller and not significant after a <strong>Šidák correction</strong> for multiple comparisons. Treated as exploratory, not extra ship criteria.</div>
+          </div>
         </div>`,
       results: `
         <div class="pd-kpis">
@@ -3547,10 +3586,32 @@
           </div>
         </div>`,
       analysis: `
-        <div class="pd-body" style="display:flex;flex-direction:column;gap:18px;">
-          <div><img src="img/pa-funnel.png" alt="Activation funnel" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Activation ≈ 34%; biggest leak is the first step — ~39% never connect an integration.</div></div>
-          <div><img src="img/pa-retention.png" alt="Retention by activation" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">Activation is the dividing line — activated users retain ~10×+ better.</div></div>
-          <div><img src="img/pa-northstar.png" alt="North Star — Weekly Active Builders" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;"><div style="font-size:11px;color:#AEAEAD;margin-top:4px;">North Star: Weekly Active Builders (users running ≥1 workflow/week).</div></div>
+        <div class="pd-body" style="display:flex;flex-direction:column;gap:20px;">
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">1 · Activation funnel — where users drop off</div>
+            <img src="img/pa-funnel.png" alt="Activation funnel" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Activation (first successful workflow run) ≈ <strong>34%</strong>. The <strong>biggest leak is the very first step</strong> — ~39% of signups never connect an integration. That's where onboarding investment pays back most.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">2 · Time to value</div>
+            <img src="img/pa-ttv.png" alt="Time to value" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;max-width:480px;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Most activated users reach value within <strong>~1–2 days</strong>; a long tail waits longer — a window to nudge before they go cold.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">3 · North Star — Weekly Active Builders</div>
+            <img src="img/pa-northstar.png" alt="North Star — Weekly Active Builders" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Users running ≥1 workflow per week — real recurring value, not vanity signups. The number a PLG team should move.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">4 · Activation drives retention</div>
+            <img src="img/pa-retention.png" alt="Retention by activation" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Activation is <strong>the dividing line</strong>: activated users retain ~10×+ better; users who never reach a first successful run churn almost entirely within weeks.</div>
+          </div>
+          <div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;color:#AEAEAD;text-transform:uppercase;margin-bottom:6px;">5 · What makes users stick — feature adoption</div>
+            <img src="img/pa-feature.png" alt="Retention by feature adoption" class="zoomable" onclick="openLightbox(this.src)" style="width:100%;border-radius:6px;border:1px solid #E8E8E4;">
+            <div style="font-size:13px;color:#1E1E1C;line-height:1.5;margin-top:6px;">Among activated users, those who adopt <strong>AI nodes</strong> retain noticeably better (correlation — the natural next step is an experiment to test the causal effect).</div>
+          </div>
         </div>`,
       results: `
         <div class="pd-body">
