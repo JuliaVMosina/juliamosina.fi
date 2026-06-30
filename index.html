@@ -763,8 +763,18 @@
       overflow-y: auto;
     }
     .contact-panel.active { display: flex; }
-    .projects-grid.active { display: grid; }
-    .projects-grid { display: none; }
+    #tab-projects { display: none; }
+    #tab-projects.active { display: block; }
+    .projects-grid { display: grid; }
+    .more-grid { display: none; }
+    .more-grid.show { display: grid; margin-top: 12px; }
+    .more-toggle {
+      display: block; margin: 16px auto 26px; padding: 10px 26px;
+      border: 1px solid rgba(0,0,0,0.15); border-radius: 999px; background: #fff;
+      font-family: inherit; font-size: 13px; font-weight: 600; color: #1A4A9A; cursor: pointer;
+      transition: border-color .2s, color .2s;
+    }
+    .more-toggle:hover { border-color: #1A4A9A; background: #F5F8FD; }
 
     .contact-card {
       background: #fff;
@@ -1416,16 +1426,16 @@
       <!-- Skills: grouped by proficiency, sitting in the dot-gradient zone -->
       <div class="skills">
         <span class="skill-tier-label">Core · 5+ years</span>
-        <span class="skill-chip has-cert" title="View course certificate (PL-300 prep)" onclick="openLightbox('img/certs/power-bi.jpg')"><span class="chip-icon">📊</span> Power BI</span>
-        <span class="skill-chip"><span class="chip-icon">⚡</span> DAX</span>
-        <span class="skill-chip has-cert" title="View certificate" onclick="openLightbox('img/certs/sql.jpg')"><span class="chip-icon">🗄️</span> SQL</span>
+        <span class="skill-chip has-cert" title="View course certificate (PL-300 prep)" onclick="openLightbox('img/certs/power-bi.jpg')">Power BI</span>
+        <span class="skill-chip">DAX</span>
+        <span class="skill-chip has-cert" title="View certificate" onclick="openLightbox('img/certs/sql.jpg')">SQL</span>
         <span class="skill-tier-label">Working knowledge</span>
-        <span class="skill-chip has-cert" title="View certificate (Google Advanced Data Analytics)" onclick="openLightbox('img/certs/google-advanced.png')"><span class="chip-icon">🐍</span> Python</span>
-        <span class="skill-chip has-cert" title="View certificate (dbt Fundamentals)" onclick="openLightbox('img/certs/dbt.png')"><span class="chip-icon">🔧</span> dbt</span>
-        <span class="skill-chip has-cert" title="View accreditation (Snowflake Hands-On Essentials)" onclick="openLightbox('img/certs/snowflake-cert.png')"><span class="chip-icon">❄️</span> Snowflake</span>
-        <span class="skill-chip"><span class="chip-icon">📈</span> Tableau</span>
-        <span class="skill-chip"><span class="chip-icon">☁️</span> Azure</span>
-        <span class="skill-chip"><span class="chip-icon">🧩</span> Fabric</span>
+        <span class="skill-chip has-cert" title="View certificate (Google Advanced Data Analytics)" onclick="openLightbox('img/certs/google-advanced.png')">Python</span>
+        <span class="skill-chip has-cert" title="View certificate (dbt Fundamentals)" onclick="openLightbox('img/certs/dbt.png')">dbt</span>
+        <span class="skill-chip has-cert" title="View accreditation (Snowflake Hands-On Essentials)" onclick="openLightbox('img/certs/snowflake-cert.png')">Snowflake</span>
+        <span class="skill-chip">Tableau</span>
+        <span class="skill-chip">Azure</span>
+        <span class="skill-chip">Fabric</span>
         </div>
     </div>
 
@@ -1530,7 +1540,8 @@
 
   <!-- RIGHT PANEL -->
   <div class="right-panel">
-    <div class="projects-grid active" id="tab-projects">
+    <div class="tab-panel active" id="tab-projects">
+      <div class="projects-grid">
 
       <!-- 1. Thesis — dbt pipeline diagram bg + plum gradient -->
       <a href="#" class="project-card" onclick="openProject('thesis'); return false;">
@@ -1598,7 +1609,35 @@
         </div>
       </a>
 
-      <!-- 4. Fabric — cloud BI pipeline (in progress) -->
+      <!-- 4 (featured). Product analytics — activation & retention -->
+      <a href="#" class="project-card" onclick="openProject('productanalytics'); return false;">
+        <div class="project-bg" style="
+          background:
+            linear-gradient(to top, rgba(14,59,46,0.92) 0%, rgba(14,59,46,0.4) 38%, transparent 65%),
+            url('img/pa-card.svg') center / cover no-repeat,
+            #0E3B2E;
+        "></div>
+        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(14,59,46,0.96) 0%, rgba(14,59,46,0.6) 35%, transparent 62%);">
+          <div class="pc-label">Product analytics · PLG</div>
+          <div class="pc-title">Activation & Retention Analysis</div>
+          <div class="pc-subtitle">Activation funnel, time-to-value, North Star & cohort retention for a PLG SaaS — with clear product recommendations</div>
+          <div class="pc-chips">
+            <span class="pc-chip">Activation funnel</span><span class="pc-chip">Retention</span><span class="pc-chip">North Star</span><span class="pc-chip">Python</span>
+          </div>
+          <div class="pc-stats">
+            <span>34% activation</span><span>·</span><span>cohort retention</span><span>·</span><span>recommendations</span>
+          </div>
+          <span class="pc-arrow">↗</span>
+        </div>
+      </a>
+
+      </div><!-- /featured grid -->
+
+      <button class="more-toggle" onclick="toggleMore()">Show more work (5) ↓</button>
+
+      <div class="projects-grid more-grid" id="moreGrid">
+
+      <!-- More · Fabric — cloud BI pipeline -->
       <a href="#" class="project-card" onclick="openProject('fabric'); return false;">
         <div class="project-bg" style="
           background:
@@ -1708,29 +1747,8 @@
         </div>
       </a>
 
-      <!-- 9. Product analytics — activation & retention -->
-      <a href="#" class="project-card" onclick="openProject('productanalytics'); return false;">
-        <div class="project-bg" style="
-          background:
-            linear-gradient(to top, rgba(14,59,46,0.92) 0%, rgba(14,59,46,0.4) 38%, transparent 65%),
-            url('img/pa-card.svg') center / cover no-repeat,
-            #0E3B2E;
-        "></div>
-        <div class="project-content pc-v2" style="background: linear-gradient(to top, rgba(14,59,46,0.96) 0%, rgba(14,59,46,0.6) 35%, transparent 62%);">
-          <div class="pc-label">Product analytics · PLG</div>
-          <div class="pc-title">Activation & Retention Analysis</div>
-          <div class="pc-subtitle">Activation funnel, time-to-value, North Star & cohort retention for a PLG SaaS — with clear product recommendations</div>
-          <div class="pc-chips">
-            <span class="pc-chip">Activation funnel</span><span class="pc-chip">Retention</span><span class="pc-chip">North Star</span><span class="pc-chip">Python</span>
-          </div>
-          <div class="pc-stats">
-            <span>34% activation</span><span>·</span><span>cohort retention</span><span>·</span><span>recommendations</span>
-          </div>
-          <span class="pc-arrow">↗</span>
-        </div>
-      </a>
-
-    </div>
+      </div><!-- /more-grid -->
+    </div><!-- /#tab-projects -->
 
     <!-- ABOUT TAB — Personal Dashboard -->
     <div class="about-panel" id="tab-about">
@@ -3896,6 +3914,13 @@
     document.getElementById('projectDetail').classList.remove('active');
     document.getElementById('tab-projects').style.display = '';
     if (projectData[location.hash.replace('#', '')]) history.replaceState(null, '', location.pathname);
+  }
+
+  function toggleMore() {
+    const g = document.getElementById('moreGrid');
+    const b = document.querySelector('.more-toggle');
+    const open = g.classList.toggle('show');
+    if (b) b.textContent = open ? 'Show less ↑' : 'Show more work (5) ↓';
   }
 
   // Deep-link: open a project (or tab) directly from the URL hash on load
